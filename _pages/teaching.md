@@ -1,12 +1,22 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+title: Teaching
+description: 
 nav: true
 nav_order: 4
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+### Teaching assistant at Lund University:
 
-Organize your courses by years, topics, or universities, however you like!
+#### 2022
+- [FRTN30 - Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/)
+
+#### 2021
+- [WASP: Deep learning and GANs](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/)
+- [FRTN70 - Project in systems, control and learning](https://www.control.lth.se/education/engineering-program/frtn70-project-in-systems-control-and-learning/)  
+- [FRTN50 - Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
+
+#### 2020
+- [FRTN50 - Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)  
+- [FRTF05 - Automatic control, basic course for CMN](https://www.control.lth.se/education/engineering-program/frtf05-automatic-control-basic-course-for-cmn/)
