@@ -1,18 +1,23 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"Levine":
+  - firstname: ["Sergey", "Sergey Levine"]
+    url: https://people.eecs.berkeley.edu/~svlevine/
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"Owens":
+  - firstname: ["Andrew", "Andrew Owens"]
+    url: https://andrewowens.com/
 
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"Calandra":
+  - firstname: ["Roberto", "Roberto Calandra"]
+    url: https://www.robertocalandra.com/
 
-"Bach": 
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"Yuan":
+  - firstname: ["Wenzhen", "Wenzhen Yuan"]
+    url: http://robotouch.ri.cmu.edu/yuanwz/
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"Lin":
+  - firstname: ["Justin", "Justin Lin"]
+    url: https://www.linkedin.com/in/justin-lin-b98689b1/
+
+"Adelson":
+  - firstname: ["Edward", "Edward H. Adelson", "Edward H.", "Edward Adelson"]
+    url: http://persci.mit.edu/people/adelson
