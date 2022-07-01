@@ -141,6 +141,9 @@
           {%- if entry.website %}
             <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>
           {%- endif %}
+          {%- if entry.award %}
+            <a class="awards btn btn-sm z-depth-0" role="button"><b>{{ entry.award }}</b></a>
+          {%- endif %}
           </div>
 
           {% if entry.abstract -%}
@@ -154,6 +157,13 @@
           <!-- Hidden bibtex block -->
           <div class="bibtex hidden">
             {% highlight bibtex %}{{ entry.bibtex | hideCustomBibtex }}{% endhighlight %}
+          </div>
+          {%- endif %}
+
+          {% if entry.award_show -%}
+          <!-- Hidden awards block -->
+          <div class="awards hidden">
+            {% highlight award %}<a href="{{ entry.award_link }}">Citation</a>{% endhighlight %}
           </div>
           {%- endif %}
         </div>
