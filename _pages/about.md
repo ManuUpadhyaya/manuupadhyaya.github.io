@@ -34,7 +34,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am currently a PhD student at the Department of Automatic Control at Lund University and in the WASP (Wallenberg AI, Autonomous Systems and Software Program) graduate school. My main supervisor is [Pontus Giselsson](https://www.control.lth.se/personnel/personnel/pontus-giselsson/) and co-supervisor is [Sebastian Banert](https://portal.research.lu.se/en/persons/sebastian-banert). I joined the department in July 2020. 
+I am currently a PhD student at the department of automatic control at Lund University and in the WASP (Wallenberg AI, autonomous systems and software program) graduate school. My main supervisor is [Pontus Giselsson](https://www.control.lth.se/personnel/personnel/pontus-giselsson/) and co-supervisor is [Sebastian Banert](https://portal.research.lu.se/en/persons/sebastian-banert). I joined the department in July 2020. 
 
 I have received an MSc in engineering physics (2020), an MSc in finance (2020) and a BSc in mathematics (2015), all from Lund University. I have also spent time as a student research visitor at UC Berkeley (2017) and ETH Zürich (2018). 
 
