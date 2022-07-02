@@ -10,8 +10,7 @@ profile:
   image_cicular: false # crops the image to make it circular
   address: >
     <p><small>
-      <strong>Email:</strong><br>
-      first.last[at]control.lth.se
+      Email: first.last[at]control.lth.se
     </small></p>
     <!---
     <p><small><br>
