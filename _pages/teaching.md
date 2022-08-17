@@ -11,6 +11,7 @@ nav_order: 4
 
 ##### **2022**
 - [FRTN30 - Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/)
+- [FRTN50 - Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 
 ##### **2021**
 - [WASP: Deep learning and GANs](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/)
