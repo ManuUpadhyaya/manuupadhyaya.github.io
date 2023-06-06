@@ -23,7 +23,7 @@ nav_order: 3
 ##### **[FRTN30 - Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/)**
 - 2022
 
-##### **[FRTN70 - Project in systems, control and learning](https://www.control.lth.se/education/engineering-program/frtn70-project-in-systems-control-and-learning/)  **
+##### **[FRTN70 - Project in systems, control and learning](https://www.control.lth.se/education/engineering-program/frtn70-project-in-systems-control-and-learning/)**
 - 2021
 - Supervised three [projects](https://manuupadhyaya.github.io/share/trading.pdf) on profolio optimization using OMX Stockholm 30 data
 
