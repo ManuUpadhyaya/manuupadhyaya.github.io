@@ -11,6 +11,7 @@ nav_order: 3
 
 ##### **2023**
 - [WASP: Deep learning](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/)
+- [FRTN65 - Modeling and learning from data](https://www.control.lth.se/education/engineering-program/frtn65-modeling-and-learning-from-data/)
 
 ##### **2022**
 - [FRTN30 - Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/)
