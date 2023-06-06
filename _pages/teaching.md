@@ -25,7 +25,7 @@ nav_order: 3
 
 ##### **[FRTN70 - Project in systems, control and learning](https://www.control.lth.se/education/engineering-program/frtn70-project-in-systems-control-and-learning/)**
 - 2021
-- Supervised three [projects](https://manuupadhyaya.github.io/share/trading.pdf) on profolio optimization using OMX Stockholm 30 data
+- Supervised three [projects](https://manuupadhyaya.github.io/share/trading.pdf) on portfolio optimization using OMX Stockholm 30 data
 
 ##### **[FRTF05 - Automatic control, basic course for CMN](https://www.control.lth.se/education/engineering-program/frtf05-automatic-control-basic-course-for-cmn/)**
 - 2020
