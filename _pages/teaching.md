@@ -14,7 +14,7 @@ nav_order: 3
 
 ##### **[WASP: Deep learning](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/) [2023, 2021]**
 - Grading of hand-in assignments
-- Developed new syllabus (2023) and new hand-in assignment (2021) for module 2
+- Developed new hand-in assignment
 
 ##### **[FRTN50 - Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/) [2022, 2021, 2020]**
 - Exercise sessions, grading of hand-in assignments and exams
