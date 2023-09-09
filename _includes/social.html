@@ -31,6 +31,9 @@
             {%- if site.orcid_id -%}
             <a href="https://orcid.org/{{ site.orcid_id }}" title="ORCID"><i class="ai ai-orcid"></i></a>
             {% endif %}
+            {%- if site.instagram_id -%}
+            <a href="https://instagram.com/{{ site.instagram_id }}" title="Instagram"><i class="fab fa-instagram"></i></a>
+            {% endif %}
             {%- if site.work_url -%}
             <a href="{{ site.work_url }}" title="Work"><i class="fas fa-briefcase"></i></a>
             {% endif %}
