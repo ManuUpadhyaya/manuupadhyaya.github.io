@@ -28,7 +28,7 @@ profile:
     --->
     
 
-news: false  # includes a list of news items
+news: true  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
@@ -38,3 +38,7 @@ I am currently a PhD student at the department of automatic control at Lund Univ
 I have received an MSc in engineering physics (2020), an MSc in finance (2020) and a BSc in mathematics (2015), all from Lund University. I have also spent time as a student research visitor at UC Berkeley (2017) and ETH Zürich (2018). 
 
 My research interests are in continuous optimization and its applications, e.g., machine learning, control, and finance. Currently, my focus is on the performance analysis of first-order algorithms for convex optimization problems.
+
+
+## News
+- **[New]** I am excited to announce that I am co-organizing the **EUROPT 2024 - 21st conference on advances in continuous optimization** in Lund, Sweden. For more details, visit the [conference website](https://europt2024.event.lu.se/).
