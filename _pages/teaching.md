@@ -14,7 +14,7 @@ nav_order: 3
 - Developed new exercises, hand-in assignments, exams and wrote a [mathematical prerequisites document](https://manuupadhyaya.github.io/share/prerequisites.pdf)
 
 ##### **[FRTN65 - Modeling and learning from data](https://www.control.lth.se/education/engineering-program/frtn65-modeling-and-learning-from-data/) [2023]**
-- Exercise sessions, grading of hand-in assignments and exams
+- Exercise sessions and responsible for hand-in assignment
 
 ##### **[WASP: Deep learning](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/) [2023, 2021]**
 - Grading of hand-in assignments
