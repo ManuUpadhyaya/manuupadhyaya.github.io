@@ -13,6 +13,8 @@ nav_order: 1
 <div class="publications">
     <h2 class="status">Preprints</h2>
     {% bibliography -f papers -q @*[abbr=Preprint]* %}
+    <h2 class="status">Journals</h2>
+    {% bibliography -f papers -q @*[abbr=Journal]* %}
     <h2 class="status">Conferences</h2>
     {% bibliography -f papers -q @*[abbr=Conference]* %}
     <h2 class="status">Theses</h2>
