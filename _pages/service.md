@@ -2,6 +2,7 @@
 layout: service
 permalink: /service/
 title: Service
+title_on_page: Professional and academic service
 description: 
 nav: true
 nav_order: 5
