@@ -13,4 +13,4 @@ nav_order: 5
   * Co-organizer
 
 ### Peer-reviewing for conferences:
-- Learning for dynamics & control (L4DC) [2024] 
+- [Learning for dynamics & control (L4DC)](https://l4dc.web.ox.ac.uk/), University of Oxford, United Kingdom, 15-17 July, 2024 
