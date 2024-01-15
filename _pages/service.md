@@ -11,5 +11,5 @@ nav_order: 5
 - [EUROPT 2024, the 21st conference on advances in continuous optimization](https://europt2024.event.lu.se/), Lund University, Sweden, 26-28 June, 2024
   * Co-organizer
 
-### Peer-review for conferences:
+### Peer-reviewing for conferences:
 - Learning for dynamics & control (L4DC) [2024] 
