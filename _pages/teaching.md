@@ -36,4 +36,4 @@ nav_order: 3
 
 ### Supervised theses:
 
-- Oscar Gummesson Atroshi and Osman Sibai: _Deep hedging of derivatives with cross-gamma_ (Master thesis, Lund University, 2024)
+- Oscar Gummesson Atroshi and Osman Sibai: _Deep hedging of derivatives with cross-gamma_, Master thesis, Lund University, 2024. Co-supervised with [Magnus Wiktorsson](https://www.maths.lth.se/matstat/staff/magnusw/) (Lund University) and Shengyao Zhu (Nordea Markets).
