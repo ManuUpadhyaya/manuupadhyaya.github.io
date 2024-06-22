@@ -7,8 +7,12 @@ nav: true
 nav_order: 4
 ---
 
+##### **2024**
+- [33rd European conference on operational research (EURO 2024)](https://euro2024cph.dk/), Copenhagen, Denmark, June-July 2024.
+- [EUROPT 2024](https://europt2024.event.lu.se/), Lund, Sweden, June 2024.
+
 ##### **2023**
-- [20th EUROPT workshop](http://www.europt.hu/), Budapest, Hungary, August 2023. [[slides](https://manuupadhyaya.github.io/share/EUROpt_2023.pdf)]
+- [EUROPT 2023](http://www.europt.hu/), Budapest, Hungary, August 2023. [[slides](https://manuupadhyaya.github.io/share/EUROpt_2023.pdf)]
 - [SIAM conference on optimization (OP23)](https://www.siam.org/conferences/cm/conference/op23), Seattle, Washington, U.S., May-June 2023. [[slides](https://manuupadhyaya.github.io/share/SIAM_OP23.pdf)]
 - Internal friday seminar at department of automatic control, Lund University. Lund, Sweden. May 26, 2023
 - [SIAM conference on computational science and engineering (CSE23)](https://www.siam.org/conferences/cm/conference/cse23), Amsterdam, The Netherlands, February-March 2023. [[slides](https://manuupadhyaya.github.io/share/CSE23.pdf)]
