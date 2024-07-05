@@ -8,8 +8,8 @@ nav_order: 4
 ---
 
 ##### **2024**
-- [33rd European conference on operational research (EURO 2024)](https://euro2024cph.dk/), Copenhagen, Denmark, June-July 2024.
-- [EUROPT 2024](https://europt2024.event.lu.se/), Lund, Sweden, June 2024.
+- [33rd European conference on operational research (EURO 2024)](https://euro2024cph.dk/), Copenhagen, Denmark, June-July 2024. [[slides](https://manuupadhyaya.github.io/share/EURO_2024.pdf)]
+- [EUROPT 2024](https://europt2024.event.lu.se/), Lund, Sweden, June 2024. [[slides](https://manuupadhyaya.github.io/share/EUROPT_2024.pdf)]
 
 ##### **2023**
 - [EUROPT 2023](http://www.europt.hu/), Budapest, Hungary, August 2023. [[slides](https://manuupadhyaya.github.io/share/EUROpt_2023.pdf)]
