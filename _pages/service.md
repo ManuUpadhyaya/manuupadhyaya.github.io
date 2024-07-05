@@ -9,7 +9,7 @@ nav_order: 5
 ---
 
 ### Organized conferences:
-- [The 21st EUROPT conference on advances in continuous optimization (EUROPT 2024)](https://europt2024.event.lu.se/), Lund University, Sweden, 26-28 June, 2024
+- [The 21st conference on advances in continuous optimization (EUROPT 2024)](https://europt2024.event.lu.se/), Lund University, Sweden, 26-28 June, 2024
   * Co-organizer and stream organizer
 
 ### Peer-reviewing for conferences:
