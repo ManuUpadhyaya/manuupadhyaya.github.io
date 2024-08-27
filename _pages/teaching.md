@@ -9,7 +9,7 @@ nav_order: 3
 
 ### Courses taught: 
 
-##### **[Lund University: Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/) [2023, 2022, 2021, 2020]**
+##### **[Lund University: Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/) [2024, 2023, 2022, 2021, 2020]**
 - Teaching assistant
 - Exercise sessions, grading of hand-in assignments and exams
 - Developed new exercises, hand-in assignments, exams and wrote a [mathematical prerequisites document](https://manuupadhyaya.github.io/share/prerequisites.pdf)
