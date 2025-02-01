@@ -1,34 +1,35 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"levine":
+  - firstname: ["Sergey"]
+    url: https://people.eecs.berkeley.edu/~svlevine/
 
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"owens":
+  - firstname: ["Andrew"]
+    url: https://andrewowens.com/
 
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"calandra":
+  - firstname: ["Roberto"]
+    url: https://www.robertocalandra.com/
 
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"yuan":
+  - firstname: ["Wenzhen"]
+    url: http://robotouch.ri.cmu.edu/yuanwz/
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"lin":
+  - firstname: ["Justin"]
+    url: https://www.linkedin.com/in/justin-lin-b98689b1/
 
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
-
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
-
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
-
-"planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"adelson":
+  - firstname: ["Edward", "Edward H."]
+    url: http://persci.mit.edu/people/adelson
+    
+"banert":
+  - firstname: ["Sebastian"]
+    url: https://github.com/sbanert
+    
+"giselsson":
+  - firstname: ["Pontus"]
+    url: https://www.control.lth.se/personnel/personnel/pontus-giselsson/
+    
+"taylor":
+  - firstname: ["Adrien", "Adrien B."]
+    url: https://adrientaylor.github.io/

@@ -1,115 +1,57 @@
----
----
-
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title={Relativity: the Special and General Theory},
-  author={Einstein, Albert},
-  year={1920},
-  publisher={Methuen & Co Ltd},
-  html={relativity.html}
-}
-
-@book{einstein1956investigations,
+%% 2024
+@article{upadhyaya2024tight_lyapunov_analysis,
+  title={Automated tight Lyapunov analysis for first-order methods},
+  author={Upadhyaya, Manu and Banert, Sebastian and Taylor, Adrien B. and Giselsson, Pontus},
+  year={2024},
+  journal={Mathematical Programming},
+  abbr={Journal},
+  abstract={We present a methodology for establishing the existence of quadratic Lyapunov inequalities for a wide range of first-order methods used to solve convex optimization problems. In particular, we consider (i) classes of optimization problems of finite-sum form with (possibly strongly) convex and possibly smooth functional components, (ii) first-order methods that can be written as a linear system on state-space form in feedback interconnection with the subdifferentials of the functional components of the objective function, and (iii) quadratic Lyapunov inequalities that can be used to draw convergence conclusions. We present a necessary and sufficient condition for the existence of a quadratic Lyapunov inequality within a predefined class of Lyapunov inequalities, which amounts to solving a small-sized semidefinite program. We showcase our methodology on several first-order methods that fit the framework. Most notably, our methodology allows us to significantly extend the region of parameter choices that allow for duality gap convergence in the Chambolle-Pock method when the linear operator is the identity mapping.},
+  code={https://github.com/ManuUpadhyaya/tight_lyapunov_analysis},
+  arxiv={2302.06713},
   bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
+  doi={10.1007/s10107-024-02061-8}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
+%% 2023
+@article{banert2023chambolle_pock,
+  title={The Chambolle-Pock method converges weakly with \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\)},
+  author={Banert, Sebastian and Upadhyaya, Manu and Giselsson, Pontus},
+  journal={arXiv:2309.03998},
+  year={2023},
+  abbr={Preprint},
+  abstract={The Chambolle-Pock method is a versatile three-parameter algorithm designed to solve a broad class of composite convex optimization problems, which encompass two proper, lower semicontinuous, and convex functions, along with a linear operator \(L\). The functions are accessed via their proximal operators, while the linear operator is evaluated in a forward manner. Among the three algorithm parameters \(\tau\), \(\sigma\), and \(\theta\); \(\tau\), \(\sigma > 0\,\,\) serve as step sizes for the proximal operators, and \(\theta\,\,\) is an extrapolation step parameter. Previous convergence results have been based on the assumption that \(\theta = 1\). We demonstrate that weak convergence is achievable whenever \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\). Moreover, we establish tightness of the step size bound by providing an example that is nonconvergent whenever the second bound is violated.},
+  arxiv={2309.03998},
+  bibtex_show={true}
+}
+
+%% 2020
+@article{lynx2020,
+  title={Covariance matrix regularization for portfolio selection: Achieving desired risk},
+  abstract={The modus operandi of most asset managers is to promise clients an annual risk target, where risk is measured by realized standard deviation of portfolio returns. Moreover, Markowitz (1952) portfolio selection requires an estimate of the covariance matrix of the returns of the financial instruments under consideration. To address both these problems, we develop a data-driven method for covariance matrix regularization. The data-driven method critically depends on a novel risk targeting loss function. In addition, the risk targeting loss function is analyzed under large-dimensional asymptotics, resulting in an asymptotically optimal covarinace matrix regularization. In an ex-post analysis, using historical price data from multiple future markets, the data-driven method outperforms other regularization methods compared against.},
+  author={Upadhyaya, Manu},
+  html={https://lup.lub.lu.se/student-papers/search/publication/9005476},
+  year={2020},
+  journal={Master's thesis},
+  abbr={Thesis},
+}
+
+%% 2017
+@inproceedings{calandra2017feeling,
+  title={The feeling of success: Does touch sensing help predict grasp outcomes?},
+  abstract={A successful grasp requires careful balancing of the contact forces. Deducing whether a particular grasp will be successful from indirect measurements, such as vision, is therefore quite challenging, and direct sensing of contacts through touch sensing provides an appealing avenue toward more successful and consistent robotic grasping. However, in order to fully evaluate the value of touch sensing for grasp outcome prediction, we must understand how touch sensing can influence outcome prediction accuracy when combined with other modalities. Doing so using conventional model-based techniques is exceptionally difficult. In this work, we investigate the question of whether touch sensing aids in predicting grasp outcomes within a multimodal sensing framework that combines vision and touch. To that end, we collected more than 9,000 grasping trials using a two-finger gripper equipped with GelSight high-resolution tactile sensors on each finger, and evaluated visuo-tactile deep neural network models to directly predict grasp outcomes from either modality individually, and from both modalities together. Our experimental results indicate that incorporating tactile readings substantially improve grasping performance.},
+  author={Calandra, Roberto and Owens, Andrew and Upadhyaya, Manu and Yuan, Wenzhen and Lin, Justin and Adelson, Edward H. and Levine, Sergey},
+  website={https://sites.google.com/view/the-feeling-of-success},
+  year={2017},
+  arxiv={1710.05512},
   bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
-}
-
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  location={New Jersey},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  google_scholar_id={qyhmnyLat1gC},
-  video={https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info={. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation={* Example use of superscripts<br>† Albert Einstein},
-  selected={true},
-  inspirehep_id = {3255}
-}
-
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@Article{einstein1905photoelectriceffect,
-  bibtex_show={true},
-  abbr={Ann. Phys.},
-  title="{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}",
-  author={Albert Einstein},
-  abstract={This is the abstract text.},
-  journal={Ann. Phys.},
-  volume={322},
-  number={6},
-  pages={132--148},
-  year={1905},
-  doi={10.1002/andp.19053220607},
-  award={Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name={Nobel Prize}
-}
-
-@book{przibram1967letters,
-  bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif},
-  abbr={Vision}
+  abbr={Conference},
+  booktitle = 	 {Proceedings of the 1st Annual Conference on Robot Learning (CoRL)},
+  pages = 	 {314--323},
+  editor = 	 {Levine, Sergey and Vanhoucke, Vincent and Goldberg, Ken},
+  volume = 	 {78},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--15 Nov},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v78/calandra17a/calandra17a.pdf},
+  html = 	 {https://proceedings.mlr.press/v78/calandra17a.html},
 }

@@ -1,19 +1,19 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: <a href='https://www.control.lth.se/'>Lund University, Department of Automatic Control</a>
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: manu.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p><small>
+      Email: first.last[at]control.lth.se
+    </small></p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
@@ -22,13 +22,13 @@ announcements:
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am a PhD student at the Department of Automatic Control at Lund University and in the WASP (Wallenberg AI, autonomous systems and software program) graduate school. My main supervisor is [Pontus Giselsson](https://www.control.lth.se/personnel/personnel/pontus-giselsson/), and my co-supervisor is [Sebastian Banert](https://github.com/sbanert). I joined the department in July 2020. 
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I have received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a student research visitor at UC Berkeley (2017) and ETH Zürich (2018). 
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My research interests are continuous optimization and its applications, e.g., machine learning, control, and finance. I currently focus on the design and performance analysis of first-order algorithms for convex optimization and monotone inclusion problems.
