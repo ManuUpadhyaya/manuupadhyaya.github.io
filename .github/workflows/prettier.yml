@@ -46,3 +46,23 @@ jobs:
         with:
           event-type: prettier-failed-on-pr
           client-payload: '{"pr_number": "${{ github.event.number }}", "artifact_url": "${{ steps.artifact-upload.outputs.artifact-url }}", "run_id": "${{ github.run_id }}"}'
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Prettier
+        run: |
+          npx prettier --check .
+
+      - name: Upload HTML Diff
+        uses: actions/upload-artifact@v2
+        with:
+          name: HTML Diff
+          path: diff.html
+
+      - name: Cleanup
+        run: |
+          git config --global --unset-all http.https://github.com/.extraheader || true
+          git submodule foreach --recursive 'git config --local --unset-all http.https://github.com/.extraheader || :'
