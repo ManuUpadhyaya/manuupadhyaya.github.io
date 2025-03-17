@@ -9,6 +9,10 @@ nav_order: 3
 
 ### Courses taught: 
 
+##### **[Lund University: Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/) [2022, 2025]**
+- Teaching assistant
+- Exercise sessions, grading of hand-in assignments and exams
+
 ##### **[Lund University: Optimization for learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/) [2024, 2023, 2022, 2021, 2020]**
 - Teaching assistant
 - Exercise sessions, grading of hand-in assignments and exams
@@ -22,10 +26,6 @@ nav_order: 3
 - Teaching assistant
 - Grading of hand-in assignments
 - Developed new hand-in assignment
-
-##### **[Lund University: Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/) [2022]**
-- Teaching assistant
-- Exercise sessions, grading of hand-in assignments and exams
 
 ##### **[Lund University: Project in systems, control and learning](https://www.control.lth.se/education/engineering-program/frtn70-project-in-systems-control-and-learning/) [2021]**
 - Supervised three projects on [portfolio optimization using OMX Stockholm 30 data](https://manuupadhyaya.github.io/share/trading.pdf)
