@@ -9,7 +9,7 @@ nav_order: 3
 
 ### Courses taught: 
 
-##### **[Lund University: Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/) [2022, 2025]**
+##### **[Lund University: Network dynamics](https://www.control.lth.se/education/engineering-program/frtn30-network-dynamics/) [2025, 2022]**
 - Teaching assistant
 - Exercise sessions, grading of hand-in assignments and exams
 
