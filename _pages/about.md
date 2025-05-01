@@ -31,7 +31,7 @@ I am a PhD student at the Department of Automatic Control at Lund University and
 
 I have received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a student research visitor at UC Berkeley (2017) and ETH Zürich (2018). 
 
-My research interests are continuous optimization and its applications, e.g., machine learning, control, and finance. I currently focus on the design and performance analysis of first-order algorithms for convex optimization and monotone inclusion problems.
+My research interests are continuous optimization and its applications, e.g., machine learning, control, and finance. I currently focus on the design and performance analysis of first-order algorithms for structured optimization and inclusion problems.
 
 ## News
 
