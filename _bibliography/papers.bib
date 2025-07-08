@@ -2,13 +2,23 @@
 ---
 
 %% 2025
+@article{upadhyaya2025autolyappythonpackagecomputerassisted,
+      title={AutoLyap: A Python package for computer-assisted Lyapunov analyses for first-order methods}, 
+      author={Upadhyaya, Manu and Taylor, Adrien B. and Banert, Sebastian and Giselsson, Pontus},
+      year={2025},
+      arxiv={2506.24076},
+      website={https://autolyap.github.io},
+      abbr={Preprint},
+      abstract={We introduce AutoLyap, a Python package designed to automate Lyapunov analyses for a wide class of first-order methods for solving structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous works, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds with the numerical solution of the SDP. We leverage the package to numerically verify and extend several convergence results.}
+}
+
 @article{upadhyaya2025lyapunovanalysiskorpelevichsextragradient,
       title={A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions},
       author={Upadhyaya, Manu and Latafat, Puya and Giselsson, Pontus},
       year={2025},
       journal={arXiv:2502.00119},
       arxiv={2502.00119},
-      bibtex_show={true},
+      bibtex_show={false},
       abbr={Preprint},
       abstract={We present a Lyapunov analysis of Korpelevich's extragradient method and establish an \(O(1/k)\,\,\) last-iterate convergence rate. Building on this, we propose flexible extensions that combine extragradient steps with user-specified directions, guided by a line-search procedure derived from the same Lyapunov analysis. These methods retain global convergence under practical assumptions and can achieve superlinear rates when directions are chosen appropriately. Numerical experiments highlight the simplicity and efficiency of this approach.}
 }
@@ -23,7 +33,7 @@
   abstract={We present a methodology for establishing the existence of quadratic Lyapunov inequalities for a wide range of first-order methods used to solve convex optimization problems. In particular, we consider (i) classes of optimization problems of finite-sum form with (possibly strongly) convex and possibly smooth functional components, (ii) first-order methods that can be written as a linear system on state-space form in feedback interconnection with the subdifferentials of the functional components of the objective function, and (iii) quadratic Lyapunov inequalities that can be used to draw convergence conclusions. We present a necessary and sufficient condition for the existence of a quadratic Lyapunov inequality within a predefined class of Lyapunov inequalities, which amounts to solving a small-sized semidefinite program. We showcase our methodology on several first-order methods that fit the framework. Most notably, our methodology allows us to significantly extend the region of parameter choices that allow for duality gap convergence in the Chambolle-Pock method when the linear operator is the identity mapping.},
   code={https://github.com/ManuUpadhyaya/tight_lyapunov_analysis},
   arxiv={2302.06713},
-  bibtex_show={true},
+  bibtex_show={false},
   doi={10.1007/s10107-024-02061-8}
 }
 
@@ -36,7 +46,7 @@
   abbr={Preprint},
   abstract={The Chambolle-Pock method is a versatile three-parameter algorithm designed to solve a broad class of composite convex optimization problems, which encompass two proper, lower semicontinuous, and convex functions, along with a linear operator \(L\). The functions are accessed via their proximal operators, while the linear operator is evaluated in a forward manner. Among the three algorithm parameters \(\tau\), \(\sigma\), and \(\theta\); \(\tau\), \(\sigma > 0\,\,\) serve as step sizes for the proximal operators, and \(\theta\,\,\) is an extrapolation step parameter. Previous convergence results have been based on the assumption that \(\theta = 1\). We demonstrate that weak convergence is achievable whenever \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\). Moreover, we establish tightness of the step size bound by providing an example that is nonconvergent whenever the second bound is violated.},
   arxiv={2309.03998},
-  bibtex_show={true}
+  bibtex_show={false}
 }
 
 %% 2020
@@ -58,15 +68,8 @@
   website={https://sites.google.com/view/the-feeling-of-success},
   year={2017},
   arxiv={1710.05512},
-  bibtex_show={true},
+  bibtex_show={false},
   abbr={Conference},
-  booktitle = 	 {Proceedings of the 1st Annual Conference on Robot Learning (CoRL)},
-  pages = 	 {314--323},
-  editor = 	 {Levine, Sergey and Vanhoucke, Vincent and Goldberg, Ken},
-  volume = 	 {78},
-  series = 	 {Proceedings of Machine Learning Research},
-  month = 	 {13--15 Nov},
-  publisher =    {PMLR},
-  pdf = 	 {http://proceedings.mlr.press/v78/calandra17a/calandra17a.pdf},
+  booktitle = 	 {Conference on Robot Learning (CoRL)},
   html = 	 {https://proceedings.mlr.press/v78/calandra17a.html},
 }
