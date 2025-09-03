@@ -39,7 +39,7 @@ My research interests are continuous optimization and its applications, e.g., ma
 
 <li style="display: flex; margin: 0 0 1em 0; padding: 0;">
   <span style="min-width: 130px; font-weight: bold;">
-    September 3, 2025
+    Sep 3, 2025
   </span>
   <div>
     <p>
