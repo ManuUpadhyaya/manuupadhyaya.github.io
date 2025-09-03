@@ -42,7 +42,7 @@ My research interests are continuous optimization and its applications, e.g., ma
   <div>
     <div style="margin: 0 0 0.25em 0;">
       I will defend my
-      <a href="https://portal.research.lu.se/en/publications/lyapunov-analyses-for-first-order-methods-theory-automation-and-a">PhD thesis</a>
+      <a href="https://lup.lub.lu.se/search/publication/a006046c-9dc6-446b-b625-f129587c9674">PhD thesis</a>
       at Lund University.
     </div>
     <div style="font-weight: 600; margin: 0;">Details:</div>
