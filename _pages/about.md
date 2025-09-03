@@ -38,32 +38,31 @@ My research interests are continuous optimization and its applications, e.g., ma
 <ul style="margin: 0; padding: 0; list-style: none;">
 
 <li style="display: flex; margin: 0 0 1em 0; padding: 0;">
-  <span style="min-width: 130px; font-weight: bold;">
-    Sep 3, 2025
-  </span>
+  <span style="min-width: 130px; font-weight: bold;">Sep 3, 2025</span>
   <div>
-    <p style="margin: 0 0 0.25em 0;">
+    <div style="margin: 0 0 0.25em 0;">
       I will defend my
       <a href="https://portal.research.lu.se/en/publications/lyapunov-analyses-for-first-order-methods-theory-automation-and-a">PhD thesis</a>
       at the Department of Automatic Control, LTH, Lund University.
-    </p>
-    <p style="margin: 0;"><strong>Details:</strong></p>
-    <ul style="margin: 0.12em 0 0.28em 0; padding-left: 1.2em;">
+    </div>
+    <div style="font-weight: 600; margin: 0;">Details:</div>
+    <ul style="margin: 0.12em 0 0.24em 0; padding-left: 1.2em;">
       <li style="margin: 0;">Date &amp; time: Friday, 26 September 2025, 09:15</li>
       <li style="margin: 0;">Venue: Lecture hall A, Building M, Ole Römers väg 1, Lund</li>
     </ul>
-    <p style="margin: 0;"><strong>External reviewer (opponent):</strong></p>
-    <ul style="margin: 0.12em 0 0.28em 0; padding-left: 1.2em;">
+    <div style="font-weight: 600; margin: 0;">External reviewer (opponent):</div>
+    <ul style="margin: 0.12em 0 0.24em 0; padding-left: 1.2em;">
       <li style="margin: 0;"><a href="https://stella.to/">Bartolomeo Stellato</a>, Assistant Professor, Princeton University</li>
     </ul>
-    <p style="margin: 0;"><strong>Examining committee:</strong></p>
-    <ul style="margin: 0.12em 0 0.28em 0; padding-left: 1.2em;">
+    <div style="font-weight: 600; margin: 0;">Examining committee:</div>
+    <ul style="margin: 0.12em 0 0.24em 0; padding-left: 1.2em;">
       <li style="margin: 0;"><a href="http://www.tonystillfjord.net">Tony Stillfjord</a>, Associate Professor, Lund University</li>
       <li style="margin: 0;"><a href="https://acse.pub.ro/index.php/ion-necoara-2/">Ion Necoară</a>, Professor, University Politehnica Bucharest</li>
       <li style="margin: 0;"><a href="https://www.uantwerpen.be/en/staff/masoud-ahookhosh/">Masoud Ahookhosh</a>, Assistant Professor, University of Antwerp</li>
     </ul>
   </div>
 </li>
+
 
 
 
