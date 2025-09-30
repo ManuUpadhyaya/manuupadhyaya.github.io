@@ -2,16 +2,13 @@
 layout: about
 title: About
 permalink: /
-subtitle: <a href='https://www.control.lth.se/'>Lund University, Department of Automatic Control</a>
+subtitle: 
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p><small>
-      Email: first.last[at]control.lth.se
-    </small></p>
+  more_info:
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -27,11 +24,11 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a PhD student at the Department of Automatic Control at Lund University and in the WASP (Wallenberg AI, autonomous systems and software program) graduate school. My main supervisor is [Pontus Giselsson](https://www.control.lth.se/personnel/personnel/pontus-giselsson/), and my co-supervisor is [Sebastian Banert](https://github.com/sbanert). I joined the department in July 2020. 
+I recently completed my PhD at Lund University (2025), where I worked on systematic and computer-aided analyses and design of first-order methods for structured optimization and inclusion problems.
 
-I have received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a student research visitor at UC Berkeley (2017) and ETH Zürich (2018). 
+Before that, I received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a research visitor at UC Berkeley (2017), ETH Zürich (2018), and Inria Paris (2024-2025). 
 
-My research interests are continuous optimization and its applications, e.g., machine learning, control, and finance. I currently focus on the design and performance analysis of first-order algorithms for structured optimization and inclusion problems.
+My research interests include continuous optimization and its applications, e.g., machine learning, control, and finance.
 
 ## News
 
