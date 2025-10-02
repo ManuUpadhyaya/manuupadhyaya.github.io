@@ -24,11 +24,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I recently completed my PhD at Lund University (2025), where I worked on systematic and computer-aided analyses and design of first-order methods for structured optimization and inclusion problems.
+I recently completed my PhD at Lund University (2025), where I worked on systematic and computer-aided analyses and design of first-order methods for structured optimization and inclusion problems. My supervisors were <a href="https://www.control.lth.se/personnel/personnel/pontus-giselsson/">Pontus Giselsson</a> and <a href="https://github.com/sbanert">Sebastian Banert</a>.
 
-Before that, I received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a research visitor at UC Berkeley (2017), ETH Zürich (2018), and Inria Paris (2024-2025). 
-
-My research interests include continuous optimization and its applications, e.g., machine learning, control, and finance.
+Before that, I received an MSc in engineering physics (2020), an MSc in finance (2020), and a BSc in mathematics (2015), all from Lund University. I have also spent time as a research visitor at UC Berkeley (2017), ETH Zürich (2018), and Inria Paris (2024–2025).
 
 ## News
 
