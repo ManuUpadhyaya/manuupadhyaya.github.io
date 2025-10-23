@@ -33,6 +33,18 @@ Before that, I received an MSc in engineering physics (2020), an MSc in finance 
 <ul style="margin: 0; padding: 0; list-style: none;">
 
 <li style="display: flex; margin: 0 0 1em 0; padding: 0;">
+    <span style="min-width: 130px; font-weight: bold;">Oct 23, 2025</span>
+    <span>
+      The manuscript titled
+      <a href="https://doi.org/10.1007/s11590-025-02250-0">
+        The Chambolle-Pock method converges weakly with \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\)
+      </a>
+      has been accepted for publication in the journal
+      <i>Optimization Letters</i>.
+    </span>
+  </li>
+
+<li style="display: flex; margin: 0 0 1em 0; padding: 0;">
   <span style="min-width: 130px; font-weight: bold;">Sep 3, 2025</span>
   <div>
     <div style="margin: 0 0 0.25em 0;">
