@@ -33,6 +33,18 @@ Before that, I received an MSc in engineering physics (2020), an MSc in finance 
 <ul style="margin: 0; padding: 0; list-style: none;">
 
 <li style="display: flex; margin: 0 0 1em 0; padding: 0;">
+  <span style="min-width: 130px; font-weight: bold;">Dec 29, 2025</span>
+  <span>
+    The paper titled
+    <a href="https://arxiv.org/abs/2502.00119">
+      A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions
+    </a>
+    has been accepted for publication in the journal
+    <i>Mathematical Programming</i>.
+  </span>
+</li>
+
+<li style="display: flex; margin: 0 0 1em 0; padding: 0;">
     <span style="min-width: 130px; font-weight: bold;">Oct 23, 2025</span>
     <span>
       The manuscript titled
