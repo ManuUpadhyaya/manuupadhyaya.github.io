@@ -1,6 +1,18 @@
 ---
 ---
 
+%% 2026
+@article{upadhyaya2026lyapunovanalysiskorpelevichsextragradient,
+      title={A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions},
+      author={Upadhyaya, Manu and Latafat, Puya and Giselsson, Pontus},
+      year={2026},
+      journal={Mathematical Programming},
+      arxiv={2502.00119},
+      abbr={Journal},
+      abstract={We develop a Lyapunov-based analysis of Korpelevich's extragradient method and show that it achieves an \(o(1/k)\,\,\) last-iterate convergence rate of the constructed Lyapunov function. This Lyapunov function simultaneously upper bounds several standard measures of optimality, which allows our analysis to sharpen existing last-iterate convergence guarantees for these measures. Moreover, the same analysis enables the design of a class of flexible extensions of the extragradient method in which extragradient steps are adaptively blended with user-specified directions via a Lyapunov-guided line-search procedure. These extensions retain global convergence under practical assumptions and can attain superlinear rates when the directions are chosen appropriately. Numerical experiments confirm the simplicity and efficiency of the proposed framework.}
+      doi={10.1007/s10107-025-02322-0},
+}
+
 %% 2025
 @article{thesis2025,
   title={Lyapunov analyses for first-order methods: Theory, automation, and algorithm design},
@@ -21,16 +33,6 @@
       website={https://autolyap.github.io},
       abbr={Preprint},
       abstract={We introduce AutoLyap, a Python package designed to automate Lyapunov analyses for a wide class of first-order methods for solving structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous works, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds with the numerical solution of the SDP. We leverage the package to numerically verify and extend several convergence results.}
-}
-
-@article{upadhyaya2025lyapunovanalysiskorpelevichsextragradient,
-      title={A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions},
-      author={Upadhyaya, Manu and Latafat, Puya and Giselsson, Pontus},
-      year={2025},
-      journal={arXiv:2502.00119},
-      arxiv={2502.00119},
-      abbr={Preprint},
-      abstract={We present a Lyapunov analysis of Korpelevich's extragradient method and establish an \(O(1/k)\,\,\) last-iterate convergence rate. Building on this, we propose flexible extensions that combine extragradient steps with user-specified directions, guided by a line-search procedure derived from the same Lyapunov analysis. These methods retain global convergence under practical assumptions and can achieve superlinear rates when directions are chosen appropriately. Numerical experiments highlight the simplicity and efficiency of this approach.}
 }
 
 @article{upadhyaya2025tight_lyapunov_analysis,
