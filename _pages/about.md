@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Postdoctoral researcher at <a href='https://www.inria.fr/en'>Inria Paris</a>, <a href='https://sierra-mlopt.github.io/'>Sierra team</a>
+subtitle: 
 
 profile:
   align: right
