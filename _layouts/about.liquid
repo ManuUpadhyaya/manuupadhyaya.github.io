@@ -41,7 +41,7 @@ layout: default
     <div class="clearfix">{{ content }}</div>
 
     <!-- News -->
-    {% if page.announcements and page.announcements.enabled %}
+    {% if page.news and site.announcements and site.announcements.enabled %}
       <h2>
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
@@ -49,7 +49,18 @@ layout: default
     {% endif %}
 
     <!-- Latest posts -->
-    {% if page.latest_posts and page.latest_posts.enabled %}
+    {% assign latest_posts_enabled = false %}
+    {% if site.latest_posts and site.latest_posts.enabled %}
+      {% assign latest_posts_enabled = true %}
+    {% endif %}
+    {% if page.latest_posts != nil %}
+      {% if page.latest_posts.enabled != nil %}
+        {% assign latest_posts_enabled = page.latest_posts.enabled %}
+      {% else %}
+        {% assign latest_posts_enabled = page.latest_posts %}
+      {% endif %}
+    {% endif %}
+    {% if latest_posts_enabled %}
       <h2>
         <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
       </h2>

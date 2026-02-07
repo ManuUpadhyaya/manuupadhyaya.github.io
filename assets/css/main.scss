@@ -3,23 +3,37 @@
 ---
 @charset "utf-8";
 
-// Dimensions
-$max-content-width: {{ site.max_width }};
+// Local theme modules
+@use "variables" with (
+  $max-content-width: {{ site.max_width }}
+);
+@use "themes";
+@use "layout";
+@use "base";
+@use "distill";
+@use "cv";
+@use "tabs";
+@use "typograms";
 
-@import
-  "variables",
-  "themes",
-  "layout",
-  "base",
-  "distill",
-  "cv",
-  "tabs",
-  "typograms",
-  "font-awesome/fontawesome",
-  "font-awesome/brands",
-  "font-awesome/solid",
-  "font-awesome/regular",
-  "tabler-icons/tabler-icons.scss",
-  "tabler-icons/tabler-icons-filled.scss",
-  "tabler-icons/tabler-icons-outline.scss"
-;
+// Vendor modules
+@use "font-awesome/fontawesome" with (
+  $fa-font-path: "../webfonts"
+);
+@use "font-awesome/brands" with (
+  $fa-font-path: "../webfonts"
+);
+@use "font-awesome/solid" with (
+  $fa-font-path: "../webfonts"
+);
+@use "font-awesome/regular" with (
+  $fa-font-path: "../webfonts"
+);
+@use "tabler-icons/tabler-icons" with (
+  $ti-font-path: "../fonts"
+);
+@use "tabler-icons/tabler-icons-filled" with (
+  $ti-font-path: "../fonts"
+);
+@use "tabler-icons/tabler-icons-outline" with (
+  $ti-font-path: "../fonts"
+);

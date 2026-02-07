@@ -19,3 +19,4 @@ services:
       - .:/srv/jekyll
     environment:
       - JEKYLL_ENV=development
+      - SASS_SILENCE_DEPRECATIONS=import,global-builtin
