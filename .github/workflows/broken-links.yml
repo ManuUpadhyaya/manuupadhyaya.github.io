@@ -48,7 +48,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2.1.0
         with:
           fail: true
-          lycheeVersion: latest
+          lycheeVersion: v0.22.0
           # Skip non-site template content and allow common 302 redirects.
           args: >-
             --user-agent curl/7.54
