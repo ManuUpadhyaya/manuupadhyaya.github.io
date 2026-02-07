@@ -53,8 +53,8 @@ layout: default
     {% if site.latest_posts and site.latest_posts.enabled %}
       {% assign latest_posts_enabled = true %}
     {% endif %}
-    {% if page.latest_posts != nil %}
-      {% if page.latest_posts.enabled != nil %}
+    {% if page.latest_posts != null %}
+      {% if page.latest_posts.enabled != null %}
         {% assign latest_posts_enabled = page.latest_posts.enabled %}
       {% else %}
         {% assign latest_posts_enabled = page.latest_posts %}

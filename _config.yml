@@ -4,19 +4,19 @@
 
 title: Manu Upadhyaya
 first_name: Manu
-middle_name: 
+middle_name:
 last_name: Upadhyaya
-contact_note: 
+contact_note:
 description: Personal website of Manu Upadhyaya, postdoctoral researcher at Inria Paris working on optimization and first-order methods.
-footer_text: 
+footer_text:
 keywords: optimization, first-order methods, mathematical programming, machine learning, Lyapunov analysis
 lang: en
 icon: prof_pic_color.png
 
 url: https://manuupadhyaya.github.io # the base hostname & protocol for your site
-baseurl: 
-last_updated: true 
-impressum_path: 
+baseurl:
+last_updated: true
+impressum_path:
 back_to_top: true # set to false to disable the back to top button
 
 # -----------------------------------------------------------------------------

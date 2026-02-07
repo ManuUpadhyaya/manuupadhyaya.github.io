@@ -25,15 +25,15 @@
 "adelson":
   - firstname: ["Edward", "Edward H."]
     url: http://persci.mit.edu/people/adelson
-    
+
 "banert":
   - firstname: ["Sebastian"]
     url: https://github.com/sbanert
-    
+
 "giselsson":
   - firstname: ["Pontus"]
     url: https://www.control.lth.se/personnel/personnel/pontus-giselsson/
-    
+
 "taylor":
   - firstname: ["Adrien", "Adrien B."]
     url: https://adrientaylor.github.io/
