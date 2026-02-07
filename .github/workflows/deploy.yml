@@ -57,6 +57,10 @@ on:
       - "!README.md"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -86,11 +90,16 @@ jobs:
           value: ${{ github.repository }}
       - name: Install and Build 🔧
         run: |
-          sudo apt-get update && sudo apt-get install -y imagemagick
-          pip3 install --upgrade nbconvert
+          if ! command -v convert >/dev/null 2>&1; then
+            sudo apt-get update && sudo apt-get install -y imagemagick
+          fi
+          if ! python3 -c "import nbconvert" >/dev/null 2>&1; then
+            pip3 install --upgrade nbconvert
+          fi
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
+        if: github.event_name != 'pull_request'
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
