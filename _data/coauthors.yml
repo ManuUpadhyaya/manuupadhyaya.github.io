@@ -16,15 +16,14 @@
 
 "yuan":
   - firstname: ["Wenzhen"]
-    url: http://robotouch.ri.cmu.edu/yuanwz/
+    url: https://www.ri.cmu.edu/ri-people/wenzhen-yuan/
 
 "lin":
   - firstname: ["Justin"]
-    url: https://www.linkedin.com/in/justin-lin-b98689b1/
 
 "adelson":
   - firstname: ["Edward", "Edward H."]
-    url: http://persci.mit.edu/people/adelson
+    url: https://persci.mit.edu/people/adelson
 
 "banert":
   - firstname: ["Sebastian"]

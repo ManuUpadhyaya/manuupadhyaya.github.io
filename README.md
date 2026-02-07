@@ -36,7 +36,7 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://martinbulla.github.io" target="_blank">★</a>
 <a href="https://maruan.alshedivat.com" target="_blank">★</a>
 <a href="https://www.cs.columbia.edu/~chen1ru/" target="_blank">★</a>
-<a href="https://maithraraghu.com" target="_blank">★</a>
+<a href="https://github.com/maithraraghu" target="_blank">★</a>
 <a href="https://platanios.org" target="_blank">★</a>
 <a href="https://otiliastr.github.io" target="_blank">★</a>
 <a href="https://www.maths.dur.ac.uk/~sxwc62/" target="_blank">★</a>
@@ -50,22 +50,21 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://aborowska.github.io/" target="_blank">★</a>
 <a href="https://aditisgh.github.io/" target="_blank">★</a>
 <a href="https://alexhaydock.co.uk/" target="_blank">★</a>
-<a href="https://alixkeener.net/" target="_blank">★</a>
 <a href="https://andreea7b.github.io/" target="_blank">★</a>
 <a href="https://rishabhjoshi.github.io/" target="_blank">★</a>
 <a href="https://sheelabhadra.github.io/" target="_blank">★</a>
-<a href="https://giograno.me/" target="_blank">★</a>
+<a href="https://www.giograno.com/" target="_blank">★</a>
 <a href="https://immsrini.github.io/" target="_blank">★</a>
 <a href="https://apooladian.github.io/" target="_blank">★</a>
 <a href="https://chinmoy-dutta.github.io/" target="_blank">★</a>
 <a href="https://liamcli.com/" target="_blank">★</a>
 <a href="https://yoonholee.com/" target="_blank">★</a>
-<a href="https://zrqiao.github.io/" target="_blank">★</a>
+<a href="https://github.com/zrqiao" target="_blank">★</a>
 <a href="https://abstractgeek.github.io/" target="_blank">★</a>
 <a href="https://www.compphys.de/" target="_blank">★</a>
 <a href="https://julianstreyczek.github.io" target="_blank">★</a>
 <a href="https://sdaza.com" target="_blank">★</a>
-<a href="https://niweera.gq" target="_blank">★</a>
+<a href="https://niweera.com/" target="_blank">★</a>
 <a href="https://www.alihkw.com" target="_blank">★</a>
 <a href="https://amirpourmand.ir" target="_blank">★</a>
 <a href="https://scottleechua.github.io" target="_blank">★</a>
@@ -102,7 +101,7 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://bajinsheng.github.io/" target="_blank">★</a>
 <a href="https://www.silviofanzon.com/" target="_blank">★</a>
 <a href="https://kaikaiyao.github.io/" target="_blank">★</a>
-<a href="https://alchemz.github.io/" target="_blank">★</a>
+<a href="https://github.com/Alchemz" target="_blank">★</a>
 <a href="https://samadamday.com/" target="_blank">★</a>
 <a href="https://fanpu.io/" target="_blank">★</a>
 <a href="https://abigalekim.github.io/" target="_blank">★</a>
@@ -123,7 +122,7 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://www.zhivotenko.com/" target="_blank">★</a>
 <a href="https://giordanodaloisio.github.io/" target="_blank">★</a>
 <a href="https://aadityaura.github.io/" target="_blank">★</a>
-<a href="https://abhinav-mehta.github.io/" target="_blank">★</a>
+<a href="https://github.com/abhinav-mehta" target="_blank">★</a>
 <a href="https://shubhashisroydipta.com/" target="_blank">★</a>
 <a href="https://astanziola.github.io" target="_blank">★</a>
 <a href="https://tinkerer.in" target="_blank">★</a>
@@ -144,12 +143,10 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://acad.garywei.dev/" target="_blank">★</a>
 <a href="https://tonideleo.github.io/" target="_blank">★</a>
 <a href="https://alonkellner.com/" target="_blank">★</a>
-<a href="https://berylbir.github.io/" target="_blank">★</a>
-<a href="https://thefermi0n.github.io/" target="_blank">★</a>
+<a href="https://github.com/berylbir" target="_blank">★</a>
 <a href="https://mingsun-kaust.github.io/" target="_blank">★</a>
 <a href="https://hdocmsu.github.io/" target="_blank">★</a>
 <a href="https://trandangtrungduc.github.io/" target="_blank">★</a>
-<a href="https://kinghowler.github.io/" target="_blank">★</a>
 <a href="https://anurye.github.io/" target="_blank">★</a>
 <a href="https://charlie-xiao.github.io/" target="_blank">★</a>
 <a href="https://giuseppeperelli.github.io/" target="_blank">★</a>
@@ -165,7 +162,7 @@ Feel free to add your own page(s) by sending a PR.
 <tr>
 <td>Labs</td>
 <td>
-<a href="https://www.haylab.caltech.edu/" target="_blank">★</a>
+<a href="https://haylab.caltech.edu/" target="_blank">★</a>
 <a href="https://sjkimlab.github.io/" target="_blank">★</a>
 <a href="https://systemconsultantgroup.github.io/scg-folio/" target="_blank">★</a>
 <a href="https://decisionlab.ucsf.edu/" target="_blank">★</a>
@@ -446,7 +443,7 @@ Our most active contributors are welcome to join the maintainers team. If you ar
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://maruan.alshedivat.com"><img src="https://avatars.githubusercontent.com/u/2126561?v=4" width="100px;" alt=""/><br /><sub><b>Maruan</b></sub></a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://rohandebsarkar.github.io"><img src="https://avatars.githubusercontent.com/u/50144004?v=4" width="100px;" alt=""/><br /><sub><b>Rohan Deb Sarkar</b></sub></a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rohandebsarkar"><img src="https://avatars.githubusercontent.com/u/50144004?v=4" width="100px;" alt=""/><br /><sub><b>Rohan Deb Sarkar</b></sub></a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://amirpourmand.ir"><img src="https://avatars.githubusercontent.com/u/32064808?v=4" width="100px;" alt=""/><br /><sub><b>Amir Pourmand</b></sub></a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://george-gca.github.io/"><img src="https://avatars.githubusercontent.com/u/31376482?v=4" width="100px;" alt=""/><br /><sub><b>George</b></sub></a></td>
     </tr>
