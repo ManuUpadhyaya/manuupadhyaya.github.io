@@ -20,13 +20,13 @@ layout: default
         {% if page.profile.image %}
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
           {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+            {% assign profile_image_class = 'img-fluid shadow-sm rounded-circle' %}
           {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
+            {% assign profile_image_class = 'img-fluid shadow-sm rounded' %}
           {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3 }}px, (min-width: 576px) 30vw, 95vw{% endcapture %}
+          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.25 }}px, (min-width: 576px) 25vw, 70vw{% endcapture %}
           {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image width=page.profile.image_width height=page.profile.image_height
+            include figure.liquid path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image width=page.profile.image_width height=page.profile.image_height
             cache_bust=true
           %}
         {% endif %}

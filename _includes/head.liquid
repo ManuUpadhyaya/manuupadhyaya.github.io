@@ -13,27 +13,39 @@
   {% endif %}
   {% assign icon_path = site.icon | prepend: '/assets/img/' | relative_url | bust_file_cache %}
   <link rel="icon" type="{{ icon_mime }}" href="{{ icon_path }}">
-  <link rel="shortcut icon" href="{{ icon_path }}">
 {% endif %}
+<link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}?v=mu3">
+<link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}?v=mu3">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32x32.png' | relative_url | bust_file_cache }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/img/favicon-16x16.png' | relative_url | bust_file_cache }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/apple-touch-icon.png' | relative_url | bust_file_cache }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+<meta name="theme-color" content="#ffffff">
 
 <!-- Bootstrap & MDB -->
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
-<link
-  rel="preload"
-  as="style"
-  href="{{ site.third_party_libraries.mdb.url.css }}"
-  integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
-  crossorigin="anonymous"
-  onload="this.onload=null;this.rel='stylesheet'"
->
-<noscript>
+{% assign load_mdb = true %}
+{% if page.no_mdb %}
+  {% assign load_mdb = false %}
+{% endif %}
+{% if load_mdb %}
   <link
     rel="stylesheet"
     href="{{ site.third_party_libraries.mdb.url.css }}"
     integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
     crossorigin="anonymous"
+    media="print"
+    onload="this.media='all'"
   >
-</noscript>
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="{{ site.third_party_libraries.mdb.url.css }}"
+      integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
+      crossorigin="anonymous"
+    >
+  </noscript>
+{% endif %}
 
 {% if page.pretty_table %}
   <!-- Bootstrap Table -->
@@ -49,18 +61,24 @@
 <!-- Fonts & Icons -->
 <link rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
 <link rel="stylesheet" href="{{ '/assets/css/scholar-icons.css' | relative_url | bust_file_cache }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  rel="preload"
-  as="style"
-  type="text/css"
-  href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
-  onload="this.onload=null;this.rel='stylesheet'"
->
-<noscript>
-  <link rel="stylesheet" type="text/css" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
-</noscript>
+{% assign load_external_fonts = true %}
+{% if page.no_external_fonts %}
+  {% assign load_external_fonts = false %}
+{% endif %}
+{% if load_external_fonts %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link rel="stylesheet" type="text/css" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
+  </noscript>
+{% endif %}
 
 <!-- Code Syntax Highlighting -->
 <link
