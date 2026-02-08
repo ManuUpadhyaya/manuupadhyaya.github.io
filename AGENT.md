@@ -43,3 +43,4 @@
 - Avoid unnecessary third-party assets on the homepage.
 - Keep critical-path CSS minimal.
 - Keep `Gemfile.lock` stable unless intentionally updating dependencies.
+- Do not change font style, typography, favicon, or icon assets/links unless explicitly requested by the user.
