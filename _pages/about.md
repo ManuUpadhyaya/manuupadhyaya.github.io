@@ -15,8 +15,6 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 news: true # includes a list of news items
 math: true # enables MathJax on the homepage/about page
-no_mdb: true # skip MDB CSS on homepage to reduce render-blocking work
-no_external_fonts: true # skip Google Fonts on homepage to reduce render-blocking work
 
 latest_posts:
   enabled: false
