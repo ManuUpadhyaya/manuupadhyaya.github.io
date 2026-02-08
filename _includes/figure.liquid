@@ -40,7 +40,14 @@
       {% if include.height %}
         height="{{ include.height }}"
       {% endif %}
-      {% if include['min-width'] or include['min-height'] or include['max-width'] or include['max-height'] or include.width == blank or include.height == blank %}
+      {% if
+        include['min-width']
+        or include['min-height']
+        or include['max-width']
+        or include['max-height']
+        or include.width == blank
+        or include.height == blank
+      %}
         style="
           {% if include.width == blank %}
             width: 100%;
