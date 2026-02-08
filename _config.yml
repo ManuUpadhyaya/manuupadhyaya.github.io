@@ -11,7 +11,7 @@ description: Personal website of Manu Upadhyaya, postdoctoral researcher at Inri
 footer_text:
 keywords: optimization, first-order methods, mathematical programming, machine learning, Lyapunov analysis
 lang: en
-icon: prof_pic_color.png
+icon: mu-icon.svg
 
 url: https://manuupadhyaya.github.io # the base hostname & protocol for your site
 baseurl:

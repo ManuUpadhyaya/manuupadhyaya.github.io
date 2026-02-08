@@ -36,16 +36,18 @@
       {% endif %}
       {% if include.width %}
         width="{{ include.width }}"
-      {% else %}
-        width="100%"
       {% endif %}
       {% if include.height %}
         height="{{ include.height }}"
-      {% else %}
-        height="auto"
       {% endif %}
-      {% if include['min-width'] or include['min-height'] or include['max-width'] or include['max-height'] %}
+      {% if include['min-width'] or include['min-height'] or include['max-width'] or include['max-height'] or include.width == blank or include.height == blank %}
         style="
+          {% if include.width == blank %}
+            width: 100%;
+          {% endif %}
+          {% if include.height == blank %}
+            height: auto;
+          {% endif %}
           {% if include['min-width'] %}
             min-width: {{ include.min-width }};
           {% endif %}

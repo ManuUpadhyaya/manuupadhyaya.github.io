@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>MU monogram icon</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    .mark {
+      fill: #1f4f7a;
+      font-family: "Arial", "Helvetica", sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .mark {
+        fill: #7fb4e8;
+      }
+    }
+  </style>
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" class="mark">MU</text>
+</svg>

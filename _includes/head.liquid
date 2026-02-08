@@ -1,6 +1,21 @@
 <!-- Metadata, OpenGraph and Schema.org -->
 {% include metadata.liquid %}
 
+{% if site.icon %}
+  {% assign icon_ext = site.icon | split: '.' | last | downcase %}
+  {% assign icon_mime = 'image/png' %}
+  {% if icon_ext == 'svg' %}
+    {% assign icon_mime = 'image/svg+xml' %}
+  {% elsif icon_ext == 'jpg' or icon_ext == 'jpeg' %}
+    {% assign icon_mime = 'image/jpeg' %}
+  {% elsif icon_ext == 'ico' %}
+    {% assign icon_mime = 'image/x-icon' %}
+  {% endif %}
+  {% assign icon_path = site.icon | prepend: '/assets/img/' | relative_url | bust_file_cache %}
+  <link rel="icon" type="{{ icon_mime }}" href="{{ icon_path }}">
+  <link rel="shortcut icon" href="{{ icon_path }}">
+{% endif %}
+
 <!-- Bootstrap & MDB -->
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
 <link
