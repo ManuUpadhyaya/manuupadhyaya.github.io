@@ -52,7 +52,7 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 
 - Supervised three student projects on [portfolio optimization using OMX Stockholm 30 data](https://manuupadhyaya.github.io/share/trading.pdf).
 
-### [Automatic Control](https://www.control.lth.se/education/engineering-program/frtf05-automatic-control-basic-course-for-cmn/) (Lund University)
+### [Automatic Control](https://www.control.lth.se/education/engineering-program/frtf05-automatic-control-basic-course-for-fipi/) (Lund University)
 
 **Role:** Teaching Assistant  
 **Year:** 2020
