@@ -36,7 +36,7 @@ ninja.data = [{
           title: 'I successfully defended my PhD thesis. Many thanks to my opponent, Bartolomeo Stellato,...',
           description: "",
           section: "News",},{id: "news-the-manuscript-titled-the-chambolle-pock-method-converges-weakly-with-theta-amp-gt-1-2-and-tau-sigma-l-2-amp-lt-4-1-2-theta-has-been-accepted-for-publication-in-the-journal-optimization-letters",
-          title: 'The manuscript titled The Chambolle-Pock method converges weakly with $\theta &amp;amp;gt; 1/2\,\,$ and...',
+          title: 'The manuscript titled The Chambolle-Pock method converges weakly with $\theta &amp;amp;gt; 1/2$ and...',
           description: "",
           section: "News",},{id: "news-the-manuscript-titled-a-lyapunov-analysis-of-korpelevich-s-extragradient-method-with-fast-and-flexible-extensions-has-been-accepted-for-publication-in-the-journal-mathematical-programming",
           title: 'The manuscript titled A Lyapunov analysis of Korpelevich’s extragradient method with fast and...',
