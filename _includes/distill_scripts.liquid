@@ -7,11 +7,6 @@
 
 <!-- Bootsrap & MDB scripts -->
 <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-<script
-  src="{{ site.third_party_libraries.mdb.url.js }}"
-  integrity="{{ site.third_party_libraries.mdb.integrity.js }}"
-  crossorigin="anonymous"
-></script>
 
 {% if page.mermaid and page.mermaid.enabled %}
   <!-- Mermaid and D3 -->
@@ -161,7 +156,7 @@
 
 <!-- Removed Badges -->
 
-{% if site.enable_math %}
+{% if site.enable_math and (page.math or page.pseudocode) %}
   <!-- MathJax -->
   <script
     defer
