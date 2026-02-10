@@ -41,4 +41,7 @@ ninja.data = [{
           section: "News",},{id: "news-the-manuscript-titled-a-lyapunov-analysis-of-korpelevich-s-extragradient-method-with-fast-and-flexible-extensions-has-been-accepted-for-publication-in-the-journal-mathematical-programming",
           title: 'The manuscript titled A Lyapunov analysis of Korpelevich’s extragradient method with fast and...',
           description: "",
+          section: "News",},{id: "news-i-will-be-a-visiting-scholar-at-the-elliit-focus-period-on-optimization-for-learning-at-lund-university-april-20-may-22-2026",
+          title: 'I will be a visiting scholar at the ELLIIT focus period on optimization...',
+          description: "",
           section: "News",},];
