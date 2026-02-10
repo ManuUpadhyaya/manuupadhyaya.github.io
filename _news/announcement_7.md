@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I will be a visiting scholar at the [ELLIIT focus period on optimization for learning](https://elliit.se/focus-period-lund-2026/) at Lund University (April 20 - May 22, 2026).
+I will be a visiting scholar at the [ELLIIT focus period on optimization for learning](https://elliit.se/focus-period-lund-2026/) at Lund University, from April 20 to May 22, 2026.
