@@ -13,6 +13,16 @@
       doi={10.1007/s10107-025-02322-0},
 }
 
+@article{upadhyaya2026autolyap,
+      title={The {AutoLyap} software suite for computer-assisted {L}yapunov analyses of first-order methods},
+      author={Upadhyaya, Manu and Das Gupta, Shuvomoy and Taylor, Adrien B. and Banert, Sebastian and Giselsson, Pontus},
+      year={2026},
+      arxiv={2506.24076},
+      website={https://autolyap.github.io},
+      abbr={Preprint},
+      abstract={We introduce AutoLyap, a software suite that assists with Lyapunov analyses of a wide class of first-order methods for structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous work, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds to solve the SDP numerically. We use the package to numerically verify and extend several convergence results. AutoLyap is currently available in Python and Julia.}
+}
+
 %% 2025
 @article{thesis2025,
   title={Lyapunov analyses for first-order methods: Theory, automation, and algorithm design},
@@ -24,17 +34,6 @@
   abbr={Thesis},
 }
 
-
-@article{upadhyaya2026autolyap,
-      title={The {AutoLyap} software suite for computer-assisted {L}yapunov analyses of first-order methods},
-      author={Upadhyaya, Manu and Das Gupta, Shuvomoy and Taylor, Adrien B. and Banert, Sebastian and Giselsson, Pontus},
-      year={2026},
-      arxiv={2506.24076},
-      website={https://autolyap.github.io},
-      abbr={Preprint},
-      abstract={We introduce AutoLyap, a Python package designed to automate Lyapunov analyses for a wide class of first-order methods for solving structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous works, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds with the numerical solution of the SDP. We leverage the package to numerically verify and extend several convergence results.}
-}
-
 @article{upadhyaya2025tight_lyapunov_analysis,
   title={Automated tight Lyapunov analysis for first-order methods},
   author={Upadhyaya, Manu and Banert, Sebastian and Taylor, Adrien B. and Giselsson, Pontus},
@@ -42,7 +41,6 @@
   journal={Mathematical Programming},
   abbr={Journal},
   abstract={We present a methodology for establishing the existence of quadratic Lyapunov inequalities for a wide range of first-order methods used to solve convex optimization problems. In particular, we consider (i) classes of optimization problems of finite-sum form with (possibly strongly) convex and possibly smooth functional components, (ii) first-order methods that can be written as a linear system on state-space form in feedback interconnection with the subdifferentials of the functional components of the objective function, and (iii) quadratic Lyapunov inequalities that can be used to draw convergence conclusions. We present a necessary and sufficient condition for the existence of a quadratic Lyapunov inequality within a predefined class of Lyapunov inequalities, which amounts to solving a small-sized semidefinite program. We showcase our methodology on several first-order methods that fit the framework. Most notably, our methodology allows us to significantly extend the region of parameter choices that allow for duality gap convergence in the Chambolle-Pock method when the linear operator is the identity mapping.},
-  code={https://github.com/ManuUpadhyaya/tight_lyapunov_analysis},
   arxiv={2302.06713},
   doi={10.1007/s10107-024-02061-8}
 }
