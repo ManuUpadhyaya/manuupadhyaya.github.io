@@ -1,6 +1,22 @@
 <!-- Metadata, OpenGraph and Schema.org -->
 {% include metadata.liquid %}
 
+{% if page.profile and page.profile.image %}
+  {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+  {% assign profile_img_path = profile_image_path | remove: '.jpg' | remove: '.jpeg' | remove: '.png' | remove: '.tiff' | remove: '.gif' %}
+  {% capture profile_sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.25 }}px, (min-width: 576px) 25vw, 70vw{% endcapture %}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ profile_image_path | relative_url | bust_file_cache }}"
+    {% if site.imagemagick.enabled %}
+      imagesrcset="{% for i in site.imagemagick.widths %}{{ profile_img_path | relative_url }}-{{ i }}.webp {{ i }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+      imagesizes="{{ profile_sizes }}"
+    {% endif %}
+    fetchpriority="high"
+  >
+{% endif %}
+
 {% if site.icon %}
   {% assign icon_ext = site.icon | split: '.' | last | downcase %}
   {% assign icon_mime = 'image/png' %}
@@ -24,30 +40,32 @@
 
 <!-- Bootstrap & MDB -->
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link
-  rel="preload"
-  as="style"
-  href="{{ site.third_party_libraries.mdb.url.css }}"
-  integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
-  crossorigin="anonymous"
->
-<link
-  rel="stylesheet"
-  href="{{ site.third_party_libraries.mdb.url.css }}"
-  integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
-  crossorigin="anonymous"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
+{% if page.mdb or page.layout == 'cv' %}
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link
+    rel="preload"
+    as="style"
+    href="{{ site.third_party_libraries.mdb.url.css }}"
+    integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
+    crossorigin="anonymous"
+  >
   <link
     rel="stylesheet"
     href="{{ site.third_party_libraries.mdb.url.css }}"
     integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
     crossorigin="anonymous"
+    media="print"
+    onload="this.media='all'"
   >
-</noscript>
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="{{ site.third_party_libraries.mdb.url.css }}"
+      integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
+      crossorigin="anonymous"
+    >
+  </noscript>
+{% endif %}
 
 {% if page.pretty_table %}
   <!-- Bootstrap Table -->
@@ -78,13 +96,15 @@
 </noscript>
 
 <!-- Code Syntax Highlighting -->
-<link
-  defer
-  rel="stylesheet"
-  href="{{ '/assets/css/jekyll-pygments-themes-github.css' | relative_url | bust_file_cache }}"
-  media=""
-  id="highlight_theme_light"
->
+{% if page.code_highlighting or page.code_diff or page.pseudocode or page.tikzjax %}
+  <link
+    defer
+    rel="stylesheet"
+    href="{{ '/assets/css/jekyll-pygments-themes-github.css' | relative_url | bust_file_cache }}"
+    media=""
+    id="highlight_theme_light"
+  >
+{% endif %}
 
 {% if page.toc and page.toc.sidebar %}
   <!-- Sidebar Table of Contents -->
@@ -108,8 +128,8 @@
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
 <!-- Dark Mode -->
-<script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
 {% if site.enable_darkmode %}
+  <script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
   <link
     defer
     rel="stylesheet"
@@ -119,6 +139,10 @@
   >
   <script>
     initTheme();
+  </script>
+{% else %}
+  <script>
+    const determineComputedTheme = () => 'light';
   </script>
 {% endif %}
 

@@ -7,22 +7,55 @@
 
 <!-- Bootsrap & MDB scripts -->
 <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+<script>
+  window.loadOptionalScript =
+    window.loadOptionalScript ||
+    function (src, options = {}) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        if (options.type) {
+          script.type = options.type;
+        }
+        if (options.async) {
+          script.async = true;
+        }
+        if (options.defer) {
+          script.defer = true;
+        }
+        if (options.integrity) {
+          script.integrity = options.integrity;
+        }
+        if (options.crossorigin) {
+          script.crossOrigin = options.crossorigin;
+        }
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    };
+</script>
 
 {% if site.enable_masonry %}
   <!-- Masonry & imagesLoaded -->
-  <script
-    defer
-    src="{{ site.third_party_libraries.masonry.url.js }}"
-    integrity="{{ site.third_party_libraries.masonry.integrity.js }}"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    defer
-    src="{{ site.third_party_libraries.imagesloaded.url.js }}"
-    integrity="{{ site.third_party_libraries.imagesloaded.integrity.js }}"
-    crossorigin="anonymous"
-  ></script>
-  <script defer src="{{ '/assets/js/masonry.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
+  <script>
+    if (document.querySelector('.grid .grid-item')) {
+      loadOptionalScript('{{ site.third_party_libraries.masonry.url.js }}', {
+        defer: true,
+        integrity: '{{ site.third_party_libraries.masonry.integrity.js }}',
+        crossorigin: 'anonymous',
+      })
+        .then(() =>
+          loadOptionalScript('{{ site.third_party_libraries.imagesloaded.url.js }}', {
+            defer: true,
+            integrity: '{{ site.third_party_libraries.imagesloaded.integrity.js }}',
+            crossorigin: 'anonymous',
+          })
+        )
+        .then(() => loadOptionalScript("{{ '/assets/js/masonry.js' | relative_url | bust_file_cache }}", { defer: true }))
+        .catch(() => {});
+    }
+  </script>
 {% endif %}
 
 {% if page.mermaid and page.mermaid.enabled %}
@@ -138,13 +171,17 @@
 
 {% if site.enable_medium_zoom %}
   <!-- Medium Zoom JS -->
-  <script
-    defer
-    src="{{ site.third_party_libraries.medium_zoom.url.js }}"
-    integrity="{{ site.third_party_libraries.medium_zoom.integrity.js }}"
-    crossorigin="anonymous"
-  ></script>
-  <script defer src="{{ '/assets/js/zoom.js' | relative_url | bust_file_cache }}"></script>
+  <script>
+    if (document.querySelector('[data-zoomable]')) {
+      loadOptionalScript('{{ site.third_party_libraries.medium_zoom.url.js }}', {
+        defer: true,
+        integrity: '{{ site.third_party_libraries.medium_zoom.integrity.js }}',
+        crossorigin: 'anonymous',
+      })
+        .then(() => loadOptionalScript("{{ '/assets/js/zoom.js' | relative_url | bust_file_cache }}", { defer: true }))
+        .catch(() => {});
+    }
+  </script>
 {% endif %}
 
 {% if page.toc and page.toc.sidebar %}
@@ -165,11 +202,23 @@
 
 <!-- Load Common JS -->
 <script src="{{ '/assets/js/no_defer.js' | relative_url | bust_file_cache }}"></script>
-<script defer src="{{ '/assets/js/common.js' | relative_url | bust_file_cache }}"></script>
-<script defer src="{{ '/assets/js/copy_code.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
+<script>
+  if (document.querySelector("a.abstract, a.award, a.bibtex, #toc-sidebar, [data-toggle='popover']")) {
+    loadOptionalScript("{{ '/assets/js/common.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
+  }
+</script>
+<script>
+  if (document.querySelector('pre code')) {
+    loadOptionalScript("{{ '/assets/js/copy_code.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
+  }
+</script>
 
 <!-- Jupyter Open External Links New Tab -->
-<script defer src="{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}"></script>
+<script>
+  if (document.querySelector('.jupyter-notebook-iframe-container iframe')) {
+    loadOptionalScript("{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
+  }
+</script>
 
 <!-- Badges -->
 {% if page.permalink == '/publications/' or page.url == '/publications/' %}

@@ -22,11 +22,9 @@ env:
 
 # TRIGGERS
 on:
-  page_build:
-  # schedule: # Check your schedule here => https://crontab.guru/
-  #   - cron: '55 23 * * 0' # e.g. every Sunday at 23:55
-  #
-  # THAT'S IT; YOU'RE DONE;
+  workflow_run:
+    workflows: ["Deploy site"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -38,6 +36,7 @@ permissions:
 
 jobs:
   lighthouse-badger-easy:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && (github.event.workflow_run.head_branch == 'main' || github.event.workflow_run.head_branch == 'master')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:

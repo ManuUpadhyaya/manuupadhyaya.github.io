@@ -54,7 +54,7 @@ jobs:
         with:
           fail: true
           lycheeVersion: v0.22.0
-          # Skip non-site template content and allow common 302 redirects.
+          # Skip non-site content and allow common 302 redirects.
           args: >-
             --user-agent curl/7.54
             --accept 200..=299,302
@@ -64,10 +64,8 @@ jobs:
             --timeout 20
             --exclude-path README.md
             --exclude-path _pages/404.md
-            --exclude-path _pages/blog.md
-            --exclude-path _pages/about_einstein.md
-            --exclude-path ^_posts/
             --exclude-path ^_site/
+            --exclude-path ^lighthouse_results/
             --exclude 'https://www.control.lth.se/idp/.*'
             --root-dir .
             --verbose
