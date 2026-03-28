@@ -21,25 +21,10 @@ This repository has been trimmed to the parts that are used by the live site. Th
 ## Layout And Styling
 
 - `_config.yml`: site-wide settings
-- `_config.yml` analytics fields: `google_analytics` and `google_site_verification` for GA4 and Search Console
 - `_layouts/`: page layouts
 - `_includes/`: reusable page fragments
 - `_sass/`: site styling
 - `assets/css/` and `assets/js/`: compiled/runtime frontend assets
-
-## Analytics
-
-The site is configured to activate Google Analytics only when `google_analytics` is set and Search Console verification only when `google_site_verification` is set.
-
-GA4 automatically tracks:
-
-- `cv_download`
-- `email_click`
-- `publication_outbound_click`
-- `software_outbound_click`
-- `outbound_link_click`
-
-After publishing the Search Console verification tag, finish the setup in Google's UI by linking the Search Console property to the GA4 property.
 
 ## Adding Or Changing Pages
 
