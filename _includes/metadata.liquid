@@ -1,9 +1,18 @@
-{% if site.enable_google_verification or site.enable_bing_verification %}
+{% assign has_google_verification = false %}
+{% assign has_bing_verification = false %}
+{% if site.enable_google_verification and site.google_site_verification != blank %}
+  {% assign has_google_verification = true %}
+{% endif %}
+{% if site.enable_bing_verification and site.bing_site_verification != blank %}
+  {% assign has_bing_verification = true %}
+{% endif %}
+
+{% if has_google_verification or has_bing_verification %}
   <!-- Website verification -->
-  {% if site.enable_google_verification %}
+  {% if has_google_verification %}
     <meta name="google-site-verification" content="{{ site.google_site_verification }}">
   {% endif %}
-  {% if site.enable_bing_verification %}
+  {% if has_bing_verification %}
     <meta name="msvalidate.01" content="{{ site.bing_site_verification }}">
   {% endif %}
   <!--

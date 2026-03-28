@@ -56,6 +56,27 @@ Pushes to `main` trigger the GitHub Actions deployment workflow. GitHub Pages se
 
 If you change the site URL or repository name, update `url` and `baseurl` in `_config.yml`.
 
+## Analytics Setup
+
+This site is prepared for `GA4 + Search Console`.
+
+1. Create a Google Analytics 4 property and a Web data stream for the site.
+2. Copy the Measurement ID (`G-XXXXXXXXXX`) into `google_analytics` in `_config.yml`.
+3. In Google Search Console, create a `URL-prefix` property for the exact site URL and choose the `HTML tag` verification method.
+4. Copy the token from the tag into `google_site_verification` in `_config.yml`.
+5. Push the change so the verification meta tag and GA4 script are published.
+6. After Search Console verifies the site, link Search Console to GA4 in the Google Analytics admin UI.
+
+The site now auto-tracks these GA4 events:
+
+- `cv_download`
+- `email_click`
+- `publication_outbound_click`
+- `software_outbound_click`
+- `outbound_link_click`
+
+If you want these actions highlighted in GA4 reports, mark the most important ones as `Key events`.
+
 ## Related Automation
 
 - `deploy.yml` builds and deploys the site.
