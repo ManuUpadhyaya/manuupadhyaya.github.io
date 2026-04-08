@@ -42,7 +42,7 @@ ninja.data = [{
           section: "News",},{id: "news-i-successfully-defended-my-phd-thesis-many-thanks-to-my-opponent-bartolomeo-stellato-and-to-the-examining-committee-tony-stillfjord-ion-necoara-and-masoud-ahookhosh",
           title: 'I successfully defended my PhD thesis. Many thanks to my opponent, Bartolomeo Stellato,...',
           description: "",
-          section: "News",},{id: "news-the-manuscript-titled-the-chambolle-pock-method-converges-weakly-with-theta-amp-gt-1-2-and-tau-sigma-l-2-amp-lt-4-1-2-theta-has-been-accepted-for-publication-in-the-journal-optimization-letters",
+          section: "News",},{id: "news-the-manuscript-titled-the-chambolle-pock-method-converges-weakly-with-theta-amp-gt-1-2-and-tau-sigma-lvert-l-rvert-2-amp-lt-4-1-2-theta-has-been-accepted-for-publication-in-the-journal-optimization-letters",
           title: 'The manuscript titled The Chambolle-Pock method converges weakly with $\theta &amp;amp;gt; 1/2$ and...',
           description: "",
           section: "News",},{id: "news-the-manuscript-titled-a-lyapunov-analysis-of-korpelevich-s-extragradient-method-with-fast-and-flexible-extensions-has-been-accepted-for-publication-in-the-journal-mathematical-programming",
