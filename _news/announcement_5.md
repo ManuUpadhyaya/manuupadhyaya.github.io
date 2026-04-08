@@ -6,4 +6,4 @@ related_posts: false
 math: true
 ---
 
-The manuscript titled _[The Chambolle-Pock method converges weakly with $\theta > 1/2$ and $\tau\sigma\|L\|^2 < 4/(1+2\theta)$](https://doi.org/10.1007/s11590-025-02250-0)_ has been accepted for publication in the journal _Optimization Letters_.
+The manuscript titled _[The Chambolle-Pock method converges weakly with $\theta > 1/2$ and $\tau\sigma\lVert L \rVert^2 < 4/(1+2\theta)$](https://doi.org/10.1007/s11590-025-02250-0)_ has been accepted for publication in the journal _Optimization Letters_.
