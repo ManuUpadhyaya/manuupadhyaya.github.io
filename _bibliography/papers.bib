@@ -2,36 +2,45 @@
 ---
 
 %% 2026
+@article{upadhyaya2026chambollepockmethodalsoconverges,
+  title={The Chambolle-Pock method also converges weakly with \(0 < \theta \le 1\) and \(\tau\sigma\|L\|^2 < 4\theta(2-\theta)/(1 - 2\theta + 9\theta^2 - 4\theta^3)\)},
+  author={Upadhyaya, Manu},
+  year={2026},
+  arxiv={2604.06423},
+  abbr={Preprint},
+  abstract={The Chambolle-Pock method, also known as the primal-dual hybrid gradient method, is a standard first-order algorithm for convex-concave saddle-point problems and composite convex optimization involving two proper, lower semicontinuous, convex functions and a bounded linear operator \(L\). We study its convergence in real Hilbert spaces for step sizes \(\tau,\sigma > 0\) and relaxation parameter \(0 < \theta \le 1\). We prove that, if \(\tau\sigma\|L\|^2 \leq 4\theta(2-\theta)/(1 - 2\theta + 9\theta^2 - 4\theta^3)\), then the ergodic duality gap converges at rate \(O(1/k)\), and that, when the inequality is strict, the primal-dual iterates converge weakly to a KKT point. In particular, this extends the weak-convergence theory to the previously unexplored regime \(0 < \theta \le 1/2\). The proof is based on a Lyapunov function that remains uniformly valid over the entire interval \(0 < \theta \le 1\).},
+}
+
 @article{upadhyaya2026lyapunovanalysiskorpelevichsextragradient,
-      title={A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions},
-      author={Upadhyaya, Manu and Latafat, Puya and Giselsson, Pontus},
-      year={2026},
-      journal={Mathematical Programming},
-      arxiv={2502.00119},
-      abbr={Journal},
-      abstract={We develop a Lyapunov-based analysis of Korpelevich's extragradient method and show that it achieves an \(o(1/k)\,\,\) last-iterate convergence rate of the constructed Lyapunov function. This Lyapunov function simultaneously upper bounds several standard measures of optimality, which allows our analysis to sharpen existing last-iterate convergence guarantees for these measures. Moreover, the same analysis enables the design of a class of flexible extensions of the extragradient method in which extragradient steps are adaptively blended with user-specified directions via a Lyapunov-guided line-search procedure. These extensions retain global convergence under practical assumptions and can attain superlinear rates when the directions are chosen appropriately. Numerical experiments confirm the simplicity and efficiency of the proposed framework.},
-      doi={10.1007/s10107-025-02322-0},
+  title={A Lyapunov analysis of Korpelevich's extragradient method with fast and flexible extensions},
+  author={Upadhyaya, Manu and Latafat, Puya and Giselsson, Pontus},
+  year={2026},
+  journal={Mathematical Programming},
+  arxiv={2502.00119},
+  doi={10.1007/s10107-025-02322-0},
+  abbr={Journal},
+  abstract={We develop a Lyapunov-based analysis of Korpelevich's extragradient method and show that it achieves an \(o(1/k)\,\,\) last-iterate convergence rate of the constructed Lyapunov function. This Lyapunov function simultaneously upper bounds several standard measures of optimality, which allows our analysis to sharpen existing last-iterate convergence guarantees for these measures. Moreover, the same analysis enables the design of a class of flexible extensions of the extragradient method in which extragradient steps are adaptively blended with user-specified directions via a Lyapunov-guided line-search procedure. These extensions retain global convergence under practical assumptions and can attain superlinear rates when the directions are chosen appropriately. Numerical experiments confirm the simplicity and efficiency of the proposed framework.},
 }
 
 @article{upadhyaya2026autolyap,
-      title={The {AutoLyap} software suite for computer-assisted {L}yapunov analyses of first-order methods},
-      author={Upadhyaya, Manu and Das Gupta, Shuvomoy and Taylor, Adrien B. and Banert, Sebastian and Giselsson, Pontus},
-      year={2026},
-      arxiv={2506.24076},
-      website={https://autolyap.github.io},
-      abbr={Preprint},
-      abstract={We introduce AutoLyap, a software suite that assists with Lyapunov analyses of a wide class of first-order methods for structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous work, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds to solve the SDP numerically. We use the package to numerically verify and extend several convergence results. AutoLyap is currently available in Python and Julia.}
+  title={The {AutoLyap} software suite for computer-assisted {L}yapunov analyses of first-order methods},
+  author={Upadhyaya, Manu and Das Gupta, Shuvomoy and Taylor, Adrien B. and Banert, Sebastian and Giselsson, Pontus},
+  year={2026},
+  website={https://autolyap.github.io},
+  arxiv={2506.24076},
+  abbr={Preprint},
+  abstract={We introduce AutoLyap, a software suite that assists with Lyapunov analyses of a wide class of first-order methods for structured optimization and inclusion problems. Lyapunov analyses are structured proof patterns, with historical roots in the study of dynamical systems, commonly used to establish convergence results for first-order methods. Building on previous work, the core idea behind AutoLyap is to recast the verification of the existence of a Lyapunov analysis as a semidefinite program (SDP), which can then be solved numerically using standard SDP solvers. Users of the package specify (i) the class of optimization or inclusion problems, (ii) the first-order method in question, and (iii) the type of Lyapunov analysis they wish to test. Once these inputs are provided, AutoLyap handles the SDP modeling and proceeds to solve the SDP numerically. We use the package to numerically verify and extend several convergence results. AutoLyap is currently available in Python and Julia.},
 }
 
 %% 2025
 @article{thesis2025,
   title={Lyapunov analyses for first-order methods: Theory, automation, and algorithm design},
-  abstract={This thesis, comprising four research papers, contributes to the field of systematic and computer-aided analyses and design of first-order methods. The first two papers focus on developing new methodologies, while the remaining two apply these techniques to refine complexity and convergence results, as well as to design new methods. A central theme of the work is the use of Lyapunov-type analyses, a structured proof technique with historical roots in the study of dynamical systems, which is widely used to establish complexity and convergence properties of first-order methods.},
   author={Upadhyaya, Manu},
-  html={https://lup.lub.lu.se/search/publication/a006046c-9dc6-446b-b625-f129587c9674},
   year={2025},
   journal={PhD thesis},
+  html={https://lup.lub.lu.se/search/publication/a006046c-9dc6-446b-b625-f129587c9674},
   abbr={Thesis},
+  abstract={This thesis, comprising four research papers, contributes to the field of systematic and computer-aided analyses and design of first-order methods. The first two papers focus on developing new methodologies, while the remaining two apply these techniques to refine complexity and convergence results, as well as to design new methods. A central theme of the work is the use of Lyapunov-type analyses, a structured proof technique with historical roots in the study of dynamical systems, which is widely used to establish complexity and convergence properties of first-order methods.},
 }
 
 @article{upadhyaya2025tight_lyapunov_analysis,
@@ -39,42 +48,42 @@
   author={Upadhyaya, Manu and Banert, Sebastian and Taylor, Adrien B. and Giselsson, Pontus},
   year={2025},
   journal={Mathematical Programming},
+  arxiv={2302.06713},
+  doi={10.1007/s10107-024-02061-8},
   abbr={Journal},
   abstract={We present a methodology for establishing the existence of quadratic Lyapunov inequalities for a wide range of first-order methods used to solve convex optimization problems. In particular, we consider (i) classes of optimization problems of finite-sum form with (possibly strongly) convex and possibly smooth functional components, (ii) first-order methods that can be written as a linear system on state-space form in feedback interconnection with the subdifferentials of the functional components of the objective function, and (iii) quadratic Lyapunov inequalities that can be used to draw convergence conclusions. We present a necessary and sufficient condition for the existence of a quadratic Lyapunov inequality within a predefined class of Lyapunov inequalities, which amounts to solving a small-sized semidefinite program. We showcase our methodology on several first-order methods that fit the framework. Most notably, our methodology allows us to significantly extend the region of parameter choices that allow for duality gap convergence in the Chambolle-Pock method when the linear operator is the identity mapping.},
-  arxiv={2302.06713},
-  doi={10.1007/s10107-024-02061-8}
 }
 
 @article{banert2025chambollepockmethodconverges,
-  author  = {Banert, Sebastian and Upadhyaya, Manu and Giselsson, Pontus},
-  journal = {Optimization Letters},
-  abbr={Journal},
   title={The Chambolle-Pock method converges weakly with \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\)},
-  year    = {2025},
-  doi     = {10.1007/s11590-025-02250-0},
+  author={Banert, Sebastian and Upadhyaya, Manu and Giselsson, Pontus},
+  year={2025},
+  journal={Optimization Letters},
   arxiv={2309.03998},
+  doi={10.1007/s11590-025-02250-0},
+  abbr={Journal},
   abstract={The Chambolle-Pock method is a versatile three-parameter algorithm designed to solve a broad class of composite convex optimization problems, which encompass two proper, lower semicontinuous, and convex functions, along with a linear operator \(L\). The functions are accessed via their proximal operators, while the linear operator is evaluated in a forward manner. Among the three algorithm parameters \(\tau\), \(\sigma\), and \(\theta\); \(\tau\), \(\sigma > 0\,\,\) serve as step sizes for the proximal operators, and \(\theta\,\,\) is an extrapolation step parameter. Previous convergence results have been based on the assumption that \(\theta = 1\). We demonstrate that weak convergence is achievable whenever \(\theta > 1/2\,\,\) and \(\tau\sigma\|L\|^2 < 4/(1+2\theta)\). Moreover, we establish tightness of the step size bound by providing an example that is nonconvergent whenever the second bound is violated.},
 }
 
 %% 2020
 @article{lynx2020,
   title={Covariance matrix regularization for portfolio selection: Achieving desired risk},
-  abstract={The modus operandi of most asset managers is to promise clients an annual risk target, where risk is measured by the realized standard deviation of portfolio returns. Moreover, Markowitz (1952) portfolio selection requires an estimate of the covariance matrix of the returns of the financial instruments under consideration. To address both these problems, we develop a data-driven method for covariance matrix regularization. The data-driven method critically depends on a novel risk-targeting loss function. In addition, the risk targeting loss function is analyzed under large-dimensional asymptotics, resulting in an asymptotically optimal covariance matrix regularization. In an ex-post analysis, using historical price data from multiple future markets, the data-driven method outperforms other regularization methods compared against.},
   author={Upadhyaya, Manu},
-  html={https://lup.lub.lu.se/student-papers/search/publication/9005476},
   year={2020},
   journal={Master's thesis},
+  html={https://lup.lub.lu.se/student-papers/search/publication/9005476},
   abbr={Thesis},
+  abstract={The modus operandi of most asset managers is to promise clients an annual risk target, where risk is measured by the realized standard deviation of portfolio returns. Moreover, Markowitz (1952) portfolio selection requires an estimate of the covariance matrix of the returns of the financial instruments under consideration. To address both these problems, we develop a data-driven method for covariance matrix regularization. The data-driven method critically depends on a novel risk-targeting loss function. In addition, the risk targeting loss function is analyzed under large-dimensional asymptotics, resulting in an asymptotically optimal covariance matrix regularization. In an ex-post analysis, using historical price data from multiple future markets, the data-driven method outperforms other regularization methods compared against.},
 }
 
 %% 2017
 @inproceedings{calandra2017feeling,
   title={The feeling of success: Does touch sensing help predict grasp outcomes?},
-  abstract={A successful grasp requires careful balancing of the contact forces. Deducing whether a particular grasp will be successful from indirect measurements, such as vision, is therefore quite challenging, and direct sensing of contacts through touch sensing provides an appealing avenue toward more successful and consistent robotic grasping. However, in order to fully evaluate the value of touch sensing for grasp outcome prediction, we must understand how touch sensing can influence outcome prediction accuracy when combined with other modalities. Doing so using conventional model-based techniques is exceptionally difficult. In this work, we investigate the question of whether touch sensing aids in predicting grasp outcomes within a multimodal sensing framework that combines vision and touch. To that end, we collected more than 9,000 grasping trials using a two-finger gripper equipped with GelSight high-resolution tactile sensors on each finger, and evaluated visuo-tactile deep neural network models to directly predict grasp outcomes from either modality individually, and from both modalities together. Our experimental results indicate that incorporating tactile readings substantially improve grasping performance.},
   author={Calandra, Roberto and Owens, Andrew and Upadhyaya, Manu and Yuan, Wenzhen and Lin, Justin and Adelson, Edward H. and Levine, Sergey},
-  website={https://sites.google.com/view/the-feeling-of-success},
   year={2017},
+  booktitle={Conference on Robot Learning (CoRL)},
+  website={https://sites.google.com/view/the-feeling-of-success},
   arxiv={1710.05512},
   abbr={Conference},
-  booktitle = 	 {Conference on Robot Learning (CoRL)},
+  abstract={A successful grasp requires careful balancing of the contact forces. Deducing whether a particular grasp will be successful from indirect measurements, such as vision, is therefore quite challenging, and direct sensing of contacts through touch sensing provides an appealing avenue toward more successful and consistent robotic grasping. However, in order to fully evaluate the value of touch sensing for grasp outcome prediction, we must understand how touch sensing can influence outcome prediction accuracy when combined with other modalities. Doing so using conventional model-based techniques is exceptionally difficult. In this work, we investigate the question of whether touch sensing aids in predicting grasp outcomes within a multimodal sensing framework that combines vision and touch. To that end, we collected more than 9,000 grasping trials using a two-finger gripper equipped with GelSight high-resolution tactile sensors on each finger, and evaluated visuo-tactile deep neural network models to directly predict grasp outcomes from either modality individually, and from both modalities together. Our experimental results indicate that incorporating tactile readings substantially improve grasping performance.},
 }
