@@ -75,7 +75,7 @@ jobs:
       - name: Setup Node.js ⚙️
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
@@ -100,22 +100,13 @@ jobs:
       - name: Purge unused CSS 🧹
         run: |
           npx --yes purgecss@latest -c purgecss.config.js
-      - name: Get Chromium version 🌐
-        # https://github.com/GoogleChromeLabs/chrome-for-testing?tab=readme-ov-file#other-api-endpoints
+      - name: Install Axe and matching ChromeDriver 🚗
         run: |
-          CHROMIUM_VERSION=$(wget -qO- https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE | cut -d. -f1)
-          echo "Chromium version: $CHROMIUM_VERSION"
-          echo "CHROMIUM_VERSION=$CHROMIUM_VERSION" >> "$GITHUB_ENV"
-      - name: Setup Chrome 🌐
-        id: setup-chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: ${{ env.CHROMIUM_VERSION }}
-      - name: Install chromedriver 🚗
-        run: |
-          npm install -g "chromedriver@$CHROMIUM_VERSION" @axe-core/cli http-server
+          CHROME_VERSION="$(google-chrome --version | sed -E 's/.* ([0-9]+)\..*/\1/')"
+          echo "Chrome version: $CHROME_VERSION"
+          npm install -g "chromedriver@$CHROME_VERSION" @axe-core/cli http-server
       - name: Run axe 🪓
         # https://github.com/dequelabs/axe-core-npm/tree/develop/packages/cli
         run: |
           http-server _site/ &
-          axe --chrome-path "${{ steps.setup-chrome.outputs.chrome-path }}" --chromedriver-path "$(npm root -g)/chromedriver/bin/chromedriver" --chrome-options="--no-sandbox --disable-dev-shm-usage" "http://localhost:8080/${{ github.event.inputs.url || env.URL }}" --load-delay=1500 --exit
+          axe --chromedriver-path "$(npm root -g)/chromedriver/bin/chromedriver" --chrome-options="--no-sandbox --disable-dev-shm-usage" "http://localhost:8080/${{ github.event.inputs.url || env.URL }}" --load-delay=1500 --exit
