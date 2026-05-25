@@ -58,10 +58,14 @@ If you change the site URL or repository name, update `url` and `baseurl` in `_c
 ## Related Automation
 
 - `deploy.yml` builds and deploys the site.
+- `prettier.yml` checks formatting for Markdown, Liquid, CSS, JavaScript, JSON, SCSS, and workflow files.
 - `broken-links.yml` checks Markdown and HTML source files.
 - `broken-links-site.yml` checks the generated `_site` output after deploy.
-- `lighthouse-badger.yml` runs Lighthouse PageSpeed Insights against the published site URL and writes badges/reports back to the repository when triggered.
-- `docker-compose.yml` and `Dockerfile` support local containerized development. The Docker image publish workflows remain in the repo, but `deploy-image.yml` and `docker-slim.yml` only push for the upstream owner.
+- `axe.yml` builds the site and runs an accessibility scan on the homepage.
+- `codeql.yml` runs CodeQL on JavaScript/TypeScript and Ruby code.
+- `lighthouse-badger.yml` runs Lighthouse PageSpeed Insights after a successful deploy or manual dispatch, then writes badges/reports back to the repository.
+- `docker-compose.yml` and `Dockerfile` support local containerized development.
+- `deploy-image.yml` and `docker-slim.yml` run on pushes here as green no-op checks; they only publish images for the upstream `alshedivat/al-folio` owner.
 
 ## Lighthouse PageSpeed Insights
 
