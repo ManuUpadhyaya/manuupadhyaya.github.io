@@ -118,4 +118,4 @@ jobs:
         # https://github.com/dequelabs/axe-core-npm/tree/develop/packages/cli
         run: |
           http-server _site/ &
-          axe --chrome-path "${{ steps.setup-chrome.outputs.chrome-path }}" --chromedriver-path "$(npm root -g)/chromedriver/bin/chromedriver" "http://localhost:8080/${{ github.event.inputs.url || env.URL }}" --load-delay=1500 --exit
+          axe --chrome-path "${{ steps.setup-chrome.outputs.chrome-path }}" --chromedriver-path "$(npm root -g)/chromedriver/bin/chromedriver" --chrome-options="--no-sandbox --disable-dev-shm-usage" "http://localhost:8080/${{ github.event.inputs.url || env.URL }}" --load-delay=1500 --exit
