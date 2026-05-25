@@ -3,6 +3,7 @@ layout: page
 permalink: /software/
 title: Software
 description:
+seo_description: Software projects by Manu Upadhyaya, including AutoLyap for automated Lyapunov-based convergence analysis of first-order methods.
 nav: true
 nav_order: 2.5
 ---

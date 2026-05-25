@@ -55,7 +55,7 @@ jobs:
           node-version: "20"
           cache: npm
       - name: Install Prettier 💾
-        run: npm ci --prefer-offline --no-audit
+        run: npm ci --prefer-offline --no-audit --no-fund --ignore-scripts
       - name: Prettier Check 🔎
         id: prettier
         run: npx prettier . --check

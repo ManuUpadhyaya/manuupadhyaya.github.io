@@ -3,6 +3,7 @@ layout: page
 permalink: /teaching/
 title: Teaching
 description:
+seo_description: Teaching experience of Manu Upadhyaya in optimization, machine learning, control, and related graduate and undergraduate courses.
 nav: true
 nav_order: 3
 ---

@@ -76,11 +76,27 @@ jobs:
         with:
           ruby-version: "3.3.5"
           bundler-cache: true
+      - name: Cache Jekyll metadata 🧱
+        uses: actions/cache@v4
+        with:
+          path: |
+            .jekyll-cache
+            .sass-cache
+          key: jekyll-${{ runner.os }}-${{ hashFiles('Gemfile.lock', '_config.yml', '_sass/**', 'assets/css/**') }}
+          restore-keys: |
+            jekyll-${{ runner.os }}-
       - name: Setup Python 🐍
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
           cache: "pip" # caching pip dependencies
+          cache-dependency-path: "requirements.txt"
+      - name: Setup Node.js ⚙️
+        if: github.event_name != 'pull_request'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -91,18 +107,26 @@ jobs:
       - name: Install and Build 🔧
         run: |
           if ! command -v convert >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y imagemagick
+            sudo apt-get update && sudo apt-get install -y --no-install-recommends imagemagick
           fi
           if ! python3 -c "import nbconvert" >/dev/null 2>&1; then
-            pip3 install --upgrade nbconvert
+            python3 -m pip install --upgrade -r requirements.txt
           fi
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
         if: github.event_name != 'pull_request'
         run: |
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
+          npx --yes purgecss@latest -c purgecss.config.js
+      - name: Upload built site artifact 📦
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-site
+          path: _site
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 1
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4

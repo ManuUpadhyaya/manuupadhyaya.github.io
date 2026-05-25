@@ -117,13 +117,15 @@
         <span
           class="more-authors"
           title="click to view {{ more_authors_hide }}"
+          data-more-authors-hide="{{ more_authors_hide | escape }}"
+          data-more-authors-show="{{ more_authors_show | escape }}"
           onclick="
-              var element = $(this);
-              element.attr('title', '');
-              var more_authors_text = element.text() == '{{ more_authors_hide }}' ? '{{ more_authors_show }}' : '{{ more_authors_hide }}';
+              var element = this;
+              element.setAttribute('title', '');
+              var more_authors_text = element.textContent == element.dataset.moreAuthorsHide ? element.dataset.moreAuthorsShow : element.dataset.moreAuthorsHide;
               var cursorPosition = 0;
               var textAdder = setInterval(function(){
-                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                element.innerHTML = more_authors_text.substring(0, cursorPosition + 1);
                 if (++cursorPosition == more_authors_text.length){
                   clearInterval(textAdder);
                 }

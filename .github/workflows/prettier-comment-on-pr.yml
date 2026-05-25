@@ -4,10 +4,15 @@ on:
   repository_dispatch:
     types: [prettier-failed-on-pr]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.client_payload.pr_number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   comment:
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: PR comment with html diff 💬
         uses: thollander/actions-comment-pull-request@v2

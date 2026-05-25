@@ -14,10 +14,30 @@ name: "CodeQL Advanced"
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "**/*.bib"
+      - "**/*.md"
+      - "assets/fonts/**"
+      - "assets/img/**"
+      - "assets/webfonts/**"
+      - "lighthouse_results/**"
+      - "share/**"
   pull_request:
     branches: ["main"]
+    paths-ignore:
+      - "**/*.bib"
+      - "**/*.md"
+      - "assets/fonts/**"
+      - "assets/img/**"
+      - "assets/webfonts/**"
+      - "lighthouse_results/**"
+      - "share/**"
   schedule:
     - cron: "45 4 * * 3"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   analyze:
@@ -28,6 +48,7 @@ jobs:
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    timeout-minutes: 15
     permissions:
       # required for all workflows
       security-events: write

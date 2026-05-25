@@ -1,17 +1,13 @@
-<!-- jQuery -->
-<script
-  src="{{ site.third_party_libraries.jquery.url.js }}"
-  integrity="{{ site.third_party_libraries.jquery.integrity.js }}"
-  crossorigin="anonymous"
-></script>
-
-<!-- Bootsrap & MDB scripts -->
-<script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
 <script>
   window.loadOptionalScript =
     window.loadOptionalScript ||
     function (src, options = {}) {
-      return new Promise((resolve, reject) => {
+      window.__optionalScripts = window.__optionalScripts || {};
+      if (window.__optionalScripts[src]) {
+        return window.__optionalScripts[src];
+      }
+
+      window.__optionalScripts[src] = new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
         if (options.type) {
@@ -33,8 +29,41 @@
         script.onerror = reject;
         document.body.appendChild(script);
       });
+      return window.__optionalScripts[src];
+    };
+  window.loadJQuery =
+    window.loadJQuery ||
+    function () {
+      if (window.jQuery) {
+        return Promise.resolve(window.jQuery);
+      }
+
+      window.__jqueryLoading =
+        window.__jqueryLoading ||
+        window
+          .loadOptionalScript('{{ site.third_party_libraries.jquery.url.js }}', {
+            integrity: '{{ site.third_party_libraries.jquery.integrity.js }}',
+            crossorigin: 'anonymous',
+          })
+          .then(() => window.jQuery);
+
+      return window.__jqueryLoading;
+    };
+  window.loadBootstrap =
+    window.loadBootstrap ||
+    function () {
+      if (window.jQuery && typeof window.jQuery.fn.popover === 'function') {
+        return Promise.resolve();
+      }
+
+      window.__bootstrapLoading =
+        window.__bootstrapLoading ||
+        window.loadJQuery().then(() => loadOptionalScript("{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"));
+
+      return window.__bootstrapLoading;
     };
 </script>
+<script defer src="{{ '/assets/js/navbar.js' | relative_url | bust_file_cache }}"></script>
 
 {% if site.enable_masonry %}
   <!-- Masonry & imagesLoaded -->
@@ -166,7 +195,13 @@
 
 {% if site.enable_tooltips %}
   <!-- Tooltips -->
-  <script src="{{ '/assets/js/tooltips-setup.js' | relative_url | bust_file_cache }}"></script>
+  <script>
+    if (document.querySelector('[data-toggle="tooltip"]')) {
+      loadBootstrap()
+        .then(() => loadOptionalScript("{{ '/assets/js/tooltips-setup.js' | relative_url | bust_file_cache }}", { defer: true }))
+        .catch(() => {});
+    }
+  </script>
 {% endif %}
 
 {% if site.enable_medium_zoom %}
@@ -186,25 +221,47 @@
 
 {% if page.toc and page.toc.sidebar %}
   <!-- Sidebar Table of Contents -->
-  <script defer src="{{ '/assets/js/bootstrap-toc.min.js' | relative_url | bust_file_cache }}"></script>
+  <!-- Loaded together with common.js when #toc-sidebar is present. -->
 {% endif %}
 
 {% if page.pretty_table %}
   <!-- Bootstrap Table -->
   <!-- Bootstrap Table doesn't go well with diff2html -->
-  <script
-    defer
-    src="{{ site.third_party_libraries.bootstrap-table.url.js }}"
-    integrity="{{ site.third_party_libraries.bootstrap-table.integrity.js }}"
-    crossorigin="anonymous"
-  ></script>
+  <script>
+    if (document.querySelector('table')) {
+      loadBootstrap()
+        .then(() =>
+          loadOptionalScript('{{ site.third_party_libraries.bootstrap-table.url.js }}', {
+            defer: true,
+            integrity: '{{ site.third_party_libraries.bootstrap-table.integrity.js }}',
+            crossorigin: 'anonymous',
+          })
+        )
+        .catch(() => {});
+    }
+  </script>
 {% endif %}
 
 <!-- Load Common JS -->
-<script src="{{ '/assets/js/no_defer.js' | relative_url | bust_file_cache }}"></script>
 <script>
-  if (document.querySelector("a.abstract, a.award, a.bibtex, #toc-sidebar, [data-toggle='popover']")) {
-    loadOptionalScript("{{ '/assets/js/common.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
+  if (document.querySelector('table')) {
+    loadOptionalScript("{{ '/assets/js/no_defer.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
+  }
+</script>
+<script>
+  if (document.querySelector("a.abstract, a.award, a.bibtex, #toc-sidebar, [data-toggle='popover'], .jupyter-notebook-iframe-container iframe")) {
+    const needsBootstrap = document.querySelector("#toc-sidebar, [data-toggle='popover']");
+    const needsToc = document.querySelector('#toc-sidebar');
+    const dependencies = needsBootstrap ? loadBootstrap() : Promise.resolve();
+
+    dependencies
+      .then(() => {
+        if (needsToc) {
+          return loadOptionalScript("{{ '/assets/js/bootstrap-toc.min.js' | relative_url | bust_file_cache }}", { defer: true });
+        }
+      })
+      .then(() => loadOptionalScript("{{ '/assets/js/common.js' | relative_url | bust_file_cache }}", { defer: true }))
+      .catch(() => {});
   }
 </script>
 <script>
@@ -260,9 +317,48 @@
 
 {% if site.enable_google_analytics and site.google_analytics != blank %}
   <!-- Analytics -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-  <script defer src="{{ '/assets/js/google-analytics-setup.js' | relative_url | bust_file_cache }}"></script>
+  <!-- Queue analytics immediately, then load the external gtag library after first interaction or idle. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function () {
+        window.dataLayer.push(arguments);
+      };
+    window.gtag('js', new Date());
+    window.gtag('config', '{{ site.google_analytics }}');
+
+    (function () {
+      let loaded = false;
+      const loadAnalytics = function () {
+        if (loaded) return;
+        loaded = true;
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+        document.head.appendChild(script);
+      };
+
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (eventName) {
+        window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+      });
+      document.addEventListener(
+        'visibilitychange',
+        function () {
+          if (document.visibilityState === 'hidden') loadAnalytics();
+        },
+        { once: true }
+      );
+      window.addEventListener(
+        'load',
+        function () {
+          window.setTimeout(loadAnalytics, 10000);
+        },
+        { once: true }
+      );
+    })();
+  </script>
   <script defer src="{{ '/assets/js/google-analytics-events.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 

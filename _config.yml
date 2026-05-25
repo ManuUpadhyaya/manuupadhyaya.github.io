@@ -11,6 +11,7 @@ description: Personal website of Manu Upadhyaya, postdoctoral researcher at Inri
 footer_text:
 keywords: optimization, first-order methods, mathematical programming, machine learning, Lyapunov analysis
 lang: en
+og_locale: en_US
 icon: mu-icon.svg
 
 url: https://manuupadhyaya.github.io # the base hostname & protocol for your site
@@ -60,8 +61,9 @@ max_width: 800px
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
 og_image: https://manuupadhyaya.github.io/assets/img/prof_pic_color.png # The site-wide (default for all links) Open Graph preview image
+og_image_alt: Portrait of Manu Upadhyaya
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification

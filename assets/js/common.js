@@ -1,59 +1,80 @@
-$(document).ready(function () {
+const setupCommon = () => {
   // add toggle functionality to abstract, award and bibtex buttons
-  $("a.abstract").click(function () {
-    $(this).parent().parent().find(".abstract.hidden").toggleClass("open");
-    $(this).parent().parent().find(".award.hidden.open").toggleClass("open");
-    $(this).parent().parent().find(".bibtex.hidden.open").toggleClass("open");
+  document.querySelectorAll("a.abstract").forEach(function (link) {
+    link.addEventListener("click", function () {
+      const entry = link.parentElement?.parentElement;
+
+      entry?.querySelectorAll(".abstract.hidden").forEach((element) => element.classList.toggle("open"));
+      entry?.querySelectorAll(".award.hidden.open, .bibtex.hidden.open").forEach((element) => element.classList.remove("open"));
+    });
   });
-  $("a.award").click(function () {
-    $(this).parent().parent().find(".abstract.hidden.open").toggleClass("open");
-    $(this).parent().parent().find(".award.hidden").toggleClass("open");
-    $(this).parent().parent().find(".bibtex.hidden.open").toggleClass("open");
+  document.querySelectorAll("a.award").forEach(function (link) {
+    link.addEventListener("click", function () {
+      const entry = link.parentElement?.parentElement;
+
+      entry?.querySelectorAll(".abstract.hidden.open, .bibtex.hidden.open").forEach((element) => element.classList.remove("open"));
+      entry?.querySelectorAll(".award.hidden").forEach((element) => element.classList.toggle("open"));
+    });
   });
-  $("a.bibtex").click(function () {
-    $(this).parent().parent().find(".abstract.hidden.open").toggleClass("open");
-    $(this).parent().parent().find(".award.hidden.open").toggleClass("open");
-    $(this).parent().parent().find(".bibtex.hidden").toggleClass("open");
+  document.querySelectorAll("a.bibtex").forEach(function (link) {
+    link.addEventListener("click", function () {
+      const entry = link.parentElement?.parentElement;
+
+      entry?.querySelectorAll(".abstract.hidden.open, .award.hidden.open").forEach((element) => element.classList.remove("open"));
+      entry?.querySelectorAll(".bibtex.hidden").forEach((element) => element.classList.toggle("open"));
+    });
   });
-  $("a").removeClass("waves-effect waves-light");
+  document.querySelectorAll("a").forEach(function (link) {
+    link.classList.remove("waves-effect", "waves-light");
+  });
 
   // bootstrap-toc
-  if ($("#toc-sidebar").length) {
+  if (document.getElementById("toc-sidebar") && window.jQuery && window.Toc) {
     // remove related publications years from the TOC
-    $(".publications h2").each(function () {
-      $(this).attr("data-toc-skip", "");
+    document.querySelectorAll(".publications h2").forEach(function (heading) {
+      heading.setAttribute("data-toc-skip", "");
     });
     var navSelector = "#toc-sidebar";
-    var $myNav = $(navSelector);
+    var $myNav = window.jQuery(navSelector);
     Toc.init($myNav);
-    $("body").scrollspy({
-      target: navSelector,
-    });
+    if (typeof window.jQuery(document.body).scrollspy === "function") {
+      window.jQuery("body").scrollspy({
+        target: navSelector,
+      });
+    }
   }
 
-  // add css to jupyter notebooks
+  const jupyterTheme = determineComputedTheme();
   const cssLink = document.createElement("link");
   cssLink.href = "../css/jupyter.css";
   cssLink.rel = "stylesheet";
   cssLink.type = "text/css";
 
-  let jupyterTheme = determineComputedTheme();
-
-  $(".jupyter-notebook-iframe-container iframe").each(function () {
-    $(this).contents().find("head").append(cssLink);
+  document.querySelectorAll(".jupyter-notebook-iframe-container iframe").forEach(function (iframe) {
+    try {
+      iframe.contentDocument?.head?.appendChild(cssLink.cloneNode());
+    } catch {}
 
     if (jupyterTheme == "dark") {
-      $(this).bind("load", function () {
-        $(this).contents().find("body").attr({
-          "data-jp-theme-light": "false",
-          "data-jp-theme-name": "JupyterLab Dark",
-        });
+      iframe.addEventListener("load", function () {
+        try {
+          iframe.contentDocument?.body?.setAttribute("data-jp-theme-light", "false");
+          iframe.contentDocument?.body?.setAttribute("data-jp-theme-name", "JupyterLab Dark");
+        } catch {}
       });
     }
   });
 
   // trigger popovers
-  $('[data-toggle="popover"]').popover({
-    trigger: "hover",
-  });
-});
+  if (window.jQuery && typeof window.jQuery.fn.popover === "function") {
+    window.jQuery('[data-toggle="popover"]').popover({
+      trigger: "hover",
+    });
+  }
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupCommon);
+} else {
+  setupCommon();
+}
