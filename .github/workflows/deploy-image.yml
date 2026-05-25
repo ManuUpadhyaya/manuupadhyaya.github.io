@@ -5,20 +5,21 @@ on:
     branches:
       - master
       - main
-    paths:
-      - ".github/workflows/deploy-image.yml"
-      - "bin/entry_point.sh"
-      - "Dockerfile"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "package.json"
-      - "package-lock.json"
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  disabled:
+    if: github.repository_owner != 'alshedivat'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Docker image publishing disabled for this fork
+        run: echo "Docker image publishing is only configured for alshedivat/al-folio."
+
   build:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'alshedivat'

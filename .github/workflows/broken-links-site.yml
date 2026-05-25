@@ -13,15 +13,20 @@ permissions:
   actions: read
   contents: read
 
+env:
+  SHOULD_RUN: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && (github.event.workflow_run.head_branch == 'main' || github.event.workflow_run.head_branch == 'master') }}
+
 jobs:
   check-links-on-site:
-    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#running-a-workflow-based-on-the-conclusion-of-another-workflow
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && (github.event.workflow_run.head_branch == 'main' || github.event.workflow_run.head_branch == 'master') }}
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      - name: Stop when no built site artifact is available
+        if: env.SHOULD_RUN != 'true'
+        run: echo "Published-site link checks only run after a successful main-branch deploy."
       - name: Download built site artifact 📦
+        if: env.SHOULD_RUN == 'true'
         uses: actions/download-artifact@v4
         with:
           name: built-site
@@ -29,6 +34,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
       - name: Link Checker 🔗
+        if: env.SHOULD_RUN == 'true'
         uses: lycheeverse/lychee-action@v2.1.0
         with:
           fail: true
