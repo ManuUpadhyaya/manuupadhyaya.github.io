@@ -80,7 +80,20 @@
 
 <!-- Fonts & Icons -->
 {% assign socials = site.data.socials %}
-{% if socials.acm_id or socials.dblp_url or socials.ieee_id or socials.inspirehep_id or socials.lattes_id or socials.orcid_id or socials.osf_id or socials.publons_id or socials.research_gate_profile or socials.scholar_userid or socials.scopus_id or socials.semanticscholar_id or socials.zotero_username %}
+{% if socials.acm_id
+  or socials.dblp_url
+  or socials.ieee_id
+  or socials.inspirehep_id
+  or socials.lattes_id
+  or socials.orcid_id
+  or socials.osf_id
+  or socials.publons_id
+  or socials.research_gate_profile
+  or socials.scholar_userid
+  or socials.scopus_id
+  or socials.semanticscholar_id
+  or socials.zotero_username
+%}
   <link defer rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
 {% endif %}
 {% if socials.leetcode_id %}

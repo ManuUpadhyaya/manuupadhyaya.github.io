@@ -43,32 +43,32 @@
 {% endif %}
 {% assign document_title = document_title | strip | strip_newlines %}
 {% assign meta_description = page.seo_description %}
-{% if meta_description == nil or meta_description == '' %}
+{% if meta_description == null or meta_description == '' %}
   {% assign meta_description = page.description %}
 {% endif %}
-{% if meta_description == nil or meta_description == '' %}
+{% if meta_description == null or meta_description == '' %}
   {% assign meta_description = site.description %}
 {% endif %}
 {% assign meta_description = meta_description | strip | strip_html | strip_newlines %}
 {% assign meta_keywords = page.keywords %}
-{% if meta_keywords == nil or meta_keywords == '' %}
+{% if meta_keywords == null or meta_keywords == '' %}
   {% assign meta_keywords = site.keywords %}
 {% endif %}
 {% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
 {% assign page_display_title = page.title %}
-{% if page_display_title == nil or page_display_title == '' or page_display_title == 'blank' %}
+{% if page_display_title == null or page_display_title == '' or page_display_title == 'blank' %}
   {% assign page_display_title = site_title %}
 {% endif %}
 {% assign raw_og_image = page.og_image %}
-{% if raw_og_image == nil or raw_og_image == '' %}
+{% if raw_og_image == null or raw_og_image == '' %}
   {% assign raw_og_image = site.og_image %}
 {% endif %}
 {% assign og_image = raw_og_image | absolute_url %}
 {% assign og_image_alt = page.og_image_alt %}
-{% if og_image_alt == nil or og_image_alt == '' %}
+{% if og_image_alt == null or og_image_alt == '' %}
   {% assign og_image_alt = site.og_image_alt %}
 {% endif %}
-{% if og_image_alt == nil or og_image_alt == '' %}
+{% if og_image_alt == null or og_image_alt == '' %}
   {% assign og_image_alt = author_name %}
 {% endif %}
 {% assign og_locale = site.og_locale | default: site.lang %}

@@ -57,8 +57,7 @@
       }
 
       window.__bootstrapLoading =
-        window.__bootstrapLoading ||
-        window.loadJQuery().then(() => loadOptionalScript("{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"));
+        window.__bootstrapLoading || window.loadJQuery().then(() => loadOptionalScript("{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"));
 
       return window.__bootstrapLoading;
     };

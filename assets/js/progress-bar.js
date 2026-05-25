@@ -55,8 +55,7 @@ function initializeProgressElement() {
 
   if (navbar) {
     const navbarStyle = window.getComputedStyle(navbar);
-    navbarHeight =
-      navbar.offsetHeight + parseFloat(navbarStyle.marginTop || "0") + parseFloat(navbarStyle.marginBottom || "0");
+    navbarHeight = navbar.offsetHeight + parseFloat(navbarStyle.marginTop || "0") + parseFloat(navbarStyle.marginBottom || "0");
   }
 
   document.body.style.paddingTop = `${navbarHeight}px`;
