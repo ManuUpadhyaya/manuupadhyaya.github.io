@@ -44,8 +44,7 @@ Open `http://localhost:4000`.
 ### Docker
 
 ```bash
-docker compose pull
-docker compose up
+docker compose up --build
 ```
 
 Open `http://localhost:8080`.

@@ -23,7 +23,7 @@
 
 "adelson":
   - firstname: ["Edward", "Edward H."]
-    url: https://persci.mit.edu/people/adelson
+    url: https://www.csail.mit.edu/person/ted-adelson
 
 "banert":
   - firstname: ["Sebastian"]
@@ -31,11 +31,19 @@
 
 "giselsson":
   - firstname: ["Pontus"]
-    url: https://www.control.lth.se/personnel/personnel/pontus-giselsson/
+    url: https://portal.research.lu.se/en/persons/pontus-giselsson/
 
 "taylor":
   - firstname: ["Adrien", "Adrien B."]
     url: https://adrientaylor.github.io/
+
+"thomsen":
+  - firstname: ["Daniel Berg"]
+    url: https://bergthomsen.com/
+
+"dieuleveut":
+  - firstname: ["Aymeric"]
+    url: http://www.cmap.polytechnique.fr/~aymeric.dieuleveut/
 
 "das gupta":
   - firstname: ["Shuvomoy"]

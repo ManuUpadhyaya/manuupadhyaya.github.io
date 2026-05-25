@@ -23,8 +23,7 @@ Open `http://localhost:4000`.
 ## Local Setup With Docker
 
 ```bash
-docker compose pull
-docker compose up
+docker compose up --build
 ```
 
 Open `http://localhost:8080`.

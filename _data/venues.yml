@@ -1,9 +1,6 @@
 "AJP":
-  url: https://aapt.scitation.org/journal/ajp
+  url: https://www.aapt.org/publications/ajp/index.cfm
   color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
 
 "Vision":
   color: "#009f36"
