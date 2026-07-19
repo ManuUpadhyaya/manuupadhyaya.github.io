@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "assets/**"
+      - "**.bib"
       - "**.html"
       - "**.js"
       - "**.liquid"
@@ -25,6 +26,7 @@ on:
       - main
     paths:
       - "assets/**"
+      - "**.bib"
       - "**.html"
       - "**.js"
       - "**.liquid"
@@ -49,6 +51,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Expand generated publication links
+        run: |
+          sed -nE \
+            -e 's|^[[:space:]]*arxiv[[:space:]]*=[[:space:]]*\{([^}]*)\},?[[:space:]]*$|https://arxiv.org/abs/\1|p' \
+            -e 's|^[[:space:]]*doi[[:space:]]*=[[:space:]]*\{([^}]*)\},?[[:space:]]*$|https://doi.org/\1|p' \
+            _bibliography/*.bib > .lychee-generated-publication-urls.txt
+
       - name: Link Checker 🔗
         uses: lycheeverse/lychee-action@v2.1.0
         with:
@@ -67,8 +76,12 @@ jobs:
             --exclude-path ^_site/
             --exclude-path ^lighthouse_results/
             --exclude 'https://www.control.lth.se/idp/.*'
+            --exclude 'https://img.shields.io/.*'
             --root-dir .
             --verbose
             --no-progress
             './**/*.md'
             './**/*.html'
+            './**/*.bib'
+            './_data/**/*.yml'
+            './.lychee-generated-publication-urls.txt'

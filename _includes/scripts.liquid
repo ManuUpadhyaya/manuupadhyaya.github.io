@@ -248,7 +248,11 @@
   }
 </script>
 <script>
-  if (document.querySelector("a.abstract, a.award, a.bibtex, #toc-sidebar, [data-toggle='popover'], .jupyter-notebook-iframe-container iframe")) {
+  if (
+    document.querySelector(
+      ".abstract-toggle, .award-toggle, .bibtex-toggle, .video-toggle, #toc-sidebar, [data-toggle='popover'], .jupyter-notebook-iframe-container iframe"
+    )
+  ) {
     const needsBootstrap = document.querySelector("#toc-sidebar, [data-toggle='popover']");
     const needsToc = document.querySelector('#toc-sidebar');
     const dependencies = needsBootstrap ? loadBootstrap() : Promise.resolve();

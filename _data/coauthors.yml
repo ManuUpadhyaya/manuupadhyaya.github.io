@@ -45,6 +45,10 @@
   - firstname: ["Aymeric"]
     url: http://www.cmap.polytechnique.fr/~aymeric.dieuleveut/
 
+"goujaud":
+  - firstname: ["Baptiste"]
+    url: https://bgoujaud.github.io/
+
 "das gupta":
   - firstname: ["Shuvomoy"]
     url: https://shuvomoy.github.io/

@@ -1,12 +1,14 @@
 ---
 layout: about
 title: About
+seo_title: Manu Upadhyaya | Optimization Researcher
 permalink: /
 subtitle:
 
 profile:
   align: right
   image: prof_pic.jpg
+  image_alt: Portrait of Manu Upadhyaya
   image_width: 3037
   image_height: 4252
   image_circular: false # crops the image to make it circular

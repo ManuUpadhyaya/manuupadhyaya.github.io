@@ -11,10 +11,16 @@ on:
       - "**.html"
       - "**.js"
       - "**.liquid"
+      - "**.rb"
+      - "**.scss"
       - "**/*.md"
       - "**.yml"
+      - "favicon.ico"
       - "Gemfile"
       - "Gemfile.lock"
+      - "requirements.txt"
+      - "robots.txt"
+      - "site.webmanifest"
       - "!lighthouse_results/**"
   pull_request:
     branches:
@@ -26,10 +32,16 @@ on:
       - "**.html"
       - "**.js"
       - "**.liquid"
+      - "**.rb"
+      - "**.scss"
       - "**/*.md"
       - "**.yml"
+      - "favicon.ico"
       - "Gemfile"
       - "Gemfile.lock"
+      - "requirements.txt"
+      - "robots.txt"
+      - "site.webmanifest"
       - "!lighthouse_results/**"
   workflow_dispatch:
     inputs:

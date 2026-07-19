@@ -7,9 +7,8 @@ first_name: Manu
 middle_name:
 last_name: Upadhyaya
 contact_note:
-description: Personal website of Manu Upadhyaya, postdoctoral researcher at Inria Paris working on optimization and first-order methods.
+description: Personal website of Manu Upadhyaya, a postdoctoral researcher at Inria Paris and École Polytechnique working on optimization and first-order methods.
 footer_text:
-keywords: optimization, first-order methods, mathematical programming, machine learning, Lyapunov analysis
 lang: en
 og_locale: en_US
 icon: mu-icon.svg
@@ -62,8 +61,11 @@ max_width: 800px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: https://manuupadhyaya.github.io/assets/img/prof_pic_color.png # The site-wide (default for all links) Open Graph preview image
+og_image: https://manuupadhyaya.github.io/assets/img/prof_pic_color-1000.webp # Generated at build time from the profile image
 og_image_alt: Portrait of Manu Upadhyaya
+og_image_type: image/webp
+og_image_width: 1000
+og_image_height: 1333
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -175,6 +177,7 @@ kramdown:
 # Includes & excludes
 include: ["_pages", "_scripts"]
 exclude:
+  - AGENT.md
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
@@ -190,6 +193,8 @@ exclude:
   - package-lock.json
   - purgecss.config.js
   - README.md
+  - requirements.txt
+  - lighthouse_results/
   - vendor
 keep_files:
   - CNAME
@@ -220,6 +225,12 @@ defaults:
   - scope:
       path: "assets"
     values:
+      sitemap: false
+  - scope:
+      path: ""
+      type: news
+    values:
+      noindex: true
       sitemap: false
 
 sass:
@@ -341,7 +352,7 @@ enable_publication_thumbnails: true
 # These are the defaults
 external_links:
   enabled: true
-  rel: external nofollow noopener
+  rel: external noopener
   target: _blank
   exclude:
 

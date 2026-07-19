@@ -1,6 +1,11 @@
 {
+  "id": "/",
   "name": "Manu Upadhyaya",
   "short_name": "MU",
+  "description": "Academic website of Manu Upadhyaya, a researcher working on optimization and first-order methods.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/assets/img/android-chrome-192x192.png",

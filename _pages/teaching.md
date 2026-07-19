@@ -12,7 +12,7 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 
 ## Courses
 
-#### [Optimization for Learning](https://kurser.lth.se/kursplaner/25_26-en/FRTN50.html) (Lund University)
+<h3 class="h4"><a href="https://kurser.lth.se/kursplaner/25_26-en/FRTN50.html">Optimization for Learning</a> (Lund University)</h3>
 
 **Role:** Teaching Assistant  
 **Years:** 2020, 2021, 2022, 2023, 2024
@@ -20,9 +20,9 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 - Led exercise sessions.
 - Graded assignments and exams.
 - Developed new exercises, assignments, and exam materials.
-- Wrote a [mathematical prerequisites document](https://manuupadhyaya.github.io/share/prerequisites.pdf).
+- Wrote a [mathematical prerequisites document]({{ '/share/prerequisites.pdf' | relative_url }}).
 
-#### [Network Dynamics](https://kurser.lth.se/kursplaner/25_26-en/FRTN30.html) (Lund University)
+<h3 class="h4"><a href="https://kurser.lth.se/kursplaner/25_26-en/FRTN30.html">Network Dynamics</a> (Lund University)</h3>
 
 **Role:** Teaching Assistant  
 **Years:** 2022, 2025
@@ -30,7 +30,7 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 - Led exercise sessions.
 - Graded assignments and exams.
 
-#### [Modeling and Learning from Data](https://kurser.lth.se/kursplaner/25_26-en/FRTN65.html) (Lund University)
+<h3 class="h4"><a href="https://kurser.lth.se/kursplaner/25_26-en/FRTN65.html">Modeling and Learning from Data</a> (Lund University)</h3>
 
 **Role:** Teaching Assistant  
 **Year:** 2023
@@ -38,7 +38,7 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 - Led exercise sessions.
 - Responsible for one assignment component.
 
-#### [Deep Learning](https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/) (WASP Graduate School)
+<h3 class="h4"><a href="https://internal.wasp-sweden.org/graduate-school-2/wasp-graduate-school-courses/deep-learning-and-gans/">Deep Learning</a> (WASP Graduate School)</h3>
 
 **Role:** Teaching Assistant  
 **Years:** 2021, 2023
@@ -46,14 +46,14 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 - Graded assignments.
 - Developed a new assignment.
 
-#### [Project in Systems, Control and Learning](https://kurser.lth.se/kursplaner/25_26-en/FRTN70.html) (Lund University)
+<h3 class="h4"><a href="https://kurser.lth.se/kursplaner/25_26-en/FRTN70.html">Project in Systems, Control and Learning</a> (Lund University)</h3>
 
 **Role:** Project Supervisor  
 **Year:** 2021
 
-- Supervised three student projects on [portfolio optimization using OMX Stockholm 30 data](https://manuupadhyaya.github.io/share/trading.pdf).
+- Supervised three student projects on [portfolio optimization using OMX Stockholm 30 data]({{ '/share/trading.pdf' | relative_url }}).
 
-#### [Automatic Control](https://kurser.lth.se/kursplaner/25_26-en/FRTF05.html) (Lund University)
+<h3 class="h4"><a href="https://kurser.lth.se/kursplaner/25_26-en/FRTF05.html">Automatic Control</a> (Lund University)</h3>
 
 **Role:** Teaching Assistant  
 **Year:** 2020
@@ -62,7 +62,7 @@ I have taught courses in optimization, machine learning, and control at Lund Uni
 
 ## Thesis Supervision
 
-#### Master's Thesis
+<h3 class="h4">Master's Thesis</h3>
 
 - **Oscar Gummesson Atroshi** and **Osman Sibai**, _Deep hedging of CVA_, Lund University, 2024.  
   Co-supervised with [Magnus Wiktorsson](https://www.maths.lth.se/matstat/staff/magnusw/) (Lund University) and Shengyao Zhu (Nordea Markets).

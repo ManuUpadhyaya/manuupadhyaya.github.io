@@ -19,7 +19,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  disabled:
+    if: github.repository_owner != 'alshedivat'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Tagged Docker image publishing disabled for this fork
+        run: echo "Tagged Docker image publishing is only configured for alshedivat/al-folio."
+
   build:
+    if: github.repository_owner == 'alshedivat'
     runs-on: ubuntu-latest
 
     steps:

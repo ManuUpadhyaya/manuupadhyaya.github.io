@@ -30,7 +30,9 @@
 {% else %}
   {% assign site_title = site.title %}
 {% endif %}
-{% if page.url == '/blog/index.html' %}
+{% if page.seo_title != null and page.seo_title != '' %}
+  {% assign document_title = page.seo_title %}
+{% elsif page.url == '/blog/index.html' %}
   {% capture document_title %}{{ page.title }} | {{ site_title }}{% endcapture %}
 {% elsif page.title != 'blank' and page.url != '/' %}
   {% if page.title == null or page.title == '' %}
@@ -47,13 +49,12 @@
   {% assign meta_description = page.description %}
 {% endif %}
 {% if meta_description == null or meta_description == '' %}
+  {% assign meta_description = page.entry.abstract %}
+{% endif %}
+{% if meta_description == null or meta_description == '' %}
   {% assign meta_description = site.description %}
 {% endif %}
 {% assign meta_description = meta_description | strip | strip_html | strip_newlines %}
-{% assign meta_keywords = page.keywords %}
-{% if meta_keywords == null or meta_keywords == '' %}
-  {% assign meta_keywords = site.keywords %}
-{% endif %}
 {% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
 {% assign page_display_title = page.title %}
 {% if page_display_title == null or page_display_title == '' or page_display_title == 'blank' %}
@@ -72,6 +73,27 @@
   {% assign og_image_alt = author_name %}
 {% endif %}
 {% assign og_locale = site.og_locale | default: site.lang %}
+{% assign og_image_type = page.og_image_type | default: site.og_image_type %}
+{% assign og_image_width = page.og_image_width | default: site.og_image_width %}
+{% assign og_image_height = page.og_image_height | default: site.og_image_height %}
+{% assign is_homepage = false %}
+{% assign is_publications_page = false %}
+{% assign is_collection_page = false %}
+{% if page.url == '/' %}
+  {% assign is_homepage = true %}
+{% endif %}
+{% if page.url == '/publications/' %}
+  {% assign is_publications_page = true %}
+{% endif %}
+{% if page.url == '/publications/' or page.url == '/news/' or page.url == '/software/' %}
+  {% assign is_collection_page = true %}
+{% endif %}
+{% assign is_blog_post = false %}
+{% if page.url != '/blog/index.html' and page.url contains '/blog/' %}
+  {% unless page.url contains '/tag/' or page.url contains '/category/' %}
+    {% assign is_blog_post = true %}
+  {% endunless %}
+{% endif %}
 
 <!-- Standard metadata -->
 <meta charset="utf-8">
@@ -82,37 +104,45 @@
 <meta name="description" content="{{ meta_description | escape }}">
 {% if page.url == '/404.html' %}
   <meta name="robots" content="noindex, nofollow">
+{% elsif page.sitemap == false or page.noindex %}
+  <meta name="robots" content="noindex, follow">
 {% else %}
   <meta name="robots" content="index, follow, max-image-preview:large">
-{% endif %}
-{% if meta_keywords %}
-  <meta name="keywords" content="{{ meta_keywords | escape }}">
-{% endif %}
-
-{% assign is_blog_post = false %}
-{% if page.url != '/blog/index.html' and page.url contains '/blog/' %}
-  {% unless page.url contains '/tag/' or page.url contains '/category/' %}
-    {% assign is_blog_post = true %}
-  {% endunless %}
 {% endif %}
 
 {% if site.serve_og_meta %}
   <!-- OpenGraph -->
   <meta property="og:site_name" content="{{ site_title | escape }}">
-  <meta property="og:type" content="{% if is_blog_post %}article{% else %}website{% endif %}">
+  <meta
+    property="og:type"
+    content="{% if is_homepage %}profile{% elsif is_blog_post or page.collection == 'news' %}article{% else %}website{% endif %}"
+  >
   <meta property="og:title" content="{{ document_title | escape }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:description" content="{{ meta_description | escape }}">
   {% if og_image %}
     <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:image:secure_url" content="{{ og_image }}">
     <meta property="og:image:alt" content="{{ og_image_alt | escape }}">
+    {% if og_image_type %}<meta property="og:image:type" content="{{ og_image_type }}">{% endif %}
+    {% if og_image_width %}<meta property="og:image:width" content="{{ og_image_width }}">{% endif %}
+    {% if og_image_height %}<meta property="og:image:height" content="{{ og_image_height }}">{% endif %}
   {% endif %}
   <meta property="og:locale" content="{{ og_locale | replace: '-', '_' }}">
+  {% if is_homepage %}
+    <meta property="profile:first_name" content="{{ site.first_name | escape }}">
+    <meta property="profile:last_name" content="{{ site.last_name | escape }}">
+  {% elsif is_blog_post or page.collection == 'news' %}
+    <meta property="article:author" content="{{ '/' | absolute_url }}#person">
+    {% if page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+    {% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+  {% endif %}
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ document_title | escape }}">
   <meta name="twitter:description" content="{{ meta_description | escape }}">
+  <meta name="twitter:url" content="{{ canonical_url }}">
   {% if og_image %}
     <meta name="twitter:image" content="{{ og_image }}">
     <meta name="twitter:image:alt" content="{{ og_image_alt | escape }}">
@@ -267,8 +297,13 @@
   {% assign person_id = home_url | append: '#person' %}
   {% assign website_id = home_url | append: '#website' %}
   {% assign webpage_id = canonical_url | append: '#webpage' %}
+  {% assign breadcrumb_id = canonical_url | append: '#breadcrumb' %}
   {% assign page_schema_type = 'WebPage' %}
-  {% if is_blog_post %}
+  {% if is_homepage %}
+    {% assign page_schema_type = 'ProfilePage' %}
+  {% elsif is_collection_page %}
+    {% assign page_schema_type = 'CollectionPage' %}
+  {% elsif is_blog_post %}
     {% assign page_schema_type = 'BlogPosting' %}
   {% elsif page.collection == 'news' %}
     {% assign page_schema_type = 'NewsArticle' %}
@@ -282,9 +317,12 @@
           "@type": "Person",
           "@id": {{ person_id | jsonify }},
           "name": {{ author_name | jsonify }},
+          "givenName": {{ site.first_name | jsonify }},
+          "familyName": {{ site.last_name | jsonify }},
           "url": {{ home_url | jsonify }},
           "image": {{ og_image | jsonify }},
-          "jobTitle": "Postdoctoral researcher",
+          "description": {{ site.description | jsonify }},
+          "jobTitle": "Postdoctoral Researcher",
           "affiliation": [
             {
               "@type": "Organization",
@@ -297,19 +335,25 @@
               "url": "https://cmap.ip-paris.fr/en/"
             }
           ],
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Lund University",
+            "url": "https://www.lunduniversity.lu.se/"
+          },
           "knowsAbout": [
-            "Optimization",
+            "Convex optimization",
             "First-order methods",
             "Mathematical programming",
             "Machine learning",
-            "Lyapunov analysis"
+            "Lyapunov analysis",
+            "Performance estimation"
           ],
           "sameAs": [
             {% for link in sameaslinks %}
               {{ link | strip | jsonify }}{% unless forloop.last %},{% endunless %}
             {% endfor %}
           ]
-        },
+        }{% if is_homepage %},
         {
           "@type": "WebSite",
           "@id": {{ website_id | jsonify }},
@@ -320,7 +364,7 @@
             "@id": {{ person_id | jsonify }}
           },
           "inLanguage": {{ site.lang | jsonify }}
-        },
+        }{% endif %},
         {
           "@type": {{ page_schema_type | jsonify }},
           "@id": {{ webpage_id | jsonify }},
@@ -329,18 +373,48 @@
           "headline": {{ page_display_title | jsonify }},
           "description": {{ meta_description | jsonify }},
           "image": {{ og_image | jsonify }},
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": {{ og_image | jsonify }}{% if og_image_width %},
+            "width": {{ og_image_width | jsonify }}{% endif %}{% if og_image_height %},
+            "height": {{ og_image_height | jsonify }}{% endif %}
+          },
           "isPartOf": {
             "@id": {{ website_id | jsonify }}
           },
           "author": {
             "@id": {{ person_id | jsonify }}
           },
-          "inLanguage": {{ site.lang | jsonify }}
+          "inLanguage": {{ site.lang | jsonify }}{% unless is_homepage %},
+          "breadcrumb": {
+            "@id": {{ breadcrumb_id | jsonify }}
+          }{% endunless %}{% if is_homepage %},
+          "mainEntity": {
+            "@id": {{ person_id | jsonify }}
+          }{% endif %}
           {% if page.date %},
           "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
           "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }}
           {% endif %}
-        }
+        }{% unless is_homepage %},
+        {
+          "@type": "BreadcrumbList",
+          "@id": {{ breadcrumb_id | jsonify }},
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": {{ home_url | jsonify }}
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": {{ page_display_title | jsonify }},
+              "item": {{ canonical_url | jsonify }}
+            }
+          ]
+        }{% endunless %}
       ]
     }
   </script>

@@ -1,27 +1,48 @@
 const setupCommon = () => {
+  const syncDisclosureState = (entry) => {
+    entry?.querySelectorAll(".links button[aria-controls]").forEach(function (control) {
+      const panel = document.getElementById(control.getAttribute("aria-controls"));
+      control.setAttribute("aria-expanded", panel?.classList.contains("open") ? "true" : "false");
+    });
+  };
+
   // add toggle functionality to abstract, award and bibtex buttons
-  document.querySelectorAll("a.abstract").forEach(function (link) {
-    link.addEventListener("click", function () {
-      const entry = link.parentElement?.parentElement;
+  document.querySelectorAll("button.abstract-toggle").forEach(function (control) {
+    control.addEventListener("click", function () {
+      const entry = control.parentElement?.parentElement;
 
       entry?.querySelectorAll(".abstract.hidden").forEach((element) => element.classList.toggle("open"));
       entry?.querySelectorAll(".award.hidden.open, .bibtex.hidden.open").forEach((element) => element.classList.remove("open"));
+      syncDisclosureState(entry);
     });
   });
-  document.querySelectorAll("a.award").forEach(function (link) {
-    link.addEventListener("click", function () {
-      const entry = link.parentElement?.parentElement;
+  document.querySelectorAll("button.award-toggle").forEach(function (control) {
+    control.addEventListener("click", function () {
+      const entry = control.parentElement?.parentElement;
 
       entry?.querySelectorAll(".abstract.hidden.open, .bibtex.hidden.open").forEach((element) => element.classList.remove("open"));
       entry?.querySelectorAll(".award.hidden").forEach((element) => element.classList.toggle("open"));
+      syncDisclosureState(entry);
     });
   });
-  document.querySelectorAll("a.bibtex").forEach(function (link) {
-    link.addEventListener("click", function () {
-      const entry = link.parentElement?.parentElement;
+  document.querySelectorAll("button.bibtex-toggle").forEach(function (control) {
+    control.addEventListener("click", function () {
+      const entry = control.parentElement?.parentElement;
 
       entry?.querySelectorAll(".abstract.hidden.open, .award.hidden.open").forEach((element) => element.classList.remove("open"));
       entry?.querySelectorAll(".bibtex.hidden").forEach((element) => element.classList.toggle("open"));
+      syncDisclosureState(entry);
+    });
+  });
+  document.querySelectorAll("button.video-toggle").forEach(function (control) {
+    control.addEventListener("click", function () {
+      const entry = control.parentElement?.parentElement;
+
+      entry
+        ?.querySelectorAll(".abstract.hidden.open, .award.hidden.open, .bibtex.hidden.open")
+        .forEach((element) => element.classList.remove("open"));
+      entry?.querySelectorAll(".video.hidden").forEach((element) => element.classList.toggle("open"));
+      syncDisclosureState(entry);
     });
   });
   document.querySelectorAll("a").forEach(function (link) {

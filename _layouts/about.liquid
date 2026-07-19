@@ -24,9 +24,10 @@ layout: default
           {% else %}
             {% assign profile_image_class = 'img-fluid shadow-sm rounded' %}
           {% endif %}
+          {% assign profile_image_alt = page.profile.image_alt | default: site.og_image_alt | default: site.title %}
           {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.25 }}px, (min-width: 576px) 25vw, 70vw{% endcapture %}
           {%
-            include figure.liquid path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image width=page.profile.image_width height=page.profile.image_height loading='eager' fetchpriority='high'
+            include figure.liquid path=profile_image_path class=profile_image_class sizes=sizes alt=profile_image_alt width=page.profile.image_width height=page.profile.image_height loading='eager' fetchpriority='high'
             cache_bust=true
           %}
         {% endif %}
