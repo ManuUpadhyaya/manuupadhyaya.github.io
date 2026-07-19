@@ -1,1 +1,1 @@
-User-agent: * Disallow: Sitemap: https://manuupadhyaya.github.io/sitemap.xml
+User-agent: * Disallow: /lighthouse_results/ Sitemap: https://manuupadhyaya.github.io/sitemap.xml
