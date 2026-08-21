@@ -1,19 +1,8 @@
 {% assign news_size = site.news | size %}
-{% assign news_scrollable = false %}
-{% if include.limit and site.announcements.scrollable and news_size > 3 %}
-  {% assign news_scrollable = true %}
-{% endif %}
 
-<div class="news{% if news_scrollable %} news-scrollable{% endif %}">
+<div class="news">
   {% if site.news != blank %}
-    <div
-      class="table-responsive{% if news_scrollable %} news-scroll-region{% endif %}"
-      {% if news_scrollable %}
-        role="region"
-        aria-label="Latest news updates"
-        tabindex="0"
-      {% endif %}
-    >
+    <div class="table-responsive">
       <table class="table table-sm table-borderless">
         {% assign news = site.news | reverse %}
         {% if include.limit and site.announcements.limit %}
@@ -22,7 +11,11 @@
           {% assign news_limit = news_size %}
         {% endif %}
         {% for item in news limit: news_limit %}
-          <tr>
+          <tr
+            {% if item.math %}
+              data-mathjax
+            {% endif %}
+          >
             <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
             <td>
               {% if item.inline %}

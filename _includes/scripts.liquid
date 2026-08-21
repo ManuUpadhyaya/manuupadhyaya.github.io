@@ -331,7 +331,7 @@
             }).catch(() => {});
           };
 
-          const mathSection = document.querySelector('.news');
+          const mathSection = document.querySelector('[data-mathjax]');
           if (!mathSection || !('IntersectionObserver' in window)) {
             loadMathJax();
             return;

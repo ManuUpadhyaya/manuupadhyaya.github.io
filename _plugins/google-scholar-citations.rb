@@ -1,4 +1,5 @@
-require "active_support/all"
+require "active_support"
+require "active_support/number_helper"
 require 'nokogiri'
 require 'open-uri'
 

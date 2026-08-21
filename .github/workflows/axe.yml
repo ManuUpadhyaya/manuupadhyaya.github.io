@@ -89,16 +89,6 @@ jobs:
         with:
           node-version: "24"
           cache: "npm"
-      - name: Update _config.yml ⚙️
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          commitChange: false
-          valueFile: "_config.yml"
-          changes: |
-            {
-              "giscus.repo": "${{ github.repository }}",
-              "baseurl": ""
-            }
       - name: Install and Build 🔧
         run: |
           if ! command -v convert >/dev/null 2>&1; then

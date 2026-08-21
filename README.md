@@ -65,7 +65,6 @@ If you change the site URL or repository name, update `url` and `baseurl` in `_c
 - `codeql.yml` runs CodeQL on JavaScript/TypeScript and Ruby code.
 - `lighthouse-badger.yml` runs Lighthouse PageSpeed Insights after a successful deploy or manual dispatch, then writes badges/reports back to the repository.
 - `docker-compose.yml` and `Dockerfile` support local containerized development.
-- `deploy-image.yml`, `deploy-docker-tag.yml`, and `docker-slim.yml` run here as green no-op checks; they only publish images for the upstream `alshedivat/al-folio` owner.
 
 ## Lighthouse PageSpeed Insights
 

@@ -8,7 +8,7 @@ related_posts: false
 I will be a visiting scholar at the [ELLIIT focus period on optimization for learning](https://elliit.se/focus-period-lund-2026/) at Lund University, from April 20 to May 22, 2026.
 
 {% capture symposium_photo_caption %}
-A group photo from the three-day symposium during the focus period in Lund. Many thanks to the organizers!
+Group photo from the three-day symposium during the focus period in Lund. Many thanks to the organizers!
 <span class="news-photo-credit">Photo: <a href="https://elliit.se/the-art-and-science-of-optimization/">ELLIIT</a>.</span>
 {% endcapture %}
 

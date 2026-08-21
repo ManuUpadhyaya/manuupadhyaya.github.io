@@ -9601,4 +9601,3 @@ distill-header .nav a {
     Polyfills.load(window.distill.initialize);
   }
 });
-//# sourceMappingURL=template.v2.js.map

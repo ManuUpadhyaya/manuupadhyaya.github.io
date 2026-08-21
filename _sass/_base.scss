@@ -62,36 +62,6 @@ table {
 }
 
 .news {
-  &.news-scrollable {
-    position: relative;
-    overflow: hidden;
-
-    &::after {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 2rem;
-      pointer-events: none;
-      content: "";
-      background: linear-gradient(to bottom, transparent, var(--global-bg-color));
-    }
-  }
-
-  .news-scroll-region {
-    max-height: 42rem;
-    padding-right: 0.5rem;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    scrollbar-color: var(--global-divider-color) transparent;
-    scrollbar-width: thin;
-
-    &:focus-visible {
-      outline: 2px solid var(--global-theme-color);
-      outline-offset: -2px;
-    }
-  }
-
   table td,
   table th {
     color: var(--global-text-color) !important;
@@ -103,12 +73,12 @@ table {
   }
 
   .news-photo-update {
-    margin-top: 1.25rem;
+    margin-top: 0.75rem;
   }
 
   .news-photo-update-label {
     display: inline-block;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
     color: var(--global-text-color-light);
     font-size: 0.75rem;
     font-weight: 600;
@@ -121,8 +91,8 @@ table {
     overflow: hidden;
     background: var(--global-card-bg-color);
     border: 1px solid var(--global-divider-color);
-    border-radius: 0.75rem;
-    box-shadow: 0 0.35rem 1rem rgba(17, 24, 39, 0.08);
+    border-radius: 0.7rem;
+    box-shadow: 0 0.2rem 0.7rem rgba(17, 24, 39, 0.055);
 
     figure {
       margin: 0;
@@ -151,11 +121,15 @@ table {
 
     .caption {
       margin: 0;
-      padding: 0.85rem 1rem 1rem;
+      padding: 0.75rem 0.9rem 0.9rem;
       color: var(--global-text-color-light);
       line-height: 1.5;
       text-align: left;
     }
+  }
+
+  .news-photo-frame--diptych {
+    padding: 0.9rem;
   }
 
   .news-photo-credit {
@@ -165,19 +139,9 @@ table {
   }
 }
 
-@media print {
-  .news.news-scrollable {
-    overflow: visible;
-
-    &::after {
-      display: none;
-    }
-  }
-
-  .news .news-scroll-region {
-    max-height: none;
-    padding-right: 0;
-    overflow: visible;
+@media (max-width: 767.98px) {
+  .news .news-photo-frame--diptych {
+    padding: 0.6rem;
   }
 }
 
