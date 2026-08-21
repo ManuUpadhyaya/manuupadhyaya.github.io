@@ -10,6 +10,9 @@
       window.__optionalScripts[src] = new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
+        if (options.id) {
+          script.id = options.id;
+        }
         if (options.type) {
           script.type = options.type;
         }
@@ -243,7 +246,11 @@
 
 <!-- Load Common JS -->
 <script>
-  if (document.querySelector('table')) {
+  const needsTableEnhancements = Array.from(document.querySelectorAll('table')).some(
+    (table) =>
+      !table.closest('[class*="news"]') && !table.closest('[class*="card"]') && !table.closest('[class*="archive"]') && !table.closest('code')
+  );
+  if (needsTableEnhancements) {
     loadOptionalScript("{{ '/assets/js/no_defer.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
   }
 </script>
@@ -292,21 +299,59 @@
 
 {% if site.enable_math and (page.math or page.pseudocode) %}
   <!-- MathJax -->
-  <script
-    defer
-    type="text/javascript"
-    id="MathJax-script"
-    src="{{ site.third_party_libraries.mathjax.url.js }}"
-    integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
-    crossorigin="anonymous"
-  ></script>
-  {% unless page.pseudocode %}
-    <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+  {% assign defer_homepage_math = false %}
+  {% if page.url == '/' and page.pseudocode != true %}
+    {% assign defer_homepage_math = true %}
+  {% endif %}
+
+  {% unless defer_homepage_math %}
     <script
       defer
-      src="{{ site.third_party_libraries.polyfill.url.js }}"
+      type="text/javascript"
+      id="MathJax-script"
+      src="{{ site.third_party_libraries.mathjax.url.js }}"
+      integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
       crossorigin="anonymous"
     ></script>
+  {% endunless %}
+  {% unless page.pseudocode %}
+    <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+    {% if defer_homepage_math %}
+      <script>
+        (() => {
+          let mathJaxRequested = false;
+          const loadMathJax = () => {
+            if (mathJaxRequested) return;
+            mathJaxRequested = true;
+            loadOptionalScript('{{ site.third_party_libraries.mathjax.url.js }}', {
+              id: 'MathJax-script',
+              defer: true,
+              integrity: '{{ site.third_party_libraries.mathjax.integrity.js }}',
+              crossorigin: 'anonymous',
+            }).catch(() => {});
+          };
+
+          const mathSection = document.querySelector('.news');
+          if (!mathSection || !('IntersectionObserver' in window)) {
+            loadMathJax();
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                observer.disconnect();
+                loadMathJax();
+              }
+            },
+            { rootMargin: '200px 0px' }
+          );
+          observer.observe(mathSection);
+          mathSection.addEventListener('focusin', loadMathJax, { once: true });
+          window.addEventListener('beforeprint', loadMathJax, { once: true });
+        })();
+      </script>
+    {% endif %}
   {% else %}
     <script src="{{ '/assets/js/pseudocode-setup.js' | relative_url | bust_file_cache }}"></script>
     <script

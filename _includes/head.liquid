@@ -94,10 +94,18 @@
   or socials.semanticscholar_id
   or socials.zotero_username
 %}
-  <link defer rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
+  {% assign academicons_css = '/assets/css/academicons.min.css' | relative_url | bust_file_cache %}
+  <link rel="stylesheet" href="{{ academicons_css }}" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="{{ academicons_css }}">
+  </noscript>
 {% endif %}
 {% if socials.leetcode_id %}
-  <link defer rel="stylesheet" href="{{ '/assets/css/scholar-icons.css' | relative_url | bust_file_cache }}">
+  {% assign scholar_icons_css = '/assets/css/scholar-icons.css' | relative_url | bust_file_cache %}
+  <link rel="stylesheet" href="{{ scholar_icons_css }}" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="{{ scholar_icons_css }}">
+  </noscript>
 {% endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

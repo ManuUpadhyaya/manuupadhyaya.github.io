@@ -1,16 +1,23 @@
-<div class="news">
+{% assign news_size = site.news | size %}
+{% assign news_scrollable = false %}
+{% if include.limit and site.announcements.scrollable and news_size > 3 %}
+  {% assign news_scrollable = true %}
+{% endif %}
+
+<div class="news{% if news_scrollable %} news-scrollable{% endif %}">
   {% if site.news != blank %}
-    {% assign news_size = site.news | size %}
     <div
-      class="table-responsive"
-      {% if include.limit and page.announcements.scrollable and news_size > 3 %}
-        style="max-height: 60vw"
+      class="table-responsive{% if news_scrollable %} news-scroll-region{% endif %}"
+      {% if news_scrollable %}
+        role="region"
+        aria-label="Latest news updates"
+        tabindex="0"
       {% endif %}
     >
       <table class="table table-sm table-borderless">
         {% assign news = site.news | reverse %}
-        {% if include.limit and page.announcements.limit %}
-          {% assign news_limit = page.announcements.limit %}
+        {% if include.limit and site.announcements.limit %}
+          {% assign news_limit = site.announcements.limit %}
         {% else %}
           {% assign news_limit = news_size %}
         {% endif %}

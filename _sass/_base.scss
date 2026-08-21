@@ -62,6 +62,36 @@ table {
 }
 
 .news {
+  &.news-scrollable {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 2rem;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(to bottom, transparent, var(--global-bg-color));
+    }
+  }
+
+  .news-scroll-region {
+    max-height: 42rem;
+    padding-right: 0.5rem;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-color: var(--global-divider-color) transparent;
+    scrollbar-width: thin;
+
+    &:focus-visible {
+      outline: 2px solid var(--global-theme-color);
+      outline-offset: -2px;
+    }
+  }
+
   table td,
   table th {
     color: var(--global-text-color) !important;
@@ -69,7 +99,85 @@ table {
 
   table td a,
   table th a {
-    color: var(--global-theme-color) !important;
+    color: var(--global-inline-link-color) !important;
+  }
+
+  .news-photo-update {
+    margin-top: 1.25rem;
+  }
+
+  .news-photo-update-label {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    color: var(--global-text-color-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .news-photo-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.35rem 1rem rgba(17, 24, 39, 0.08);
+
+    figure {
+      margin: 0;
+    }
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      height: auto;
+      cursor: zoom-in;
+      transition: transform 180ms ease;
+
+      &:hover {
+        transform: scale(1.01);
+      }
+
+      &:focus-visible {
+        outline: 3px solid var(--global-theme-color);
+        outline-offset: -3px;
+      }
+    }
+
+    .caption {
+      margin: 0;
+      padding: 0.85rem 1rem 1rem;
+      color: var(--global-text-color-light);
+      line-height: 1.5;
+      text-align: left;
+    }
+  }
+
+  .news-photo-credit {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media print {
+  .news.news-scrollable {
+    overflow: visible;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .news .news-scroll-region {
+    max-height: none;
+    padding-right: 0;
+    overflow: visible;
   }
 }
 
@@ -85,6 +193,10 @@ table.table a {
   &:hover:after :not(.nav-item.dropdown) {
     width: 100%;
   }
+}
+
+.post article > .clearfix p a {
+  color: var(--global-inline-link-color);
 }
 
 .table-dark {

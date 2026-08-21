@@ -76,6 +76,14 @@
       {% endif %}
       {% if include.zoomable %}
         data-zoomable
+        tabindex="0"
+        role="button"
+        {% if include.zoom_label %}
+          aria-label="{{ include.zoom_label }}"
+        {% endif %}
+        {% if include.zoom_src %}
+          data-zoom-src="{{ include.zoom_src }}"
+        {% endif %}
       {% endif %}
       {% if include.loading %}
         loading="{{ include.loading }}"
