@@ -5,6 +5,11 @@
 - Keep LaTeX math rendering working everywhere it is used.
 - Keep Lighthouse PageSpeed Insights as close to 100 as possible on desktop and mobile.
 
+## Writing style
+
+- Use sentence case for page titles, section headings, course headings, and role labels: capitalize the first word and use lowercase for other common words.
+- Preserve the correct capitalization of proper names, acronyms, software names, and mathematical notation.
+
 ## Math Rules (Do Not Break)
 
 - Keep `enable_math: true` in `_config.yml`.

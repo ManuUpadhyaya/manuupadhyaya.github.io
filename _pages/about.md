@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About
-seo_title: Manu Upadhyaya | Optimization Researcher
+seo_title: Manu Upadhyaya | Optimization researcher
 permalink: /
 subtitle:
 

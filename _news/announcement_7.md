@@ -17,7 +17,7 @@ Group photo from the three-day symposium during the focus period in Lund. Many t
   <div class="news-photo-frame">
     {% include figure.liquid
       path="assets/img/elliit-symposium-2026-group-photo.jpg"
-      sizes="(min-width: 992px) 570px, (min-width: 768px) 70vw, 72vw"
+      sizes="(min-width: 528px) 478px, calc(100vw - 50px)"
       alt="Participants in the ELLIIT Optimization for Learning symposium standing together for a group photo in Lund"
       width="2560"
       height="1678"

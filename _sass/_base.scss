@@ -62,18 +62,29 @@ table {
 }
 
 .news {
-  table td,
-  table th {
-    color: var(--global-text-color) !important;
+  .news-date {
+    display: block;
+    color: var(--global-text-color-light);
+    font-size: 0.925rem;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.4rem;
   }
 
-  table td a,
-  table th a {
-    color: var(--global-inline-link-color) !important;
+  .news-content {
+    line-height: 1.72;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--global-inline-link-color);
+    }
   }
 
   .news-photo-update {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+    max-width: 480px;
   }
 
   .news-photo-update-label {
@@ -83,17 +94,9 @@ table {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
 
   .news-photo-frame {
-    position: relative;
-    overflow: hidden;
-    background: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color);
-    border-radius: 0.7rem;
-    box-shadow: 0 0.2rem 0.7rem rgba(17, 24, 39, 0.055);
-
     figure {
       margin: 0;
     }
@@ -104,14 +107,16 @@ table {
       width: 100%;
     }
 
+    picture {
+      overflow: hidden;
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 0.25rem;
+    }
+
     img {
       height: auto;
       cursor: zoom-in;
-      transition: transform 180ms ease;
-
-      &:hover {
-        transform: scale(1.01);
-      }
 
       &:focus-visible {
         outline: 3px solid var(--global-theme-color);
@@ -120,28 +125,18 @@ table {
     }
 
     .caption {
-      margin: 0;
-      padding: 0.75rem 0.9rem 0.9rem;
+      margin: 0.5rem 0 0;
+      padding: 0;
       color: var(--global-text-color-light);
+      font-size: 0.85rem;
       line-height: 1.5;
       text-align: left;
     }
   }
 
-  .news-photo-frame--diptych {
-    padding: 0.9rem;
-  }
-
   .news-photo-credit {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .news .news-photo-frame--diptych {
-    padding: 0.6rem;
+    color: inherit;
+    font-size: inherit;
   }
 }
 
@@ -821,8 +816,104 @@ footer.sticky-bottom {
 }
 
 .software-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+
   img {
     border-radius: 0.35rem;
+  }
+}
+
+// Page sections and entries
+
+.teaching .teaching-entry,
+.software .software-entry,
+.news .news-entry {
+  border-left: 2px solid var(--global-divider-color);
+  padding-left: 1rem;
+  margin-bottom: 1.75rem;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.software h2,
+.teaching h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0;
+  text-wrap: pretty;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+.software h2 {
+  margin-bottom: 0.5rem;
+}
+
+.publications h2.bibliography,
+.teaching h2 {
+  color: var(--global-text-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--global-divider-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.teaching {
+  .teaching-entry-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .teaching-years {
+    color: var(--global-text-color-light);
+    font-size: 0.925rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .teaching-meta {
+    color: var(--global-text-color-light);
+    font-size: 0.925rem;
+    margin-bottom: 0.65rem;
+  }
+
+  ul {
+    padding-left: 1.15rem;
+    margin-bottom: 0;
+
+    li {
+      margin-bottom: 0.15rem;
+
+      &::marker {
+        color: var(--global-text-color-light);
+      }
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .teaching-entry-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -847,18 +938,15 @@ footer.sticky-bottom {
     }
   }
 
-  h2.bibliography {
-    color: var(--global-divider-color);
-    border-top: 1px solid var(--global-divider-color);
-    padding-top: 1rem;
-    margin-top: 2rem;
-    text-align: right;
-  }
-
   ol.bibliography {
     list-style: none;
     padding: 0;
     margin-top: 0;
+
+    > li {
+      border-left: 2px solid var(--global-divider-color);
+      padding-left: 1rem;
+    }
 
     li {
       margin-bottom: 1rem;
@@ -891,6 +979,7 @@ footer.sticky-bottom {
 
       .title {
         font-weight: bolder;
+        text-wrap: pretty;
       }
 
       .author {

@@ -14,6 +14,20 @@ mdb: true
 
 <div class="publications">
 
-{% bibliography %}
+<h2 class="bibliography" id="preprints">Preprints</h2>
+
+{% bibliography --query @*[abbr=Preprint] %}
+
+<h2 class="bibliography" id="journal-articles">Journal articles</h2>
+
+{% bibliography --query @*[abbr=Journal] %}
+
+<h2 class="bibliography" id="conference-proceedings">Conference proceedings</h2>
+
+{% bibliography --query @*[abbr=Conference] %}
+
+<h2 class="bibliography" id="theses">Theses</h2>
+
+{% bibliography --query @*[abbr=Thesis] %}
 
 </div>

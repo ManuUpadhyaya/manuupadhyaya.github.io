@@ -2,31 +2,30 @@
 
 <div class="news">
   {% if site.news != blank %}
-    <div class="table-responsive">
-      <table class="table table-sm table-borderless">
-        {% assign news = site.news | reverse %}
-        {% if include.limit and site.announcements.limit %}
-          {% assign news_limit = site.announcements.limit %}
-        {% else %}
-          {% assign news_limit = news_size %}
-        {% endif %}
-        {% for item in news limit: news_limit %}
-          <tr
-            {% if item.math %}
-              data-mathjax
+    <div class="news-list">
+      {% assign news = site.news | reverse %}
+      {% if include.limit and site.announcements.limit %}
+        {% assign news_limit = site.announcements.limit %}
+      {% else %}
+        {% assign news_limit = news_size %}
+      {% endif %}
+      {% for item in news limit: news_limit %}
+        <div
+          class="news-entry"
+          {% if item.math %}
+            data-mathjax
+          {% endif %}
+        >
+          <time class="news-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: '%b %d, %Y' }}</time>
+          <div class="news-content">
+            {% if item.inline %}
+              {{ item.content | emojify }}
+            {% else %}
+              <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
             {% endif %}
-          >
-            <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
-            <td>
-              {% if item.inline %}
-                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-              {% else %}
-                <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   {% else %}
     <p>No news so far...</p>
