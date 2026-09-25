@@ -10,8 +10,6 @@ math: true # enables MathJax for LaTeX expressions coming from papers.bib
 mdb: true
 ---
 
-I keep the arxiv versions updated whenever possible (including typo fixes and clarifications). For citation purposes, please cite the published version when available.
-
 {% include bib_search.liquid %}
 
 <div class="publications">
