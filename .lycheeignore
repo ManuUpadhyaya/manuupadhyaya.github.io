@@ -1,6 +1,5 @@
 linkedin.com
 reddit.com
 
-# Reserved canonical URL for the unpublished Lyapunov post.
-# Remove this exclusion after the first public deployment.
-^https://manuupadhyaya\.github\.io/blog/computer-aided-lyapunov-analyses-in-optimization/$
+# Unrendered Liquid expressions are checked after Jekyll builds the site.
+^file://.*%7B%7B.*%7D%7D$
