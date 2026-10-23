@@ -13,6 +13,8 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - ".github/scripts/check-dois.py"
+      - ".github/scripts/test_check_dois.py"
       - "!.github/workflows/axe.yml"
       - "!.github/workflows/lighthouse-badger.yml"
       - "!.github/workflows/prettier.yml"
@@ -29,6 +31,8 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - ".github/scripts/check-dois.py"
+      - ".github/scripts/test_check_dois.py"
       - "!.github/workflows/axe.yml"
       - "!.github/workflows/lighthouse-badger.yml"
       - "!.github/workflows/prettier.yml"
@@ -45,6 +49,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check DOI registration without publisher redirects
+        run: |
+          python3 -m unittest discover -s .github/scripts -p 'test_check_dois.py'
+          python3 .github/scripts/check-dois.py
+
       - name: Expand generated publication links
         run: |
           sed -nE \
@@ -57,7 +66,7 @@ jobs:
         with:
           fail: true
           lycheeVersion: v0.22.0
-          # Skip non-site content and allow common 302 redirects.
+          # DOI correctness is checked above, without following publisher bot-protection pages.
           args: >-
             --user-agent curl/7.54
             --accept 200..=299,302
@@ -72,6 +81,7 @@ jobs:
             --exclude 'https://www.control.lth.se/idp/.*'
             --exclude 'https://img.shields.io/.*'
             --exclude '^https://europt2024\.event\.lu\.se/?$'
+            --exclude '(?i)^https?://(?:dx\.)?doi\.org/'
             --root-dir .
             --verbose
             --no-progress
