@@ -11,7 +11,7 @@ manage_gemfile_lock() {
     if command -v git &> /dev/null && [ -f Gemfile.lock ]; then
         if git ls-files --error-unmatch Gemfile.lock &> /dev/null; then
             echo "Gemfile.lock is tracked by git, keeping it intact"
-            git restore Gemfile.lock 2>/dev/null || true
+            # Keep intentional local dependency edits when the preview restarts.
         else
             echo "Gemfile.lock is not tracked by git, removing it"
             rm Gemfile.lock
@@ -25,7 +25,11 @@ start_jekyll() {
         echo "Installing missing gems for current Gemfile.lock"
         bundle install
     fi
-    bundle exec jekyll serve --watch --port=8080 --host=0.0.0.0 --livereload --verbose --trace --force_polling &
+    local serve_args=(--watch --port=8080 --host=0.0.0.0 --livereload --verbose --trace --force_polling)
+    if [[ "${JEKYLL_ENV:-}" == "development" ]]; then
+        serve_args+=(--unpublished)
+    fi
+    bundle exec jekyll serve "${serve_args[@]}" &
 }
 
 start_jekyll

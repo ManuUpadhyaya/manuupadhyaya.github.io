@@ -1,0 +1,59 @@
+% Rebuild with latex, then dvisvgm --no-fonts --exact-bbox --bbox=8pt.
+% Then run python3 assets/figures/prepare-quadratic-bounds.py to retain interaction hooks.
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[dvisvgm,tikz,border=8pt]{standalone}
+\usepackage{pgfplots}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+
+\definecolor{boundcolor}{HTML}{888888}
+
+% Shift the peak curvature slightly right while retaining f(0) = f'(0) = 0.
+% f''(x) = 0.2 + 1.6 sech^2(2.5 (x - 0.15)), globally in [0.2,1.8].
+\pgfmathsetmacro{\curvatureshift}{0.15}
+\pgfmathsetmacro{\offsetvalue}{ln((exp(2.5*\curvatureshift)+exp(-2.5*\curvatureshift))/2)}
+\pgfmathsetmacro{\offsetgradient}{(exp(2.5*\curvatureshift)-exp(-2.5*\curvatureshift))/(exp(2.5*\curvatureshift)+exp(-2.5*\curvatureshift))}
+\pgfmathdeclarefunction{targetfunction}{1}{%
+  \pgfmathparse{0.1*(#1)^2 + 0.256*(ln((exp(2.5*(#1-\curvatureshift))+exp(-2.5*(#1-\curvatureshift)))/2)-\offsetvalue) + 0.64*#1*\offsetgradient}%
+}
+\pgfmathdeclarefunction{targetgradient}{1}{%
+  \pgfmathparse{0.2*#1 + 0.64*((exp(2.5*(#1-\curvatureshift))-exp(-2.5*(#1-\curvatureshift)))/(exp(2.5*(#1-\curvatureshift))+exp(-2.5*(#1-\curvatureshift)))+\offsetgradient)}%
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \pgfmathsetmacro{\anchorx}{0.5}
+  \pgfmathsetmacro{\anchorf}{targetfunction(\anchorx)}
+  \pgfmathsetmacro{\anchorslope}{targetgradient(\anchorx)}
+  \pgfmathsetmacro{\upperlabel}{\anchorf + \anchorslope*(-1.8-\anchorx) + 0.9*(-1.8-\anchorx)^2}
+  \pgfmathsetmacro{\lowerlabel}{\anchorf + \anchorslope*(-1.5-\anchorx) + 0.1*(-1.5-\anchorx)^2}
+  \pgfmathsetmacro{\functionlabel}{targetfunction(-1.6)}
+  \begin{axis}[
+    width=12.8cm, height=7.6cm,
+    xmin=-2.3, xmax=2.5, ymin=-2.1, ymax=5.1,
+    axis lines=middle,
+    axis line style={black!45, line width=0.5pt, ->},
+    xtick=\empty, ytick=\empty,
+    domain=-2.2:2.4, samples=301,
+    clip=false
+  ]
+    \addplot[boundcolor, line width=0.8pt]
+      {\anchorf + \anchorslope*(x-\anchorx) + 0.1*(x-\anchorx)^2};
+    \addplot[boundcolor, line width=0.8pt]
+      {\anchorf + \anchorslope*(x-\anchorx) + 0.9*(x-\anchorx)^2};
+    \addplot[black, line width=1.5pt]
+      {targetfunction(x)};
+
+    \node[above right=5pt and 5pt, text=boundcolor]
+      at (axis cs:-1.8,\upperlabel) {$L$};
+    \node[below right=5pt and 5pt, text=boundcolor]
+      at (axis cs:-1.5,\lowerlabel) {$\mu$};
+    \node[below left=5pt and 5pt]
+      at (axis cs:-1.6,\functionlabel) {$f$};
+    \node[circle, fill=black, inner sep=1.7pt]
+      at (axis cs:\anchorx,\anchorf) {};
+    \node[right=4pt]
+      at (axis cs:2.5,0) {$x$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

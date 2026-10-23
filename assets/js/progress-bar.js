@@ -30,9 +30,12 @@ function progressBarSetup() {
 
   if ("max" in document.createElement("progress")) {
     initializeProgressElement();
-    document.addEventListener("scroll", () => {
+    const updateProgress = () => {
+      progressBar.setAttribute("max", getDistanceToScroll());
       progressBar.setAttribute("value", getCurrentScrollPosition());
-    });
+    };
+    document.addEventListener("scroll", updateProgress);
+    if ("ResizeObserver" in window) new ResizeObserver(updateProgress).observe(document.body);
     window.addEventListener("resize", initializeProgressElement);
   } else {
     resizeProgressBar();

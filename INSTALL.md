@@ -15,16 +15,20 @@ Install dependencies and run the site locally:
 ```bash
 bundle install
 pip install -r requirements.txt
-bundle exec jekyll serve
+bundle exec jekyll serve --unpublished
 ```
 
 Open `http://localhost:4000`.
 
 ## Local Setup With Docker
 
+For day-to-day previews:
+
 ```bash
-docker compose up --build
+docker compose up
 ```
+
+For the first run, or after changing dependencies (`Gemfile` or `Gemfile.lock`), `Dockerfile`, or `bin/entry_point.sh`, use `docker compose up --build`.
 
 Open `http://localhost:8080`.
 

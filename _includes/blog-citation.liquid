@@ -1,0 +1,116 @@
+{% assign citation_year = page.date | date: '%Y' %}
+{% assign citation_key = site.last_name | downcase | append: citation_year | append: 'lyapunov' %}
+{% assign citation_title = page.title | replace: 'Lyapunov', '{Lyapunov}' %}
+{% capture citation_bibtex -%}
+@misc{ {{- citation_key -}},
+  author = { {{- site.last_name }}, {{ site.first_name -}} },
+  title = { {{- citation_title -}} },
+  year = { {{- citation_year -}} },
+  howpublished = {Technical blog post},
+  publisher = {Zenodo},
+  doi = { {{- page.citation_doi -}} },
+  url = { {{- page.citation_url | default: page.url | absolute_url -}} },
+}
+{%- endcapture %}
+<style>
+  .blog-citation {
+    margin: 1.5rem 0;
+  }
+  .blog-citation p {
+    margin-bottom: 0.5rem;
+  }
+  .blog-citation-code {
+    position: relative;
+    margin-top: 0.75rem;
+    padding: 2.5rem 1rem 1rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 4px;
+    background: var(--global-code-bg-color);
+  }
+  .blog-citation-code pre {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    font: inherit;
+  }
+  .blog-citation-code code {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    background: transparent;
+    color: var(--global-text-color);
+    font: 0.85em/1.6 monospace;
+    text-align: left;
+    white-space: pre;
+  }
+  .blog-citation-copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    min-width: 48px;
+    min-height: 28px;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 3px;
+    background: var(--global-bg-color);
+    color: var(--global-text-color);
+    font: inherit;
+    cursor: pointer;
+  }
+  .blog-citation-copy:hover {
+    border-color: var(--global-theme-color);
+  }
+  .blog-citation-copy:focus-visible,
+  .blog-citation-code code:focus-visible {
+    outline: 2px solid var(--global-theme-color);
+    outline-offset: 3px;
+  }
+  @media print {
+    .blog-citation-copy {
+      display: none;
+    }
+    .blog-citation-code {
+      padding-top: 1rem;
+    }
+    .blog-citation-code code {
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+  }
+</style>
+<section class="blog-citation" id="cite-this-post" aria-labelledby="post-citation-heading">
+  <p id="post-citation-heading"><strong>Cite this post.</strong></p>
+  <div class="blog-citation-code">
+    <button type="button" class="blog-citation-copy" aria-label="Copy BibTeX" hidden>Copy</button>
+    <pre data-manual-copy><code tabindex="0" aria-label="BibTeX citation">{{ citation_bibtex | strip | escape }}</code></pre>
+  </div>
+  <span class="sr-only" role="status"></span>
+</section>
+<script>
+  (() => {
+    const block = document.getElementById('cite-this-post');
+    const button = block.querySelector('button');
+    const bibtex = block.querySelector('code');
+    const status = block.querySelector('[role="status"]');
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(bibtex.textContent);
+        button.textContent = 'Copied';
+        status.textContent = 'BibTeX copied to clipboard.';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 2000);
+      } catch {
+        bibtex.focus();
+        const range = document.createRange();
+        range.selectNodeContents(bibtex);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent = 'Copy the selected BibTeX entry.';
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,212 @@
+{% assign lyapunov_memory_id = include.id | default: 'lyapunov-memory' %}
+{% include lyapunov-figure-styles.liquid %}
+<style>
+  .lyapunov-memory-figure {
+    --memory-free-ink: #888;
+    max-width: 900px;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+  }
+  html[data-theme='dark'] .lyapunov-memory-figure {
+    --memory-free-ink: #999;
+  }
+  .lyapunov-memory-figure .memory-plots {
+    position: relative;
+  }
+  .lyapunov-memory-figure .memory-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 0.9rem;
+  }
+  .lyapunov-memory-figure .memory-panel {
+    min-width: 0;
+  }
+  .lyapunov-memory-figure .memory-panel-heading {
+    margin: 0 0 0.3rem;
+    color: var(--lc-ink);
+    font-size: 1em;
+    font-weight: inherit;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .lyapunov-memory-figure .lc-canvas {
+    aspect-ratio: 5 / 3;
+  }
+  .lyapunov-memory-figure .lc-axis-label {
+    visibility: hidden;
+  }
+  .lyapunov-memory-figure[data-memory-state='ready'] .lc-axis-label {
+    visibility: visible;
+  }
+  .lyapunov-memory-figure .lc-status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .lyapunov-memory-figure .lc-status[hidden] {
+    display: none;
+  }
+  .lyapunov-memory-figure .memory-free {
+    stroke: var(--memory-free-ink);
+    stroke-width: 3.4;
+    stroke-dasharray: none;
+  }
+  .lyapunov-memory-figure .memory-positive {
+    stroke: var(--lc-ink);
+    stroke-width: 1.8;
+    stroke-dasharray: 7 5;
+  }
+  .lyapunov-memory-figure .memory-free-marker {
+    stroke: var(--memory-free-ink);
+  }
+  .lyapunov-memory-figure .memory-legend {
+    position: static;
+    visibility: visible;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 3rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0.75rem auto 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    line-height: 1.4;
+    white-space: normal;
+  }
+  .lyapunov-memory-figure .memory-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .lyapunov-memory-figure .memory-legend .lc-swatch {
+    width: 48px;
+    height: 10px;
+  }
+  .lyapunov-memory-figure .memory-panel-heading,
+  .lyapunov-memory-figure .memory-legend,
+  .lyapunov-memory-figure .memory-legend > span,
+  .lyapunov-memory-figure .caption,
+  .lyapunov-memory-figure .lc-caption-math,
+  .lyapunov-memory-figure .lc-axis-label {
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+  }
+  @media (max-width: 620px) {
+    .lyapunov-memory-figure .memory-panels {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .lyapunov-memory-figure .memory-legend {
+      gap: 0.85rem 2rem;
+    }
+  }
+</style>
+
+<figure
+  id="{{ lyapunov_memory_id }}"
+  class="lyapunov-contraction-figure lyapunov-memory-figure"
+  data-lyapunov-memory
+  data-memory-url="{{ '/assets/data/lyapunov-memory.json' | relative_url | bust_file_cache }}"
+>
+  <div class="memory-plots">
+    <div class="memory-panels">
+      {% assign memory_methods = 'gradient,heavy_ball,nesterov,triple_momentum' | split: ',' %}
+      {% for memory_method in memory_methods %}
+        {% capture memory_method_name %}{% case memory_method %}{% when 'gradient' %}Gradient method{% when 'heavy_ball' %}Heavy-ball method{% when 'nesterov' %}Nesterov’s method{% when 'triple_momentum' %}Triple momentum method{% endcase %}{% endcapture %}
+        <div class="memory-panel" data-memory-method="{{ memory_method }}">
+          <p class="memory-panel-heading">
+            {% case forloop.index -%}
+              {%- when 1 -%}
+                (a)
+              {%- when 2 -%}
+                (b)
+              {%- when 3 -%}
+                (c)
+              {%- when 4 -%}
+                (d)
+            {%- endcase %}
+            {{ memory_method_name }}
+          </p>
+          <div class="lc-canvas">
+            <svg
+              viewBox="0 0 500 300"
+              role="img"
+              aria-labelledby="{{ lyapunov_memory_id }}-{{ memory_method }}-title {{ lyapunov_memory_id }}-{{ memory_method }}-description"
+              data-memory-plot
+              hidden
+            >
+              <title id="{{ lyapunov_memory_id }}-{{ memory_method }}-title">Numerically computed contraction factors for {{ memory_method_name }}</title>
+              <desc id="{{ lyapunov_memory_id }}-{{ memory_method }}-description" data-memory-description>
+                Lyapunov contraction factors certifying geometric decay of squared distance are compared without additional constraints and with the additional constraints that Q is positive semidefinite and q is nonnegative,
+                as the condition number L over mu varies on a logarithmic scale.
+              </desc>
+              {% include generated/lyapunov-memory-print.liquid %}
+            </svg>
+            <span class="lc-axis-label" data-memory-axis-ratio aria-hidden="true" inert>\(L/\mu\)</span>
+            <span class="lc-axis-label" data-memory-axis-rho aria-hidden="true" inert>\(\rho\)</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <p class="lc-status" data-memory-status role="status">Loading figure…</p>
+  </div>
+  <div class="lc-legend memory-legend">
+    <span>
+      <svg class="lc-swatch" viewBox="0 0 48 10" aria-hidden="true">
+        <path class="lc-curve memory-free" d="M1 5H47"></path>
+      </svg>
+      Without additional constraints
+    </span>
+    <span>
+      <svg class="lc-swatch" viewBox="0 0 48 10" aria-hidden="true">
+        <path class="lc-curve memory-positive" d="M1 5H47"></path>
+      </svg>
+      With additional constraints
+    </span>
+  </div>
+  <figcaption class="caption">
+    <strong>Figure 4:</strong> Contraction factors for <span class="lc-caption-math">\(\eqref{eq:memory-lyapunov-search}\)</span>
+    without additional constraints (solid gray) and with the additional constraints
+    <span class="lc-caption-math">\(Q\succcurlyeq0\)</span> and <span class="lc-caption-math">\(q\geqslant0\)</span> (dashed black), as the condition
+    number <span class="lc-caption-math">\(L/\mu\)</span> varies. Gaps mark samples where no contraction factor below
+    <span class="lc-caption-math">\(1\)</span> was found.
+  </figcaption>
+  <noscript><p>Enable JavaScript to explore this figure.</p></noscript>
+</figure>
+
+<script>
+  (() => {
+    const figure = document.getElementById('{{ lyapunov_memory_id }}');
+    figure.dataset.lcState = 'pending';
+    const activate = () =>
+      import("{{ '/assets/js/lyapunov-memory.js' | relative_url | bust_file_cache }}")
+        .then(({ enhanceFigure }) => enhanceFigure(figure))
+        .catch(() => {
+          figure.dataset.lcState = 'unavailable';
+          figure.dataset.memoryState = 'unavailable';
+          const status = figure.querySelector('[data-memory-status]');
+          status.hidden = false;
+          status.textContent = 'This interactive figure is temporarily unavailable.';
+        });
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          observer.disconnect();
+          activate();
+        },
+        { rootMargin: '300px' }
+      );
+      observer.observe(figure);
+    } else {
+      activate();
+    }
+  })();
+</script>

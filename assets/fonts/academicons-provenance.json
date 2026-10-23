@@ -1,0 +1,30 @@
+{
+  "family": "Academicons",
+  "version": "1.9.4",
+  "repository": "https://github.com/jpswalsh/academicons",
+  "tag": "v1.9.4",
+  "commit": "77c06050186a50981593fb80e934fa5abf0ad79c",
+  "attributionSource": "https://raw.githubusercontent.com/jpswalsh/academicons/77c06050186a50981593fb80e934fa5abf0ad79c/css/academicons.css",
+  "license": {
+    "identifier": "OFL-1.1",
+    "filename": "academicons-OFL.txt",
+    "source": "https://raw.githubusercontent.com/jpswalsh/academicons/77c06050186a50981593fb80e934fa5abf0ad79c/fonts/academicons.ttf",
+    "sourceSha256": "8cd0a3d973da5e93fdbdd4563a60419a645bac65e2baafa5025a5118971d82fe",
+    "extraction": "Decoded the English Windows name-table record 13 (platform 3, language 1033); removed trailing whitespace and added a final newline. Attribution and license wording are unchanged.",
+    "sha256": "141dc79e643822f1cc5dc69be3d01826b890aa303c540034cc1378e0f55ac4f2"
+  },
+  "byteIdenticalUpstreamFiles": [
+    {
+      "filename": "academicons.eot",
+      "source": "https://raw.githubusercontent.com/jpswalsh/academicons/77c06050186a50981593fb80e934fa5abf0ad79c/fonts/academicons.eot",
+      "bytes": 68058,
+      "sha256": "c78c77895c71b28716f9a45c2c0951c2d678ab54cd9e956636053b3154c6aad7"
+    },
+    {
+      "filename": "academicons.svg",
+      "source": "https://raw.githubusercontent.com/jpswalsh/academicons/77c06050186a50981593fb80e934fa5abf0ad79c/fonts/academicons.svg",
+      "bytes": 387754,
+      "sha256": "a5eeae1f19bb8f96aceca5b672e9aa904cce6c0070a3e46159944dc7ff97ee81"
+    }
+  ]
+}

@@ -4,19 +4,15 @@
 
 @use "variables" as *;
 
+html {
+  // Keep anchor destinations below the fixed or sticky navigation bar.
+  scroll-padding-top: 5rem;
+}
+
 body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    scroll-margin-top: 66px;
-  }
 }
 
 body.fixed-top-nav {

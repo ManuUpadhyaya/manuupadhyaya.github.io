@@ -1,0 +1,453 @@
+{% assign lyapunov_multipliers_id = include.id | default: 'lyapunov-multipliers' %}
+{% include lyapunov-figure-styles.liquid %}
+<style>
+  .lyapunov-multipliers-figure {
+    max-width: 900px;
+  }
+  .lyapunov-multipliers-figure .lm-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 0.9rem;
+    min-width: 0;
+  }
+  .lyapunov-multipliers-figure .lm-panel {
+    position: relative;
+    min-width: 0;
+  }
+  .lyapunov-multipliers-figure .lm-panel .lc-legend {
+    align-items: flex-start;
+    background: #fff;
+    border-color: #ddd;
+    color: #222;
+  }
+  .lyapunov-multipliers-figure .lm-legend-numerical,
+  .lyapunov-multipliers-figure .lm-legend-fixed {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .lyapunov-multipliers-figure[data-lm-formulas='true'] .lm-legend-numerical {
+    flex-direction: row;
+    gap: 0.6rem;
+  }
+  .lyapunov-multipliers-figure .lm-panel .lc-legend > span,
+  .lyapunov-multipliers-figure .lm-panel .lm-legend-numerical > span,
+  .lyapunov-multipliers-figure .lm-panel .lm-legend-fixed > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #222;
+  }
+  .lyapunov-multipliers-figure .lc-legend .lc-curve {
+    stroke: #222;
+  }
+  .lyapunov-multipliers-figure .lc-legend .lc-closed-form {
+    stroke: #aaa;
+  }
+  .lyapunov-multipliers-figure .lc-legend [hidden] {
+    display: none;
+  }
+  .lyapunov-multipliers-figure .lm-dashed {
+    stroke-dasharray: 7 5;
+  }
+  .lyapunov-multipliers-figure .lm-notice {
+    grid-column: 1 / -1;
+    margin: 0.35rem 0 0;
+    color: var(--lc-muted);
+    font-size: 0.85em;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .lyapunov-multipliers-figure .lm-panels[hidden] {
+    display: grid !important;
+    visibility: hidden;
+  }
+  .lyapunov-multipliers-figure .lm-panels[hidden] .lc-legend,
+  .lyapunov-multipliers-figure .lm-panels[hidden] .lc-axis-label {
+    visibility: hidden;
+  }
+  .lyapunov-multipliers-figure .lm-notice[hidden] {
+    display: block !important;
+    visibility: hidden;
+  }
+  .lyapunov-multipliers-figure .lc-status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .lyapunov-multipliers-figure .lc-status[hidden] {
+    display: none;
+  }
+  .lyapunov-multipliers-figure .lm-zero-heading {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--lc-label);
+    font-size: 0.85em;
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggle {
+    min-width: 0;
+    padding: 0.35rem 0.15rem;
+    border: 1px solid var(--lc-muted);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--lc-ink);
+    font: inherit;
+    font-size: 0.85em;
+    line-height: 1.1;
+    cursor: pointer;
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggle:first-child {
+    grid-column: 1 / -1;
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggle[aria-pressed='true'] {
+    border-color: var(--lc-ink);
+    background: var(--lc-ink);
+    color: var(--global-bg-color, #fff);
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggle:focus-visible {
+    outline: 2px solid var(--lc-ink);
+    outline-offset: 3px;
+  }
+  .lyapunov-multipliers-figure .lm-zero-toggle:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .lyapunov-multipliers-figure .lm-preset {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    margin-inline: 0.2rem;
+    border: 1px solid var(--lc-muted);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--lc-ink);
+    font: inherit;
+    font-size: 0.9em;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+  .lyapunov-multipliers-figure .lm-preset[aria-pressed='true'] {
+    border-color: var(--lc-ink);
+    background: var(--lc-ink);
+    color: var(--global-bg-color, #fff);
+  }
+  .lyapunov-multipliers-figure .lm-preset:focus-visible {
+    outline: 2px solid var(--lc-ink);
+    outline-offset: 3px;
+  }
+  .lyapunov-multipliers-figure .lm-preset:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .lyapunov-multipliers-figure .lm-fixed-values {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.85em;
+    line-height: 1.35;
+  }
+  .lyapunov-multipliers-figure .lm-fix-toggle {
+    width: 100%;
+  }
+  .lyapunov-multipliers-figure .lm-fixed-check {
+    margin: 0.5rem 0 0;
+    color: var(--lc-muted);
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+  .lyapunov-multipliers-figure .lm-fixed-values[hidden],
+  .lyapunov-multipliers-figure [data-lm-zero-grid][hidden],
+  .lyapunov-multipliers-figure [data-lm-fixed-controls][hidden],
+  .lyapunov-multipliers-figure [data-lm-fix][hidden] {
+    display: none;
+  }
+  @media (max-width: 620px) {
+    .lyapunov-multipliers-figure .lm-panels {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+
+<figure
+  id="{{ lyapunov_multipliers_id }}"
+  class="lyapunov-contraction-figure lyapunov-multipliers-figure"
+  data-lyapunov-multipliers
+  data-lm-fixed-url="{{ '/assets/data/lyapunov-multiplier-fixed.json' | relative_url | bust_file_cache }}"
+  data-lm-restrictions-url="{{ '/assets/data/lyapunov-multiplier-restrictions.json' | relative_url }}"
+  data-lm-url="{{ '/assets/data/lyapunov-multipliers.json' | relative_url | bust_file_cache }}"
+>
+  <div class="lc-layout">
+    <div class="lc-plot">
+      <div class="lm-panels" data-lm-panels hidden>
+        {% assign multiplier_pairs = '0|1,2|3,4|5,6' | split: '|' %}
+        {% for pair in multiplier_pairs %}
+          <div class="lm-panel lc-canvas" data-lm-panel="{{ pair }}">
+            <svg
+              viewBox="0 0 340 270"
+              role="img"
+              aria-labelledby="{{ lyapunov_multipliers_id }}-title-{{ forloop.index }} {{ lyapunov_multipliers_id }}-description-{{ forloop.index }}"
+              data-lm-plot
+            >
+              <title id="{{ lyapunov_multipliers_id }}-title-{{ forloop.index }}">
+                {% case forloop.index %}
+                  {% when 1 %}Relative-error multiplier tau
+                  {% when 2 %}Interpolation multipliers for k and the optimum
+                  {% when 3 %}Interpolation multipliers for k plus one and the optimum
+                  {% when 4 %}Interpolation multipliers between the two iterates
+                {% endcase %}
+              </title>
+              <desc id="{{ lyapunov_multipliers_id }}-description-{{ forloop.index }}" data-lm-description></desc>
+              {% include generated/lyapunov-multipliers-print.liquid %}
+            </svg>
+            <div class="lc-legend" aria-hidden="true" inert>
+              <div class="lm-legend-numerical" data-lm-legend-raw>
+                <span>
+                  <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+                    <path class="lc-curve lc-function" d="M1 4H27"></path>
+                  </svg>
+                  {% case forloop.index %}
+                    {% when 1 -%}
+                      \(\tau\)
+                    {% when 2 -%}
+                      \(\lambda_{k,\star}\)
+                    {% when 3 -%}
+                      \(\lambda_{k+1,\star}\)
+                    {% when 4 -%}
+                      \(\lambda_{k,k+1}\)
+                  {% endcase %}
+                </span>
+                {% unless forloop.first %}
+                  <span>
+                    <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+                      <path class="lc-curve lc-function lm-dashed" d="M1 4H27"></path>
+                    </svg>
+                    {% case forloop.index %}
+                      {% when 2 -%}
+                        \(\lambda_{\star,k}\)
+                      {% when 3 -%}
+                        \(\lambda_{\star,k+1}\)
+                      {% when 4 -%}
+                        \(\lambda_{k+1,k}\)
+                    {% endcase %}
+                  </span>
+                {% endunless %}
+              </div>
+              <span data-lm-formula hidden>
+                <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+                  <path class="lc-curve lc-closed-form" d="M1 4H27"></path>
+                </svg>
+                {% case forloop.index %}
+                  {% when 1 -%}
+                    \(\gamma\sqrt{\rho}/(2\varepsilon)\)
+                  {% when 2 -%}
+                    \(\sqrt{\rho}(1-\sqrt{\rho})\)
+                  {% when 3 -%}
+                    \(1-\sqrt{\rho}\)
+                  {% when 4 -%}
+                    \(\sqrt{\rho}\)
+                {% endcase %}
+              </span>
+              <div class="lm-legend-fixed" data-lm-legend-fixed hidden>
+                <span>
+                  <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+                    <path class="lc-curve lc-function" d="M1 4H27"></path>
+                  </svg>
+                  {% case forloop.index %}
+                    {% when 1 -%}
+                      \(\tau=\gamma\sqrt{\rho}/(2\varepsilon)\)
+                    {% when 2 -%}
+                      \(\lambda_{k,\star}=0\)
+                    {% when 3 -%}
+                      \(\lambda_{k+1,\star}=0\)
+                    {% when 4 -%}
+                      \(\lambda_{k,k+1}=\sqrt{\rho}\)
+                  {% endcase %}
+                </span>
+                {% unless forloop.first %}
+                  <span>
+                    <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+                      <path class="lc-curve lc-function lm-dashed" d="M1 4H27"></path>
+                    </svg>
+                    {% case forloop.index %}
+                      {% when 2 -%}
+                        \(\lambda_{\star,k}=\sqrt{\rho}(1-\sqrt{\rho})\)
+                      {% when 3 -%}
+                        \(\lambda_{\star,k+1}=1-\sqrt{\rho}\)
+                      {% when 4 -%}
+                        \(\lambda_{k+1,k}=0\)
+                    {% endcase %}
+                  </span>
+                {% endunless %}
+              </div>
+            </div>
+            <span class="lc-axis-label" data-lm-axis-gamma aria-hidden="true" inert>\(\gamma\)</span>
+            <span class="lc-axis-label" data-lm-axis-limit aria-hidden="true" inert>\(\tfrac{2}{L(1+\varepsilon)}\)</span>
+          </div>
+        {% endfor %}
+      </div>
+      <p class="lc-status" data-lm-status role="status">Loading figure…</p>
+      <p class="lc-status" data-lm-zero-error role="status" hidden>
+        <span
+          >For \(\varepsilon=0\) and \(\gamma>0\), \(\mathcal{D}^{\mathrm{SDP}}(0,1,\gamma,\varepsilon,\mu,L,\rho)\) is infeasible at the prescribed
+          value of \(\rho\).</span
+        >
+      </p>
+      <p class="lc-status" data-lm-zero-tau role="status" hidden>
+        <span>The prescribed factor is infeasible with \(\tau=0\) for \(\gamma>0\).</span>
+      </p>
+      <p class="lm-notice" data-lm-notice role="status" hidden>Gaps mark unavailable solver samples.</p>
+    </div>
+    <fieldset class="lc-controls">
+      <legend class="lc-sr-only">Multiplier parameters</legend>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_multipliers_id }}-epsilon"
+            ><span aria-hidden="true" inert>\(\varepsilon\)</span><span class="lc-sr-only">Relative error ε</span></label
+          >
+          <output for="{{ lyapunov_multipliers_id }}-epsilon" data-lm-value="epsilon" aria-hidden="true" inert>0.50</output>
+        </div>
+        <input id="{{ lyapunov_multipliers_id }}-epsilon" type="range" min="0" max="0.99" step="0.01" value="0.5" data-lm-control="epsilon" disabled>
+      </div>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_multipliers_id }}-L"><span aria-hidden="true" inert>\(L\)</span><span class="lc-sr-only">Smoothness L</span></label>
+          <output for="{{ lyapunov_multipliers_id }}-L" data-lm-value="L" aria-hidden="true" inert>3.00</output>
+        </div>
+        <input
+          id="{{ lyapunov_multipliers_id }}-L"
+          type="range"
+          min="0"
+          max="10"
+          step="0.01"
+          value="3"
+          data-lm-control="L"
+          aria-describedby="{{ lyapunov_multipliers_id }}-mu-help"
+          disabled
+        >
+      </div>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_multipliers_id }}-mu"
+            ><span aria-hidden="true" inert>\(\mu\)</span><span class="lc-sr-only">Strong convexity μ</span></label
+          >
+          <output for="{{ lyapunov_multipliers_id }}-mu" data-lm-value="mu" aria-hidden="true" inert>1.00</output>
+        </div>
+        <input
+          id="{{ lyapunov_multipliers_id }}-mu"
+          type="range"
+          min="0"
+          max="10"
+          step="0.01"
+          value="1"
+          data-lm-control="mu"
+          aria-describedby="{{ lyapunov_multipliers_id }}-mu-help"
+          disabled
+        >
+        <span id="{{ lyapunov_multipliers_id }}-mu-help" class="lc-sr-only"
+          >Both curvature sliders share a scale from 0 to 10. Each stops before μ reaches L.</span
+        >
+      </div>
+      <div role="group" aria-labelledby="{{ lyapunov_multipliers_id }}-zero-heading">
+        <span id="{{ lyapunov_multipliers_id }}-zero-heading" class="lm-zero-heading" data-lm-zero-heading>Set to zero</span>
+        <div class="lm-zero-toggles" data-lm-zero-grid>
+          {% for component in (0..6) %}
+            <button type="button" class="lm-zero-toggle" data-lm-zero="{{ component }}" aria-pressed="false" disabled>
+              {% case component %}
+                {% when 0 -%}
+                  \(\tau=0\)
+                {% when 1 -%}
+                  \(\lambda_{k,\star}=0\)
+                {% when 2 -%}
+                  \(\lambda_{\star,k}=0\)
+                {% when 3 -%}
+                  \(\lambda_{k+1,\star}=0\)
+                {% when 4 -%}
+                  \(\lambda_{\star,k+1}=0\)
+                {% when 5 -%}
+                  \(\lambda_{k,k+1}=0\)
+                {% when 6 -%}
+                  \(\lambda_{k+1,k}=0\)
+              {% endcase %}
+            </button>
+          {% endfor %}
+        </div>
+        <div class="lm-fixed-values" data-lm-fixed-values aria-label="Prescribed multiplier values" hidden>
+          <span>\(\tau=\gamma\sqrt{\rho}/(2\varepsilon)\)</span>
+          <span>\(\lambda_{k,\star}=0\)</span>
+          <span>\(\lambda_{\star,k}=\sqrt{\rho}(1-\sqrt{\rho})\)</span>
+          <span>\(\lambda_{k+1,\star}=0\)</span>
+          <span>\(\lambda_{\star,k+1}=1-\sqrt{\rho}\)</span>
+          <span>\(\lambda_{k,k+1}=\sqrt{\rho}\)</span>
+          <span>\(\lambda_{k+1,k}=0\)</span>
+        </div>
+      </div>
+      <div data-lm-fixed-controls hidden>
+        <button type="button" class="lm-zero-toggle lm-fix-toggle" data-lm-fix aria-pressed="false" disabled>Fix to expressions</button>
+        <p class="lm-fixed-check" data-lm-fixed-status role="status" hidden></p>
+      </div>
+    </fieldset>
+  </div>
+  <figcaption class="caption">
+    <strong>Figure 3:</strong>
+    <span data-lm-raw-caption
+      >Multipliers returned by the solver for <span class="lc-caption-math">\(\mathcal{D}^{\mathrm{SDP}}(0,1,\gamma,\varepsilon,\mu,L,\rho)\)</span>,
+      certifying <span class="lc-caption-math">\(f(x^{k+1})-f(x^{\star})\leqslant\rho(f(x^{k})-f(x^{\star}))\)</span>, with
+      <span class="lc-caption-math">\(\rho\)</span> given by <span class="lc-caption-math">\(\eqref{eq:fitted-function-factor}\)</span>.</span
+    >
+    <span data-lm-fixed-caption hidden>
+      Multipliers fixed to the displayed expressions for
+      <span class="lc-caption-math">\(\mathcal{D}^{\mathrm{SDP}}(0,1,\gamma,\varepsilon,\mu,L,\rho)\)</span>, certifying
+      <span class="lc-caption-math">\(f(x^{k+1})-f(x^{\star})\leqslant\rho(f(x^{k})-f(x^{\star}))\)</span>, with
+      <span class="lc-caption-math">\(\rho\)</span> given by <span class="lc-caption-math">\(\eqref{eq:fitted-function-factor}\)</span>.
+      <span data-lm-fixed-caption-result></span>
+    </span>
+    The numerical results suggest that <span class="lc-caption-math">\(\lambda_{k,\star}=\lambda_{k+1,\star}=\lambda_{k+1,k}=0\)</span>
+    <button
+      type="button"
+      class="lm-preset"
+      data-lm-preset="74"
+      aria-label="Select lambda k star, lambda k plus one star, and lambda k plus one k to be zero"
+      aria-pressed="false"
+      disabled
+    >
+      Select
+    </button>
+    is the largest common zero pattern preserving feasibility throughout the parameter range explored here.
+    <span data-lm-formula-caption hidden>The gray curves show expressions obtained by fitting to the numerical data.</span>
+    <button type="button" class="lm-preset" data-lm-fix aria-pressed="false" hidden disabled>Fix to expressions</button>
+  </figcaption>
+  <noscript><p>Enable JavaScript to explore this figure.</p></noscript>
+</figure>
+
+<script>
+  (() => {
+    const figure = document.getElementById('{{ lyapunov_multipliers_id }}');
+    figure.dataset.lcState = 'pending';
+    const activate = () =>
+      import("{{ '/assets/js/lyapunov-multipliers.js' | relative_url | bust_file_cache }}")
+        .then(({ enhanceFigure }) => enhanceFigure(figure))
+        .catch(() => {
+          figure.dataset.lcState = 'unavailable';
+          figure.querySelector('[data-lm-status]').textContent = 'This interactive figure is temporarily unavailable.';
+        });
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          observer.disconnect();
+          activate();
+        },
+        { rootMargin: '300px' }
+      );
+      observer.observe(figure);
+    } else {
+      activate();
+    }
+  })();
+</script>

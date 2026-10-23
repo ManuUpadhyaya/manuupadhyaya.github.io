@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title | strip_html | normalize_whitespace }}
+
+> {{ site.description | strip_html | normalize_whitespace }}
+
+## Site
+
+- [About]({{ '/' | absolute_url }}): Research profile, affiliations, and contact information.
+- [Publications]({{ '/publications/' | absolute_url }}): Research papers and preprints.
+- [Software]({{ '/software/' | absolute_url }}): Optimization research software, including AutoLyap.
+- [Teaching]({{ '/teaching/' | absolute_url }}): Courses and teaching materials.
+- [Blog]({{ '/blog/' | absolute_url }}): Articles on optimization and convergence analysis.
+- [Blog feed]({{ '/feed.xml' | absolute_url }}): Atom feed for published blog posts.
+{% assign published_posts = site.posts | where_exp: 'post', 'post.published != false and post.noindex != true and post.sitemap != false' %}
+{% if published_posts.size > 0 %}
+## Blog posts
+
+{% for post in published_posts -%}
+- [{{ post.title | strip_html | normalize_whitespace | replace: '[', '\[' | replace: ']', '\]' }}]({{ post.url | absolute_url }}): {{ post.seo_description | default: post.description | strip_html | normalize_whitespace }}
+{% endfor %}
+{% endif %}

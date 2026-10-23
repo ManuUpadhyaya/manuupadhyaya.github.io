@@ -11,3 +11,39 @@ assets/libs/
 node_modules/
 vendor
 .idea
+
+# Local experiment code
+/Code/
+
+# Local reviews and ad hoc Lighthouse reports (keep lighthouse_results versioned)
+/tmp/
+/output/
+/.lighthouseci/
+/lighthouse-report*.html
+/lighthouse-report*.json
+/*.report.html
+/*.report.json
+
+# Local environments and caches
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+/.venv/
+/venv/
+/env/
+.cache/
+.tox/
+.nox/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+/coverage/
+/htmlcov/
+/playwright-report/
+/test-results/

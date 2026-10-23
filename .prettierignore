@@ -3,10 +3,12 @@
 **/*.min.js
 assets/css/main.scss
 assets/js/distillpub/template.v2.js
+assets/js/distillpub/transforms.v2.js
 assets/js/search/*.js
-assets/plotly/demo.html
+# Preserve generated figure payload sizes and hand-written TeX/Kramdown structure.
+assets/data/*.json
+_posts/2026-10-12-computer-aided-lyapunov-analyses-in-optimization.md
 lighthouse_results/**
-_posts/2015-10-20-math.md
 _sass/font-awesome/*.scss
 _sass/tabler-icons/*.scss
 _scripts/search.liquid.js

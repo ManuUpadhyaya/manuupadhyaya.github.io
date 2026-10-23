@@ -22,16 +22,29 @@ strong {
 }
 
 body {
+  --body-font-weight: 300;
+  --body-letter-spacing: 0.002em;
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
+  font-weight: var(--body-font-weight);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  letter-spacing: 0.002em;
+  letter-spacing: var(--body-letter-spacing);
+}
+
+mjx-mtext[style*="Roboto"]:not([style*="font-weight"]) > mjx-utext[variant="-explicitFont"],
+mjx-measure-text > mjx-utext[variant="-explicitFont"][style*="Roboto"]:not([style*="font-weight"]) {
+  font-weight: var(--body-font-weight);
+  letter-spacing: var(--body-letter-spacing);
 }
 
 p,
 li {
   line-height: 1.72;
+}
+
+p {
+  text-align: justify;
+  hyphens: auto;
 }
 
 h1,
@@ -627,38 +640,6 @@ footer.sticky-bottom {
   }
 }
 
-// CV
-
-.cv {
-  margin-bottom: 40px;
-
-  .card {
-    background-color: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color);
-
-    .list-group-item {
-      background-color: inherit;
-      border-color: var(--global-divider-color);
-
-      .badge {
-        color: var(--global-card-bg-color) !important;
-        background-color: var(--global-theme-color) !important;
-      }
-    }
-  }
-}
-
-.table-cv-map {
-  background-color: transparent;
-  border: none;
-  color: var(--global-text-color);
-}
-
-.date-column {
-  width: 75px;
-  transform: translateX(-15px) translateY(-5px);
-}
-
 // Repositories
 
 @media (min-width: 768px) {
@@ -830,6 +811,7 @@ footer.sticky-bottom {
 
 .teaching .teaching-entry,
 .software .software-entry,
+.blog .blog-entry,
 .news .news-entry {
   border-left: 2px solid var(--global-divider-color);
   padding-left: 1rem;
@@ -837,6 +819,56 @@ footer.sticky-bottom {
 
   > :last-child {
     margin-bottom: 0;
+  }
+}
+
+.blog .blog-entry {
+  border-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.post-references {
+  list-style: none;
+  padding: 0;
+  line-height: 1.72;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-reference {
+    display: grid;
+    grid-template-columns: 8ch minmax(0, 1fr);
+    column-gap: 0.75rem;
+  }
+
+  .reference-label {
+    color: var(--global-inline-link-color);
+    white-space: nowrap;
+  }
+
+  .reference-body {
+    margin: 0;
+    min-width: 0;
+    color: var(--global-text-color-light);
+
+    em {
+      color: inherit;
+    }
+
+    a {
+      color: var(--global-inline-link-color);
+      text-decoration: underline;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .post-reference {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 0.18rem;
+    }
   }
 }
 

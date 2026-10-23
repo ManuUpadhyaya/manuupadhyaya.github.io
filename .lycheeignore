@@ -1,2 +1,6 @@
 linkedin.com
 reddit.com
+
+# Reserved canonical URL for the unpublished Lyapunov post.
+# Remove this exclusion after the first public deployment.
+^https://manuupadhyaya\.github\.io/blog/computer-aided-lyapunov-analyses-in-optimization/$

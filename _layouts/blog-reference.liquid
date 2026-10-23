@@ -1,0 +1,46 @@
+---
+---
+<div class="post-reference" id="{{ key | escape }}">
+  <span class="reference-label">[{{ entry['citation-label'] | escape }}]</span>
+  <p class="reference-body">
+    {%- for author in entry.author_array -%}
+      {%- unless forloop.first -%}
+        {%- if forloop.last -%}
+          {%- if forloop.length > 2 -%},{%- endif -%}
+          {{- ' and ' -}}
+        {%- else -%}
+          {{- ', ' -}}
+        {%- endif -%}
+      {%- endunless -%}
+      {{- author.first | escape -}}
+      {{- ' ' -}}
+      {{- author.last | escape -}}
+    {%- endfor -%}
+    .{{ ' ' -}}
+    {{- entry.title | escape }}.{{ ' ' }}
+    {%- assign venue = entry.journal | default: entry.booktitle | default: entry.howpublished -%}
+    {%- if venue -%}
+      <em>{{ venue | escape }}</em>,{{ ' ' }}
+    {%- endif -%}
+    {%- if entry.edition -%}{{ entry.edition | escape }} ed.,{{ ' ' }}{%- endif -%}
+    {%- if entry.publisher -%}{{ entry.publisher | escape }},{{ ' ' }}{%- endif -%}
+    {%- if entry.address -%}{{ entry.address | escape }},{{ ' ' }}{%- endif -%}
+    {%- if entry.volume -%}
+      {{- entry.volume | escape -}}
+      {%- if entry.number -%}({{ entry.number | escape }}){%- endif -%}
+      {%- if entry.pages -%}:{{ entry.pages | replace: '--', '–' | escape }}{%- endif -%}
+      ,{{ ' ' }}
+    {%- endif -%}
+    {{- entry.year | escape -}}
+    .
+    {% if entry.doi %}
+      <a href="https://doi.org/{{ entry.doi | escape }}">doi:{{ entry.doi | escape }}</a>.
+    {% endif %}
+    {% if entry.arxiv %}
+      <a href="https://arxiv.org/abs/{{ entry.arxiv | escape }}">arXiv:{{ entry.arxiv | escape }}</a>.
+    {% endif %}
+    {% if entry.url %}
+      <a href="{{ entry.url | escape }}">URL</a>.
+    {% endif %}
+  </p>
+</div>

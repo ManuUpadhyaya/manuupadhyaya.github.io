@@ -45,6 +45,7 @@ module Jekyll
     def bust_css_cache(file_name)
       source_files = Dir['_sass/**/*'].reject { |path| File.directory?(path) }
       source_files << 'assets/css/main.scss'
+      source_files << 'purgecss.config.js' if File.file?('purgecss.config.js')
       source = source_files.sort.map { |path| File.binread(path) }.join
       [file_name, '?', Digest::MD5.hexdigest(source)].join
     end

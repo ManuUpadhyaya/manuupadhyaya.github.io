@@ -10,9 +10,10 @@ This repository has been trimmed to the parts that are used by the live site. Th
 - `_bibliography/papers.bib`: publication entries
 - `_pages/software.md`: software page
 - `_pages/teaching.md`: teaching page
+- `_pages/blog.md`: blog landing page
+- `_posts/*.md`: blog posts; keep `published: false` while drafting
 - `_data/socials.yml`: social/contact links
 - `_data/coauthors.yml`: publication coauthor links
-- `_data/cv.yml`: structured CV data kept for reference
 - `share/CV.pdf`: PDF linked from the header
 - `share/prerequisites.pdf` and `share/trading.pdf`: PDFs linked from teaching
 - `assets/img/prof_pic.jpg`: profile image
@@ -46,12 +47,12 @@ Navigation is driven by page front matter, except for the header CV button, whic
 
 This repo no longer carries the upstream demo content for:
 
-- blog posts and blog landing page
+- demo blog posts
 - projects collection and projects landing page
 - repositories page
 - people/profiles page
-- CV page generated from the demo PDF
-- README preview screenshots and Lighthouse report artifacts
+- CV/resume page generated from template data, including its layout, partials, and styles
+- README preview screenshots
 - demo audio, video, notebook, plotly, and sample image assets
 
 If you want any of those features back, copy the relevant files from upstream al-folio instead of relying on this repo to keep the template scaffolding around.

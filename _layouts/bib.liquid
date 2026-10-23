@@ -409,9 +409,17 @@
   {% assign publication_url = entry.website %}
 {% endif %}
 <script type="application/ld+json">
+  {% assign publication_schema_type = 'ScholarlyArticle' %}
+  {% assign publication_bibtex_type = entry.type | downcase %}
+  {% assign publication_thesis_label = entry.journal | downcase | replace: '’', "'" %}
+  {% if publication_bibtex_type == 'thesis' or publication_bibtex_type == 'mastersthesis' or publication_bibtex_type == 'phdthesis' %}
+    {% assign publication_schema_type = 'Thesis' %}
+  {% elsif publication_thesis_label == 'phd thesis' or publication_thesis_label == "master's thesis" %}
+    {% assign publication_schema_type = 'Thesis' %}
+  {% endif %}
   {
     "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
+    "@type": {{ publication_schema_type | jsonify }},
     "@id": {{ publication_url | strip | append: '#article' | jsonify }},
     "url": {{ publication_url | strip | jsonify }},
     "mainEntityOfPage": {{ publication_anchor_url | jsonify }},
@@ -429,7 +437,7 @@
     ],
     "datePublished": {{ entry.year | jsonify }},
     "inLanguage": {{ site.lang | jsonify }}{% if entry.abstract %},
-    "abstract": {{ entry.abstract | strip_html | strip_newlines | strip | jsonify }}{% endif %}{% if entry.journal %},
+    "abstract": {{ entry.abstract | strip_html | strip_newlines | strip | jsonify }}{% endif %}{% unless publication_schema_type == 'Thesis' %}{% if entry.journal %},
     "isPartOf": {
       "@type": "Periodical",
       "name": {{ entry.journal | strip_html | strip | jsonify }}
@@ -437,7 +445,7 @@
     "isPartOf": {
       "@type": "PublicationIssue",
       "name": {{ entry.booktitle | strip_html | strip | jsonify }}
-    }{% endif %}{% if entry.arxiv or entry.doi %},
+    }{% endif %}{% endunless %}{% if entry.arxiv or entry.doi %},
     "identifier": [
       {% if entry.arxiv %}
         {

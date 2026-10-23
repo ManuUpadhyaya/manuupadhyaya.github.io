@@ -40,7 +40,7 @@
 
 <!-- Bootstrap & MDB -->
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
-{% if page.mdb or page.layout == 'cv' %}
+{% if page.mdb %}
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link
     rel="preload"
@@ -107,19 +107,23 @@
     <link rel="stylesheet" href="{{ scholar_icons_css }}">
   </noscript>
 {% endif %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link rel="stylesheet" type="text/css" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
-</noscript>
+{% if page.local_roboto %}
+  {% include roboto-local-fonts.liquid %}
+{% else %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link rel="stylesheet" type="text/css" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
+  </noscript>
+{% endif %}
 
 <!-- Code Syntax Highlighting -->
 {% if page.code_highlighting or page.code_diff or page.pseudocode or page.tikzjax %}
@@ -151,9 +155,9 @@
 {% endif %}
 
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
-<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-{% if site.posts.size > 0 %}
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | absolute_url }}">
+<link rel="canonical" href="{{ page.citation_url | default: page.url | replace:'index.html','' | absolute_url }}">
+{% if site.posts.size > 0 or page.url == '/blog/' %}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | absolute_url }}">
 {% endif %}
 
 <!-- Dark Mode -->

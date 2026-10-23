@@ -275,7 +275,7 @@
   }
 </script>
 <script>
-  if (document.querySelector('pre code')) {
+  if (document.querySelector('pre:not([data-manual-copy]) code')) {
     loadOptionalScript("{{ '/assets/js/copy_code.js' | relative_url | bust_file_cache }}", { defer: true }).catch(() => {});
   }
 </script>
@@ -316,6 +316,39 @@
   {% endunless %}
   {% unless page.pseudocode %}
     <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+    {% if page.math_cooperative %}
+      <script>
+        window.MathJax.startup.pageReady = () =>
+          import("{{ '/assets/js/mathjax-cooperative.mjs' | relative_url | bust_file_cache }}")
+            .then(({ installCooperativeMathJax, installHiddenMathTextMeasurement, prepareExactNewcmFonts }) => {
+              installHiddenMathTextMeasurement(window.MathJax);
+              installCooperativeMathJax(window.MathJax, { budgetMs: 8 });
+              {% if page.math_font_preparation %}
+                prepareExactNewcmFonts(window.MathJax);
+              {% endif %}
+            })
+            .catch(() => false)
+            .then(() => window.MathJax.startup.defaultPageReady());
+      </script>
+    {% endif %}
+    {% if page.math_font %}
+      <script>
+        window.MathJax.output.font = {{ page.math_font | jsonify }};
+      </script>
+    {% endif %}
+    {% if page.math_scale %}
+      <script>
+        window.MathJax.output.scale = {{ page.math_scale | jsonify }};
+      </script>
+    {% endif %}
+    {% if page.math_match_font_height != null %}
+      <script>
+        window.MathJax.chtml = {
+          ...window.MathJax.chtml,
+          matchFontHeight: {{ page.math_match_font_height | jsonify }},
+        };
+      </script>
+    {% endif %}
     {% if defer_homepage_math %}
       <script>
         (() => {
@@ -485,12 +518,14 @@
   <script src="{{ '/assets/js/tabs.min.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
+{% if page.collection == 'posts' %}
+  <script defer src="{{ '/assets/js/print-proofs.js' | relative_url | bust_file_cache }}"></script>
+{% endif %}
+
 {% if site.back_to_top %}
   <!-- Back to Top -->
-  <script src="{{ '/assets/js/vanilla-back-to-top.min.js' | relative_url | bust_file_cache }}"></script>
-  <script>
-    addBackToTop();
-  </script>
+  <script defer src="{{ '/assets/js/vanilla-back-to-top.min.js' | relative_url | bust_file_cache }}"></script>
+  <script defer src="{{ '/assets/js/back-to-top.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
 {% if site.search_enabled %}

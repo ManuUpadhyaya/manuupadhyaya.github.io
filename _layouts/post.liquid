@@ -12,64 +12,65 @@ layout: default
   </style>
 {% endif %}
 
-{% assign url_beginning = page.url | slice: 0, 6 %}
-
 <div class="post">
   <div class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">
-      Created in {{ page.date | date: '%B %d, %Y' }}
+      {{ page.date | date: '%B %d, %Y' }}
       {% if page.author %}by {{ page.author }}{% endif %}
       {% if page.last_updated %}, last updated in {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
       {% if page.meta %}• {{ page.meta }}{% endif %}
     </p>
-    <p class="post-tags">
-      {% if url_beginning == '/blog/' %}
-        <a href="{{ year | prepend: '/blog/' | prepend: site.baseurl}}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-      {% else %}
-        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
-      {% endif %}
-      {% if tags != '' %}
-        &nbsp; &middot; &nbsp;
-        {% for tag in page.tags %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | prepend: site.baseurl}}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-          {% else %}
+    {% if page.collection != 'posts' or tags != '' or categories != '' %}
+      <p class="post-tags">
+        {% unless page.collection == 'posts' %}
+          <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
+        {% endunless %}
+        {% if tags != '' %}
+          {% unless page.collection == 'posts' %}
+            &nbsp; &middot; &nbsp;
+          {% endunless %}
+          {% for tag in page.tags %}
             <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
-          {% endif %}
-          {% unless forloop.last %}
-            &nbsp;
-          {% endunless %}
-        {% endfor %}
-      {% endif %}
+            {% unless forloop.last %}
+              &nbsp;
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
 
-      {% if categories != '' %}
-        &nbsp; &middot; &nbsp;
-        {% for category in page.categories %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | prepend: site.baseurl}}">
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}
-            </a>
-          {% else %}
-            <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
+        {% if categories != '' %}
+          {% if page.collection != 'posts' or tags != '' %}
+            &nbsp; &middot; &nbsp;
           {% endif %}
-          {% unless forloop.last %}
-            &nbsp;
-          {% endunless %}
-        {% endfor %}
-      {% endif %}
-    </p>
+          {% for category in page.categories %}
+            <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
+            {% unless forloop.last %}
+              &nbsp;
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </p>
+    {% endif %}
   </div>
 
   <article class="post-content">
     {% if page.toc and page.toc.beginning %}
-      <div id="table-of-contents">
+      <div id="table-of-contents" role="navigation" aria-label="Table of contents">
         {% toc %}
       </div>
       <hr>
     {% endif %}
     <div id="markdown-content">
-      {{ content }}
+      {% if page.toc and page.toc.inline %}
+        {% capture inline_toc %}
+          <div id="table-of-contents" role="navigation" aria-label="Table of contents">
+            {% toc %}
+          </div>
+        {% endcapture %}
+        {{ content | replace: '<!-- table-of-contents -->', inline_toc }}
+      {% else %}
+        {{ content }}
+      {% endif %}
     </div>
   </article>
 

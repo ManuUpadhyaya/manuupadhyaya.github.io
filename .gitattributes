@@ -1,2 +1,6 @@
 # Force LF line endings, needed for Docker to work on Windows
 *.sh text eol=lf
+
+# Preserve these upstream files byte-for-byte, including their whitespace.
+assets/fonts/academicons.svg -whitespace
+assets/fonts/roboto-v51/OFL.txt -whitespace

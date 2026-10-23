@@ -55,7 +55,7 @@
   {% assign meta_description = site.description %}
 {% endif %}
 {% assign meta_description = meta_description | strip | strip_html | strip_newlines %}
-{% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
+{% assign canonical_url = page.citation_url | default: page.url | replace: 'index.html', '' | absolute_url %}
 {% assign page_display_title = page.title %}
 {% if page_display_title == null or page_display_title == '' or page_display_title == 'blank' %}
   {% assign page_display_title = site_title %}
@@ -85,14 +85,12 @@
 {% if page.url == '/publications/' %}
   {% assign is_publications_page = true %}
 {% endif %}
-{% if page.url == '/publications/' or page.url == '/news/' or page.url == '/software/' %}
+{% if page.url == '/publications/' or page.url == '/news/' or page.url == '/software/' or page.url == '/blog/' %}
   {% assign is_collection_page = true %}
 {% endif %}
 {% assign is_blog_post = false %}
-{% if page.url != '/blog/index.html' and page.url contains '/blog/' %}
-  {% unless page.url contains '/tag/' or page.url contains '/category/' %}
-    {% assign is_blog_post = true %}
-  {% endunless %}
+{% if page.collection == 'posts' %}
+  {% assign is_blog_post = true %}
 {% endif %}
 
 <!-- Standard metadata -->
@@ -104,10 +102,25 @@
 <meta name="description" content="{{ meta_description | escape }}">
 {% if page.url == '/404.html' %}
   <meta name="robots" content="noindex, nofollow">
-{% elsif page.sitemap == false or page.noindex %}
+{% elsif page.published == false or page.sitemap == false or page.noindex %}
   <meta name="robots" content="noindex, follow">
 {% else %}
   <meta name="robots" content="index, follow, max-image-preview:large">
+{% endif %}
+
+{% if is_blog_post and page.citation_doi %}
+  <!-- Bibliographic metadata for citation tools -->
+  <meta name="citation_title" content="{{ page.title | escape }}">
+  <meta name="citation_author" content="{{ author_name | escape }}">
+  {% if page.citation_author_orcid %}<meta name="citation_author_orcid" content="{{ page.citation_author_orcid | escape }}">{% endif %}
+  <meta name="citation_publication_date" content="{{ page.date | date: '%Y/%m/%d' }}">
+  <meta name="citation_doi" content="{{ page.citation_doi | escape }}">
+  <meta name="citation_language" content="{{ page.lang | default: site.lang | escape }}">
+  <meta name="DC.type" content="blogPost">
+{% endif %}
+{% if page.license %}
+  <link rel="license" href="{{ page.license | escape }}">
+  <meta name="DC.rights" content="{{ page.license | escape }}">
 {% endif %}
 
 {% if site.serve_og_meta %}
@@ -160,6 +173,9 @@
   {% if socials.orcid_id %}
     {% capture link %}https://orcid.org/{{ socials.orcid_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
+  {% endif %}
+  {% if is_blog_post and page.citation_author_orcid %}
+    {% assign sameaslinks = sameaslinks | push: page.citation_author_orcid | uniq %}
   {% endif %}
   {% if socials.scholar_userid %}
     {% capture link %}https://scholar.google.com/citations?user={{ socials.scholar_userid }}{% endcapture %}
@@ -299,14 +315,21 @@
   {% assign webpage_id = canonical_url | append: '#webpage' %}
   {% assign breadcrumb_id = canonical_url | append: '#breadcrumb' %}
   {% assign page_schema_type = 'WebPage' %}
+  {% assign is_article_schema = false %}
   {% if is_homepage %}
     {% assign page_schema_type = 'ProfilePage' %}
   {% elsif is_collection_page %}
     {% assign page_schema_type = 'CollectionPage' %}
   {% elsif is_blog_post %}
     {% assign page_schema_type = 'BlogPosting' %}
+    {% assign is_article_schema = true %}
   {% elsif page.collection == 'news' %}
     {% assign page_schema_type = 'NewsArticle' %}
+    {% assign is_article_schema = true %}
+  {% endif %}
+  {% assign has_article_image = false %}
+  {% if page.og_image != null and page.og_image != '' %}
+    {% assign has_article_image = true %}
   {% endif %}
 
   <script type="application/ld+json">
@@ -320,7 +343,7 @@
           "givenName": {{ site.first_name | jsonify }},
           "familyName": {{ site.last_name | jsonify }},
           "url": {{ home_url | jsonify }},
-          "image": {{ og_image | jsonify }},
+          "image": {{ site.og_image | absolute_url | jsonify }},
           "description": {{ site.description | jsonify }},
           "jobTitle": "Postdoctoral Researcher",
           "affiliation": [
@@ -372,20 +395,24 @@
           "name": {{ document_title | jsonify }},
           "headline": {{ page_display_title | jsonify }},
           "description": {{ meta_description | jsonify }},
+          {% if is_article_schema == false or has_article_image %}
           "image": {{ og_image | jsonify }},
+          {% endif %}
+          {% unless is_article_schema %}
           "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": {{ og_image | jsonify }}{% if og_image_width %},
             "width": {{ og_image_width | jsonify }}{% endif %}{% if og_image_height %},
             "height": {{ og_image_height | jsonify }}{% endif %}
           },
+          {% endunless %}
           "isPartOf": {
             "@id": {{ website_id | jsonify }}
           },
           "author": {
             "@id": {{ person_id | jsonify }}
           },
-          "inLanguage": {{ site.lang | jsonify }}{% unless is_homepage %},
+          "inLanguage": {{ site.lang | jsonify }}{% unless is_homepage or is_article_schema %},
           "breadcrumb": {
             "@id": {{ breadcrumb_id | jsonify }}
           }{% endunless %}{% if is_homepage %},
@@ -395,6 +422,21 @@
           {% if page.date %},
           "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
           "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }}
+          {% endif %}
+          {% if is_blog_post and page.citation_doi %},
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "DOI",
+            "value": {{ page.citation_doi | jsonify }}
+          }
+          {% endif %}
+          {% if page.license %},
+          "license": {{ page.license | jsonify }},
+          "copyrightHolder": {
+            "@id": {{ person_id | jsonify }}
+          }{% if page.date %},
+          "copyrightYear": {{ page.date | date: '%Y' | plus: 0 }}
+          {% endif %}
           {% endif %}
         }{% unless is_homepage %},
         {

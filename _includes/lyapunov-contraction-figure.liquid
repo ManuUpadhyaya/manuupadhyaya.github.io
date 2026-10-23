@@ -1,0 +1,148 @@
+{% assign lyapunov_figure_id = include.id | default: 'lyapunov-contraction' %}
+{% include lyapunov-figure-styles.liquid %}
+
+<figure
+  id="{{ lyapunov_figure_id }}"
+  class="lyapunov-contraction-figure"
+  data-lyapunov-contraction
+  data-lc-url="{{ '/assets/data/lyapunov-contraction.json' | relative_url | bust_file_cache }}"
+>
+  <div class="lc-layout">
+    <div class="lc-plot">
+      <div class="lc-canvas">
+        <svg
+          viewBox="0 0 500 272"
+          role="img"
+          aria-labelledby="{{ lyapunov_figure_id }}-title {{ lyapunov_figure_id }}-description"
+          data-lc-plot
+          hidden
+        >
+          <title id="{{ lyapunov_figure_id }}-title">Optimal one-step contraction factors as the step size varies</title>
+          <desc id="{{ lyapunov_figure_id }}-description" data-lc-description></desc>
+          {% include generated/lyapunov-contraction-print.liquid %}
+        </svg>
+        <p class="lc-status" data-lc-status role="status">Loading figure…</p>
+        <p class="lc-status" data-lc-zero-error role="status" hidden>
+          <span
+            >For \(\varepsilon=0\) and \(\gamma>0\), the infimum defining \(\rho^{\mathrm{SDP}}(Q,q,\gamma,\varepsilon,\mu,L)\) is not attained.</span
+          >
+        </p>
+        <span class="lc-axis-label" data-lc-axis-rho aria-hidden="true" inert>\(\rho\)</span>
+        <span class="lc-axis-label" data-lc-axis-gamma aria-hidden="true" inert>\(\gamma\)</span>
+        <span class="lc-axis-label" data-lc-axis-limit aria-hidden="true" inert>\(\tfrac{2}{L(1+\varepsilon)}\)</span>
+      </div>
+      <div class="lc-legend" aria-hidden="true" inert>
+        <div class="lc-legend-metrics">
+          <span>
+            <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+              <path class="lc-curve lc-distance" d="M1 4H27"></path>
+              <rect class="lc-marker" x="11.3" y="1.3" width="5.4" height="5.4"></rect>
+            </svg>
+            \(\rho_{\mathtt{norm}^{2}}\)</span
+          >
+          <span>
+            <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+              <path class="lc-curve lc-function" d="M1 4H27"></path>
+              <circle class="lc-marker" cx="14" cy="4" r="2.7"></circle>
+            </svg>
+            \(\rho_{\mathtt{func}}\)</span
+          >
+        </div>
+        <div class="lc-legend-formula">
+          <svg class="lc-swatch" viewBox="0 0 28 8" aria-hidden="true">
+            <path class="lc-curve lc-closed-form" d="M1 4H27"></path>
+          </svg>
+          <span class="lc-formula-wide">\(\mathop{\text{max}}\{(1-\gamma\mu(1-\varepsilon))^{2},\,(1-\gamma L(1+\varepsilon))^{2}\}\)</span>
+          <span class="lc-formula-stacked"
+            >\(\mathop{\text{max}}\!\left\{\begin{gathered}(1-\gamma\mu(1-\varepsilon))^{2},\\(1-\gamma L(1+\varepsilon))^{2}\end{gathered}\right\}\)</span
+          >
+        </div>
+      </div>
+    </div>
+    <fieldset class="lc-controls">
+      <legend class="lc-sr-only">Contraction factor parameters</legend>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_figure_id }}-epsilon"
+            ><span aria-hidden="true" inert>\(\varepsilon\)</span><span class="lc-sr-only">Relative error ε</span></label
+          >
+          <output for="{{ lyapunov_figure_id }}-epsilon" data-lc-value="epsilon" aria-hidden="true" inert>0.50</output>
+        </div>
+        <input id="{{ lyapunov_figure_id }}-epsilon" type="range" min="0" max="0.99" step="0.01" value="0.5" data-lc-control="epsilon" disabled>
+      </div>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_figure_id }}-L"><span aria-hidden="true" inert>\(L\)</span><span class="lc-sr-only">Smoothness L</span></label>
+          <output for="{{ lyapunov_figure_id }}-L" data-lc-value="L" aria-hidden="true" inert>3.00</output>
+        </div>
+        <input
+          id="{{ lyapunov_figure_id }}-L"
+          type="range"
+          min="0"
+          max="10"
+          step="0.01"
+          value="3"
+          data-lc-control="L"
+          aria-describedby="{{ lyapunov_figure_id }}-mu-help"
+          disabled
+        >
+      </div>
+      <div>
+        <div class="lc-control-heading">
+          <label for="{{ lyapunov_figure_id }}-mu"
+            ><span aria-hidden="true" inert>\(\mu\)</span><span class="lc-sr-only">Strong convexity μ</span></label
+          >
+          <output for="{{ lyapunov_figure_id }}-mu" data-lc-value="mu" aria-hidden="true" inert>1.00</output>
+        </div>
+        <input
+          id="{{ lyapunov_figure_id }}-mu"
+          type="range"
+          min="0"
+          max="10"
+          step="0.01"
+          value="1"
+          data-lc-control="mu"
+          aria-describedby="{{ lyapunov_figure_id }}-mu-help"
+          disabled
+        >
+        <span id="{{ lyapunov_figure_id }}-mu-help" class="lc-sr-only"
+          >Both curvature sliders share a scale from 0 to 10. Each stops before μ reaches L.</span
+        >
+      </div>
+    </fieldset>
+  </div>
+  <figcaption class="caption">
+    <strong>Figure 2:</strong> Optimal one-step contraction factors obtained from
+    <span class="lc-caption-math">\(\eqref{eq:lyapunov-certificate}\)</span> for the squared distance to the solution (dashed black, squares) and the
+    function-value suboptimality (solid black, circles), as the step size <span class="lc-caption-math">\(\gamma\)</span> varies. The gray curve shows
+    an expression obtained by fitting to the numerical data.
+  </figcaption>
+  <noscript><p>Enable JavaScript to explore this figure.</p></noscript>
+</figure>
+
+<script>
+  (() => {
+    const figure = document.getElementById('{{ lyapunov_figure_id }}');
+    figure.dataset.lcState = 'pending';
+    const activate = () =>
+      import("{{ '/assets/js/lyapunov-contraction.js' | relative_url | bust_file_cache }}")
+        .then(({ enhanceFigure }) => enhanceFigure(figure))
+        .catch(() => {
+          figure.dataset.lcState = 'unavailable';
+          figure.querySelector('[data-lc-status]').textContent = 'This interactive figure is temporarily unavailable.';
+        });
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          observer.disconnect();
+          activate();
+        },
+        { rootMargin: '300px' }
+      );
+      observer.observe(figure);
+    } else {
+      activate();
+    }
+  })();
+</script>

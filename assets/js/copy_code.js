@@ -1,5 +1,5 @@
 // create element for copy button in code blocks
-var codeBlocks = document.querySelectorAll("pre");
+var codeBlocks = document.querySelectorAll("pre:not([data-manual-copy])");
 codeBlocks.forEach(function (codeBlock) {
   if (
     (codeBlock.querySelector("pre:not(.lineno)") || codeBlock.querySelector("code")) &&

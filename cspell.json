@@ -1,0 +1,17 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["Lipschitz", "Lyapunov"],
+  "ignorePaths": ["_site/**", "vendor/**", "node_modules/**"],
+  "languageSettings": [
+    {
+      "languageId": "markdown",
+      "ignoreRegExpList": [
+        "/\\$\\$[\\s\\S]*?\\$\\$/g",
+        "/\\\\begin\\{(equation\\*?)\\}[\\s\\S]*?\\\\end\\{\\1\\}/g",
+        "/\\\\(?:cite|eqref|ref|label)\\{[^{}\\r\\n]*\\}/g",
+        "/\\{%[\\s\\S]*?%\\}|\\{\\{[\\s\\S]*?\\}\\}/g"
+      ]
+    }
+  ]
+}
