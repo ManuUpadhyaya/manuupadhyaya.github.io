@@ -1,0 +1,19 @@
+# Manu Upadhyaya
+
+> Personal website of Manu Upadhyaya, a postdoctoral researcher at Inria Paris and École Polytechnique working on optimization and first-order methods.
+
+## Site
+
+- [About](https://manuupadhyaya.github.io/): Research profile, affiliations, and contact information.
+- [Publications](https://manuupadhyaya.github.io/publications/): Research papers and preprints.
+- [Software](https://manuupadhyaya.github.io/software/): Optimization research software, including AutoLyap.
+- [Teaching](https://manuupadhyaya.github.io/teaching/): Courses and teaching materials.
+- [Blog](https://manuupadhyaya.github.io/blog/): Articles on optimization and convergence analysis.
+- [Blog feed](https://manuupadhyaya.github.io/feed.xml): Atom feed for published blog posts.
+
+
+## Blog posts
+
+- [Computer-aided Lyapunov analyses in optimization](https://manuupadhyaya.github.io/blog/computer-aided-lyapunov-analyses-in-optimization/): Computer-aided Lyapunov analyses of gradient methods with inexact gradients and memory using interpolation inequalities and semidefinite feasibility.
+
+

@@ -30,7 +30,25 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/teaching/";
           },
-        },{id: "news-i-am-excited-to-announce-that-i-am-co-organizing-the-21st-conference-on-advances-in-continuous-optimization-europt-2024-set-to-take-place-in-lund-sweden-from-june-26-to-28-2024-for-more-details-visit-the-conference-website",
+        },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "post-computer-aided-lyapunov-analyses-in-optimization",
+      
+        title: "Computer-aided Lyapunov analyses in optimization",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/computer-aided-lyapunov-analyses-in-optimization/";
+        
+      },
+    },{id: "news-i-am-excited-to-announce-that-i-am-co-organizing-the-21st-conference-on-advances-in-continuous-optimization-europt-2024-set-to-take-place-in-lund-sweden-from-june-26-to-28-2024-for-more-details-visit-the-conference-website",
           title: 'I am excited to announce that I am co-organizing the 21st conference on...',
           description: "",
           section: "News",},{id: "news-the-manuscript-titled-automated-tight-lyapunov-analysis-for-first-order-methods-has-been-accepted-for-publication-in-the-journal-mathematical-programming",

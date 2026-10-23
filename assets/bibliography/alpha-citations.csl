@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+  <info>
+    <title>Academic alpha citations</title>
+    <id>https://manuupadhyaya.github.io/assets/bibliography/alpha-citations.csl</id>
+    <updated>2026-10-12T12:00:00+02:00</updated>
+  </info>
+  <citation>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-label"/>
+    </layout>
+  </citation>
+  <!-- The blog-reference Liquid template supplies the bibliography layout. -->
+  <bibliography>
+    <layout>
+      <text variable="title"/>
+    </layout>
+  </bibliography>
+</style>
