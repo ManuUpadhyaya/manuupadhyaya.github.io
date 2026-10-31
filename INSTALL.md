@@ -7,6 +7,7 @@ This repository already contains the source for <https://manuupadhyaya.github.io
 Prerequisites:
 
 - Ruby and Bundler
+- Node.js 20 or newer and npm
 - Python and `pip`
 - ImageMagick
 
@@ -14,6 +15,7 @@ Install dependencies and run the site locally:
 
 ```bash
 bundle install
+npm ci --ignore-scripts --prefer-offline --no-audit --no-fund
 pip install -r requirements.txt
 bundle exec jekyll serve --unpublished
 ```
@@ -31,6 +33,8 @@ docker compose up
 For the first run, or after changing dependencies (`Gemfile` or `Gemfile.lock`), `Dockerfile`, or `bin/entry_point.sh`, use `docker compose up --build`.
 
 Open `http://localhost:8080`.
+
+Docker installs the JavaScript dependencies automatically when the preview starts if `package-lock.json` has changed since the previous start. Unchanged dependencies are reused across restarts.
 
 ## Related Automation
 

@@ -356,8 +356,18 @@
       <div role="group" aria-labelledby="{{ lyapunov_multipliers_id }}-zero-heading">
         <span id="{{ lyapunov_multipliers_id }}-zero-heading" class="lm-zero-heading" data-lm-zero-heading>Set to zero</span>
         <div class="lm-zero-toggles" data-lm-zero-grid>
+          {% assign lyapunov_zero_labels = 'Tau equals zero|Lambda subscript k comma star equals zero|Lambda subscript star comma k equals zero|Lambda subscript k plus one comma star equals zero|Lambda subscript star comma k plus one equals zero|Lambda subscript k comma k plus one equals zero|Lambda subscript k plus one comma k equals zero'
+            | split: '|'
+          %}
           {% for component in (0..6) %}
-            <button type="button" class="lm-zero-toggle" data-lm-zero="{{ component }}" aria-pressed="false" disabled>
+            <button
+              type="button"
+              class="lm-zero-toggle"
+              data-lm-zero="{{ component }}"
+              aria-label="{{ lyapunov_zero_labels[component] }}"
+              aria-pressed="false"
+              disabled
+            >
               {% case component %}
                 {% when 0 -%}
                   \(\tau=0\)

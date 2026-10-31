@@ -89,6 +89,8 @@ jobs:
         with:
           node-version: "24"
           cache: "npm"
+      - name: Install JavaScript dependencies
+        run: npm ci --ignore-scripts --prefer-offline --no-audit --no-fund
       - name: Install and Build 🔧
         run: |
           if ! command -v convert >/dev/null 2>&1; then

@@ -16,23 +16,172 @@ body {
 }
 
 body.fixed-top-nav {
-  // Add some padding for the nav-bar.
-  padding-top: 56px;
+  // Reserve the settled, collapsed navbar height before the first paint.
+  // Reading-progress initialization must not move the page after loading.
+  // Link line-height (0.95rem * 1.72), both padding pairs, and the border.
+  padding-top: calc(3.634rem + 1px);
+}
+
+@media (max-width: 767.98px) {
+  body.fixed-top-nav {
+    // The permanent wordmark's line box, brand/nav padding, and border.
+    padding-top: calc(3.5rem + 1px);
+  }
 }
 
 body.sticky-bottom-footer {
-  // Remove padding below footer.
+  // Let short pages fill the window, with the footer following long content.
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
   padding-bottom: 0;
+
+  > header,
+  > footer {
+    flex-shrink: 0;
+  }
+
+  > .site-main {
+    flex: 1;
+  }
 }
 
 .container {
   max-width: $max-content-width;
 }
 
+.site-main {
+  margin-top: clamp(1.5rem, 3.125vw, 2.5rem);
+}
+
+// Main tabs share an unobtrusive mobile label and one content starting point.
+.tab-page-header {
+  margin-bottom: 1.25rem;
+
+  .post-title {
+    margin: 0;
+    color: var(--global-text-color-light);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .post-description {
+    margin: 0.5rem 0 0;
+  }
+}
+
+.tab-page-content {
+  display: flow-root;
+
+  > :first-child,
+  > :first-child > :first-child {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  // Preserve the page heading for assistive technology without reserving space.
+  .tab-page-header {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+}
+
 // Profile
 .profile {
   img {
     width: 100%;
+  }
+}
+
+.about-intro {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .about-intro--with-portrait {
+    display: grid;
+    // Give the full portrait enough height as the biography wraps on narrower screens.
+    --portrait-column: clamp(21%, calc(68rem - 100vw), 40%);
+    grid-template-columns: minmax(0, 1fr) var(--portrait-column);
+    grid-template-areas: "bio portrait";
+    column-gap: 2rem;
+
+    &.about-intro--portrait-left {
+      grid-template-columns: var(--portrait-column) minmax(0, 1fr);
+      grid-template-areas: "portrait bio";
+    }
+
+    .about-bio {
+      grid-area: bio;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+
+      &::after {
+        content: none;
+      }
+
+      > :first-child {
+        margin-top: 0;
+        text-box: trim-start cap alphabetic;
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+        text-box: trim-end cap alphabetic;
+      }
+    }
+
+    .profile.float-left,
+    .profile.float-right {
+      grid-area: portrait;
+      width: auto;
+      min-width: 0;
+      margin: 0;
+
+      > figure {
+        margin: 0;
+      }
+
+      picture {
+        display: block;
+      }
+
+      img {
+        display: block;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .about-intro--with-portrait .profile.float-left,
+  .about-intro--with-portrait .profile.float-right {
+    float: none !important;
+    width: min(70%, 18rem);
+    margin: 0 auto 1.5rem;
+
+    figure {
+      margin: 0;
+    }
   }
 }
 

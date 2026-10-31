@@ -290,14 +290,30 @@
 <!-- Badges -->
 {% if page.permalink == '/publications/' or page.url == '/publications/' %}
   {% if site.enable_publication_badges.altmetric %}
-    <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+    <script>
+      if (document.querySelector('.altmetric-embed')) {
+        loadOptionalScript('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', { async: true }).catch(() => {});
+      }
+    </script>
   {% endif %}
   {% if site.enable_publication_badges.dimensions %}
-    <script async src="https://badge.dimensions.ai/badge.js"></script>
+    <script>
+      if (document.querySelector('.__dimensions_badge_embed__')) {
+        loadOptionalScript('https://badge.dimensions.ai/badge.js', { async: true }).catch(() => {});
+      }
+    </script>
   {% endif %}
 {% endif %}
 
-{% if site.enable_math and (page.math or page.pseudocode) %}
+{% assign browser_math = false %}
+{% if site.enable_math %}
+  {% if page.pseudocode %}
+    {% assign browser_math = true %}
+  {% elsif page.math and site.math_prerender == false %}
+    {% assign browser_math = true %}
+  {% endif %}
+{% endif %}
+{% if browser_math %}
   <!-- MathJax -->
   {% assign defer_homepage_math = false %}
   {% if page.url == '/' and page.pseudocode != true %}

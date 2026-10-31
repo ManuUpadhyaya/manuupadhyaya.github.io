@@ -8,6 +8,7 @@ nav_order: 4
 ---
 
 {% if site.posts.size > 0 %}
+{% assign has_video_preview = false %}
 
 <ul class="blog post-list">
   {% for post in site.posts %}
@@ -21,9 +22,17 @@ nav_order: 4
       {% if post.description %}
         <p>{{ post.description | escape }}</p>
       {% endif %}
+      {% assign preview = site.data.blog_previews[post.url] %}
+      {% if preview %}
+        {% assign has_video_preview = true %}
+        {% include blog-video-preview.liquid preview=preview title=post.title %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
+{% if has_video_preview %}
+  <script defer src="{{ '/assets/js/blog-video-preview.js' | relative_url | bust_file_cache }}"></script>
+{% endif %}
 {% else %}
 <p>No posts published yet.</p>
 {% endif %}

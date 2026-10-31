@@ -1,43 +1,35 @@
 ---
 layout: default
 ---
-<div class="post">
-  <div class="post-header">
-    <h1 class="post-title">
-      {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
-      {% else %}
-        {{ site.title }}
-      {% endif %}
-    </h1>
-    <p class="desc">{{ page.subtitle }}</p>
-  </div>
+<div class="post tab-page">
+  {% include tab-page-header.liquid description=page.subtitle %}
 
-  <article>
-    {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid shadow-sm rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid shadow-sm rounded' %}
+  <article class="tab-page-content">
+    <div class="about-intro{% if page.profile.image %} about-intro--with-portrait{% endif %}{% if page.profile.align == 'left' %} about-intro--portrait-left{% endif %}">
+      {% if page.profile %}
+        <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
+          {% if page.profile.image %}
+            {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+            {% if page.profile.image_circular %}
+              {% assign profile_image_class = 'img-fluid shadow-sm rounded-circle' %}
+            {% else %}
+              {% assign profile_image_class = 'img-fluid shadow-sm rounded' %}
+            {% endif %}
+            {% assign profile_image_alt = page.profile.image_alt | default: site.og_image_alt | default: site.title %}
+            {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.21 }}px, (min-width: 768px) clamp(calc(21vw - 6.3px), calc(68rem - 100vw), calc(40vw - 12px)), min(calc(70vw - 21px), 18rem){% endcapture %}
+            {%
+              include figure.liquid path=profile_image_path class=profile_image_class sizes=sizes alt=profile_image_alt width=page.profile.image_width height=page.profile.image_height loading='eager' fetchpriority='high'
+              cache_bust=true
+            %}
           {% endif %}
-          {% assign profile_image_alt = page.profile.image_alt | default: site.og_image_alt | default: site.title %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.25 }}px, (min-width: 576px) 25vw, 70vw{% endcapture %}
-          {%
-            include figure.liquid path=profile_image_path class=profile_image_class sizes=sizes alt=profile_image_alt width=page.profile.image_width height=page.profile.image_height loading='eager' fetchpriority='high'
-            cache_bust=true
-          %}
-        {% endif %}
-        {% if page.profile.more_info %}
-          <div class="more-info">{{ page.profile.more_info }}</div>
-        {% endif %}
-      </div>
-    {% endif %}
+          {% if page.profile.more_info %}
+            <div class="more-info">{{ page.profile.more_info }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
 
-    <div class="clearfix">{{ content }}</div>
+      <div class="about-bio clearfix">{{ content }}</div>
+    </div>
 
     <!-- News -->
     {% if page.news and site.announcements and site.announcements.enabled %}

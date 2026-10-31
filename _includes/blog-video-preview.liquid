@@ -1,0 +1,44 @@
+<div class="blog-video-preview" data-video-preview>
+  <a class="d-block h-100" href="{{ post.url | relative_url }}" aria-label="Read {{ include.title | escape }}">
+    <video
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      width="1920"
+      height="1080"
+      poster="{{ include.preview.poster | relative_url | bust_file_cache }}"
+      aria-hidden="true"
+    >
+      <source src="{{ include.preview.video | relative_url | bust_file_cache }}" type="video/mp4">
+    </video>
+  </a>
+  <div class="blog-video-controls">
+    <button
+      class="blog-video-control blog-video-toggle"
+      data-video-toggle
+      type="button"
+      aria-label="Play animation preview for {{ include.title | escape }}"
+      aria-pressed="false"
+    >
+      <svg class="video-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg class="video-pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+        <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+      </svg>
+    </button>
+    <button
+      class="blog-video-control blog-video-fullscreen"
+      data-video-fullscreen
+      type="button"
+      aria-label="Enter fullscreen"
+      title="Enter fullscreen"
+      hidden
+    >
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"></path>
+      </svg>
+    </button>
+  </div>
+</div>

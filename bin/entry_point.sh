@@ -19,8 +19,22 @@ manage_gemfile_lock() {
     fi
 }
 
+install_node_dependencies() {
+    [[ -f package-lock.json ]] || return 0
+    local lock_digest
+    lock_digest=$(node -p "require('crypto').createHash('sha256').update(require('fs').readFileSync('package-lock.json')).digest('hex')")
+    if [[ -f node_modules/.math-build-lock ]] && [[ "$(cat node_modules/.math-build-lock)" == "$lock_digest" ]]; then
+        return 0
+    fi
+
+    echo "Installing JavaScript dependencies for current package-lock.json"
+    npm ci --ignore-scripts --prefer-offline --no-audit --no-fund
+    printf '%s\n' "$lock_digest" > node_modules/.math-build-lock
+}
+
 start_jekyll() {
     manage_gemfile_lock
+    install_node_dependencies
     if ! bundle check >/dev/null 2>&1; then
         echo "Installing missing gems for current Gemfile.lock"
         bundle install

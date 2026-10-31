@@ -10,6 +10,7 @@ on:
       - "**.bib"
       - "**.html"
       - "**.js"
+      - "**.mjs"
       - "**.liquid"
       - "**.rb"
       - "**.scss"
@@ -18,6 +19,7 @@ on:
       - "favicon.ico"
       - "Gemfile"
       - "Gemfile.lock"
+      - "package*.json"
       - "requirements.txt"
       - "robots.txt"
       - "llms.txt"
@@ -42,6 +44,7 @@ on:
       - "**.bib"
       - "**.html"
       - "**.js"
+      - "**.mjs"
       - "**.liquid"
       - "**.rb"
       - "**.scss"
@@ -50,6 +53,7 @@ on:
       - "favicon.ico"
       - "Gemfile"
       - "Gemfile.lock"
+      - "package*.json"
       - "requirements.txt"
       - "robots.txt"
       - "llms.txt"
@@ -102,11 +106,12 @@ jobs:
           cache: "pip" # caching pip dependencies
           cache-dependency-path: "requirements.txt"
       - name: Setup Node.js ⚙️
-        if: github.event_name != 'pull_request'
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
+      - name: Install JavaScript dependencies
+        run: npm ci --ignore-scripts --prefer-offline --no-audit --no-fund
       - name: Install and Build 🔧
         run: |
           if ! command -v convert >/dev/null 2>&1; then

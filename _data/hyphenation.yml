@@ -1,0 +1,41 @@
+# Optional semantic breaks for rendered English prose only. A hyphen marks an
+# invisible U+00AD opportunity; removing it must preserve the original spelling.
+# Keep this list explicit: do not infer prefixes or syllable boundaries.
+words:
+  - sub-optimal
+  - sub-optimality
+  - semi-definite
+  - semi-definiteness
+  - non-negative
+  - non-negativity
+  - non-positive
+  - non-convex
+  - non-smooth
+  - non-expansive
+  - auto-mated
+  - con-ver-gence
+  - anal-y-ses
+  - op-ti-mi-za-tion
+  - in-clu-sion
+  - meth-ods
+  - math-e-mat-ics
+  - uni-ver-sity
+  # Dictionary breaks for the biography's English prose and personal names
+  # (LibreOffice en_US, sv_SE, and de_DE hyphenation patterns).
+  - post-doc-toral
+  - af-fil-i-a-tions
+  - en-gi-neer-ing
+  - sys-tem-atic
+  - struc-tured
+  - re-searcher
+  - ad-vi-sors
+  - prob-lems
+  - com-pleted
+  - vis-it-ing
+  - fi-nance
+  - ap-plied
+  - cen-ter
+  - pon-tus
+  - gi-sels-son
+  - se-bas-tian
+  - ba-nert

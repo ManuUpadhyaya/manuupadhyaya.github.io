@@ -35,7 +35,11 @@ function progressBarSetup() {
       progressBar.setAttribute("value", getCurrentScrollPosition());
     };
     document.addEventListener("scroll", updateProgress);
-    if ("ResizeObserver" in window) new ResizeObserver(updateProgress).observe(document.body);
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(updateProgress).observe(document.body);
+      const navbar = document.getElementById("navbar");
+      if (navbar) new ResizeObserver(initializeProgressElement).observe(navbar);
+    }
     window.addEventListener("resize", initializeProgressElement);
   } else {
     resizeProgressBar();
@@ -61,7 +65,6 @@ function initializeProgressElement() {
     navbarHeight = navbar.offsetHeight + parseFloat(navbarStyle.marginTop || "0") + parseFloat(navbarStyle.marginBottom || "0");
   }
 
-  document.body.style.paddingTop = `${navbarHeight}px`;
   document.querySelectorAll(".progress-container").forEach((container) => {
     container.style.paddingTop = `${navbarHeight}px`;
   });

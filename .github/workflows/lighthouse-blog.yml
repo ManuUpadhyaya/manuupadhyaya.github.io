@@ -19,6 +19,7 @@ on:
       - "_config.yml"
       - "Gemfile"
       - "Gemfile.lock"
+      - "package*.json"
       - "requirements.txt"
       - "purgecss.config.js"
       - ".github/scripts/**"
@@ -41,6 +42,7 @@ on:
       - "_config.yml"
       - "Gemfile"
       - "Gemfile.lock"
+      - "package*.json"
       - "requirements.txt"
       - "purgecss.config.js"
       - ".github/scripts/**"
@@ -80,15 +82,16 @@ jobs:
         run: npm ci --prefer-offline --no-audit --no-fund --ignore-scripts
       - name: Test blog behavior and MathJax rendering
         run: |
-          npm install --prefix "$RUNNER_TEMP/mathjax-check" --no-save @mathjax/src@4.1.3
-          MATHJAX_SOURCE_DIR="$RUNNER_TEMP/mathjax-check/node_modules/@mathjax/src" node --test tests/*.test.mjs
+          MATHJAX_SOURCE_DIR="$GITHUB_WORKSPACE/node_modules/@mathjax/src" node --test tests/*.test.mjs
           bundle exec ruby tests/cache-bust.test.rb
           bundle exec ruby tests/terser-cache.test.rb
           bundle exec ruby tests/llms-txt.test.rb
           bundle exec ruby tests/blog-citation-metadata.test.rb
           bundle exec ruby tests/blog-citation-format.test.rb
           bundle exec ruby tests/roboto-local-fonts.test.rb
+          bundle exec ruby tests/typography-hints.test.rb
           bundle exec ruby tests/figure-cache-key.test.rb
+          bundle exec ruby tests/mathjax-prerender.test.rb
       - name: Test compressed preview server
         run: python3 -m unittest discover -s .github/scripts -p 'test_serve_lighthouse.py'
       - name: Test production CSS typography preservation

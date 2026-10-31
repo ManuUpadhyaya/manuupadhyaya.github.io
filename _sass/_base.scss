@@ -22,8 +22,8 @@ strong {
 }
 
 body {
-  --body-font-weight: 300;
-  --body-letter-spacing: 0.002em;
+  --body-font-weight: 400;
+  --body-letter-spacing: -0.004em;
   font-family: "Roboto", sans-serif;
   font-weight: var(--body-font-weight);
   -webkit-font-smoothing: antialiased;
@@ -44,7 +44,14 @@ li {
 
 p {
   text-align: justify;
+  text-justify: inter-word;
   hyphens: auto;
+  hyphenate-limit-chars: 6 2 3;
+}
+
+b,
+strong {
+  font-weight: 700;
 }
 
 h1,
@@ -123,13 +130,18 @@ table {
     picture {
       overflow: hidden;
       background: var(--global-card-bg-color);
-      border: 1px solid var(--global-divider-color);
-      border-radius: 0.25rem;
+      // Preserve the border's space while drawing the frame inside the photo.
+      border: 1px solid transparent;
+      border-radius: 4px;
+      box-shadow: none !important;
+      outline: 1px solid var(--global-divider-color);
+      outline-offset: -1px;
     }
 
     img {
       height: auto;
       cursor: zoom-in;
+      box-shadow: none !important;
 
       &:focus-visible {
         outline: 3px solid var(--global-theme-color);
@@ -167,7 +179,8 @@ table.table a {
   }
 }
 
-.post article > .clearfix p a {
+.post article > .clearfix p a,
+.post .about-bio p a {
   color: var(--global-inline-link-color);
 }
 
@@ -334,6 +347,13 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+.about-intro > .profile img {
+  box-shadow: none !important;
+  border-radius: 4px !important;
+  outline: 1px solid var(--global-divider-color);
+  outline-offset: -1px;
+}
+
 .profile.float-right {
   margin-left: 1rem;
 }
@@ -414,7 +434,9 @@ ul.task-list input[type="checkbox"] {
 
   .navbar-brand {
     color: var(--global-text-color);
+    font-size: 1.5rem;
     font-weight: 500;
+    line-height: 1.25;
     letter-spacing: 0.01em;
   }
 
@@ -616,6 +638,11 @@ footer.fixed-bottom {
     padding-top: 9px;
     padding-bottom: 8px;
     text-align: center;
+
+    > .footer-copyright,
+    > .footer-updated {
+      color: inherit;
+    }
   }
 
   a {
@@ -636,6 +663,26 @@ footer.sticky-bottom {
 
   .container {
     text-align: center;
+  }
+
+  @media (max-width: 767.98px) {
+    > .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      color: var(--global-text-color-light);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+
+      > .footer-copyright,
+      > .footer-updated {
+        display: block;
+        max-width: 100%;
+        color: inherit;
+        white-space: nowrap;
+      }
+    }
   }
 }
 
@@ -683,6 +730,44 @@ footer.sticky-bottom {
 .post-title {
   mjx-container[jax="CHTML"][display="true"] {
     display: unset;
+  }
+}
+
+.blog > .blog-entry > h2,
+.post:not(.tab-page) > .post-header > .post-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+.blog-post {
+  > h2,
+  #markdown-content > h2,
+  #markdown-content > h4[aria-level="2"] {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  #markdown-content > h3,
+  #markdown-content > h5[aria-level="3"] {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  #markdown-content > h4:not([aria-level]) {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  #markdown-content > h4[aria-level="2"] {
+    margin-block-start: 3rem;
+    margin-block-end: 1rem;
+  }
+
+  #markdown-content > h5[aria-level="3"] {
+    margin-block-start: 2.25rem;
+    margin-block-end: 0.875rem;
   }
 }
 
@@ -795,14 +880,50 @@ footer.sticky-bottom {
   }
 }
 
-.software-badges {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+.software {
+  .software-badges {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-  img {
-    border-radius: 0.35rem;
+  .software-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--global-theme-color);
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--global-theme-color) 35%, transparent);
+      background: color-mix(in srgb, var(--global-theme-color) 2.5%, transparent);
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--global-theme-color);
+      outline-offset: 3px;
+    }
+  }
+
+  .software-stat-label {
+    color: var(--global-text-color-light);
+  }
+
+  .software-stat-value {
+    color: var(--global-theme-color);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -825,6 +946,104 @@ footer.sticky-bottom {
   border-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.blog-video-preview {
+  position: relative;
+  margin-top: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  background: var(--global-bg-color);
+  isolation: isolate;
+
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    // Encoded white is 253/255. Normalize it before blending into the page's
+    // slightly cool white, so the video and poster share the exact backdrop.
+    filter: brightness(1.0079051383);
+    mix-blend-mode: multiply;
+  }
+
+  .blog-video-controls {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .blog-video-control {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 4px;
+    background: var(--global-bg-color);
+    color: var(--global-text-color);
+    cursor: pointer;
+    opacity: 0.75;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
+  }
+
+  button:focus-visible {
+    outline: 2px solid var(--global-theme-color);
+    outline-offset: 3px;
+  }
+
+  .blog-video-toggle[aria-pressed="true"] .video-play-icon,
+  .blog-video-toggle[aria-pressed="false"] .video-pause-icon {
+    display: none;
+  }
+
+  @media (max-width: 767.98px) {
+    .blog-video-controls {
+      position: static;
+      justify-content: flex-end;
+      padding: 0.25rem 0.375rem;
+      border-top: 1px solid var(--global-divider-color);
+    }
+  }
+
+  &:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--global-bg-color);
+
+    video {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    .blog-video-controls {
+      position: absolute;
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
+html[data-theme="dark"] .blog-video-preview video {
+  filter: brightness(1.0079051383) invert(1);
+  mix-blend-mode: screen;
 }
 
 .post-references {
@@ -892,11 +1111,17 @@ footer.sticky-bottom {
   margin-bottom: 0.5rem;
 }
 
+.tab-page-content > h2,
+.publications h2.bibliography,
+.teaching h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
 .publications h2.bibliography,
 .teaching h2 {
   color: var(--global-text-color);
-  font-size: 1.5rem;
-  font-weight: 500;
   border-bottom: 1px solid var(--global-divider-color);
   padding-bottom: 0.5rem;
   margin-top: 2rem;
@@ -1013,31 +1238,46 @@ footer.sticky-bottom {
         text-wrap: pretty;
       }
 
+      .author,
+      .periodical {
+        color: var(--global-text-color-light);
+        font-size: 14px;
+      }
+
       .author {
         a {
-          border-bottom: 1px dashed var(--global-theme-color);
+          color: var(--global-theme-color);
+          border-bottom: 0;
+          text-decoration: none;
 
-          &:hover {
-            border-bottom-style: solid;
-            text-decoration: none;
+          &:hover,
+          &:focus-visible {
+            text-decoration: underline;
+            text-underline-offset: 2px;
           }
         }
 
         > em {
-          border-bottom: 1px solid;
+          color: var(--global-text-color-light);
+          border-bottom: 0;
           font-style: normal;
         }
 
         > span.more-authors {
-          color: var(--global-text-color-light);
-          border-bottom: 1px dashed var(--global-text-color-light);
+          color: var(--global-theme-color);
+          border-bottom: 0;
           cursor: pointer;
 
-          &:hover {
-            color: var(--global-text-color);
-            border-bottom: 1px dashed var(--global-text-color);
+          &:hover,
+          &:focus-visible {
+            text-decoration: underline;
+            text-underline-offset: 2px;
           }
         }
+      }
+
+      .periodical em {
+        color: inherit;
       }
 
       .publication-note {
