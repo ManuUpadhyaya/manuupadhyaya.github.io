@@ -8,6 +8,7 @@ require 'timeout'
 module Jekyll
   module MathPrerender
     FONT_DIRECTORY = 'assets/fonts/mathjax-newcm-4.1.3'.freeze
+    SPACER_PATTERN = /<mjx-spacer\b[^>]*>.*?<\/mjx-spacer>/m.freeze
 
     def self.enabled?(site, document)
       site.config['enable_math'] && site.config.fetch('math_prerender', true) &&
@@ -92,6 +93,12 @@ module Jekyll
 
       def render_document(document)
         return unless MathPrerender.enabled?(@site, document)
+
+        # MathJax stacks vertical delimiter pieces using literal newlines in
+        # white-space: pre spacers. jekyll-minifier runs later, during write;
+        # preserve only these nodes so its whitespace collapse cannot erase them.
+        minifier = @site.config['jekyll-minifier'] ||= {}
+        minifier[:preserve_patterns] = Array(minifier[:preserve_patterns]) | [SPACER_PATTERN]
 
         baseurl = @site.config['baseurl'].to_s.sub(%r{/\z}, '')
         options = { 'fontURL' => "#{baseurl}/#{FONT_DIRECTORY}" }

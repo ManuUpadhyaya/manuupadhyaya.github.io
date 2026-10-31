@@ -2,6 +2,8 @@ require 'jekyll'
 require 'tmpdir'
 require 'fileutils'
 require 'json'
+require 'jekyll-minifier'
+require 'nokogiri'
 
 require_relative '../_plugins/mathjax-prerender'
 
@@ -34,6 +36,14 @@ class FixtureMathWorker
   end
 
   def close; end
+end
+
+class FixtureMathCompressor
+  include Jekyll::Compressor
+
+  def initialize(site)
+    @site = site
+  end
 end
 
 def with_math_fixture
@@ -150,3 +160,34 @@ assert(!render_browser_math(scripts, prerender: true).include?('/assets/js/mathj
 assert(render_browser_math(scripts, prerender: false).include?('id="MathJax-script"'), 'The explicit legacy configuration must retain browser rendering')
 assert(render_browser_math(scripts, prerender: true, pseudocode: true).include?('/assets/js/pseudocode-setup.js'), 'Pseudocode must retain its existing browser setup')
 puts 'PASS: rendered pages omit browser MathJax, while explicit legacy and pseudocode routes remain available'
+
+Dir.mktmpdir('mathjax-production-minification-') do |root|
+  site = FixtureSite.new(File.expand_path('..', __dir__), File.join(root, 'cache'), File.join(root, 'output'),
+                         { 'baseurl' => '', 'enable_math' => true,
+                           'jekyll-minifier' => { 'compress_javascript' => false } }, [])
+  renderer = Jekyll::MathPrerender::Renderer.new(site)
+  page = math_document(<<~'HTML')
+    <html><head></head><body><p>Ordinary    prose.</p>
+    \[\begin{pmatrix}a & b \\ c & d \\ e & f \\ g & h \\ i & j\end{pmatrix}\]
+    </body></html>
+  HTML
+  previous_environment = ENV['JEKYLL_ENV']
+  begin
+    renderer.render_document(page)
+    spacer_text = ->(html) { Nokogiri::HTML5(html).css('mjx-stretchy-v mjx-spacer').map(&:text) }
+    original_spacers = spacer_text.call(page.output)
+    assert(original_spacers.size == 2 && original_spacers.all? { |text| text.include?("\n") },
+           'Tall matrix parentheses must use newline-separated vertical extenders')
+    ENV['JEKYLL_ENV'] = 'production'
+    output = File.join(root, 'output/index.html')
+    FixtureMathCompressor.new(site).output_html(output, page.output)
+    minified = File.read(output)
+    assert(spacer_text.call(minified) == original_spacers,
+           'Production HTML minification must preserve the line breaks that join tall parentheses')
+    assert(minified.include?('Ordinary prose.'), 'Ordinary prose must retain production whitespace minification')
+    puts 'PASS: production minification preserves vertical delimiter extenders and still compresses prose'
+  ensure
+    ENV['JEKYLL_ENV'] = previous_environment
+    renderer.close
+  end
+end
