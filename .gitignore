@@ -12,6 +12,18 @@ node_modules/
 vendor
 .idea
 
+# Local Codex configuration, instructions, and internal working notes
+.codex/
+AGENTS.md
+AGENTS.local.md
+/docs/superpowers/
+/.worktrees/
+
+# Local visual checks and execution logs
+/screenshots/
+/artifacts/
+/*.log
+
 # Local experiment code
 /Code/
 
